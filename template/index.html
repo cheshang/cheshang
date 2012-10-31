@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="static/js/in.js" autoload="true" core="static/js/jquery.min.js"></script>
+<script type="text/javascript">
+var timenow = new Date().getTime();
+
+In.add('qichebook',{path:'static/js/qichebook.js',type:'js',charset:'utf-8'});
+In.add('easing',{path:'static/js/jquery.easing.1.3.js',type:'js',charset:'utf-8'});
+In.add('tmpl',{path:'static/js/jquery.tmpl.min.js',type:'js',charset:'utf-8'});
+In.add('reset',{path:'static/css/reset.css'});
+In.add('css',{path:'static/css/qichebook.css?'+timenow});
+
+/*
+In.ready('qichebook','reset','css','easing','tmpl',function(){
+	$('.page-wrapper').fadeIn()
+});*/
+
+In.later(500,'reset','css','qichebook','tmpl','easing',function(){
+	$('.page-wrapper').fadeIn()
+});
+</script>
+<style>
+html{height:100%;width:100%;background:url('static/imgs/loader-1.gif') no-repeat center 40%}
+</style>
+</head>
+<body>
+	<div class="page-wrapper" style="display: none">
+		<div class="header-wrapper">
+			<a href="" class="logo">汽车时尚</a>
+			<div class="auth-box">
+				<h2>用第三方账号秒速登录车尚</h2>
+				<div class="auth-login">
+					<a href="" class="auth-login-renren"></a>
+					<a href="" class="auth-login-sina"></a>
+					<a href="" class="auth-login-douban"></a>
+				</div>
+			</div>
+		</div><!--end header-wrapper-->
+		
+		<div class="container-wrapper">
+			<!--
+			<div class="album-list-box album-list-box-long">
+				<div class="album-cover-img">
+					<a href="album.html"><img src="static/photo/bg4.jpg"></a>
+				</div>
+				<div class="album-info">
+					<img src="static/imgs/link_24.png" style="margin:12px;" />
+					<img src="static/imgs/star_24.png" style="margin:12px;" />
+				</div>
+			</div>
+			-->
+			
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="500">
+					<a href="album.html"><img src="static/photo/1.jpg" id="missile"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="667">
+					<a href="album.html"><img src="static/photo/2.jpg"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="374">
+					<a href="album.html"><img src="static/photo/3.jpg"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="560" h="350">
+					<a href="album.html"><img src="static/photo/4.jpg"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="752">
+					<a href="album.html"><img src="static/photo/5.jpg"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="748" h="350">
+					<a href="album.html"><img src="static/photo/6.jpg"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="375">
+					<a href="album.html"><img src="static/photo/7.jpg"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="647">
+					<a href="album.html"><img src="static/photo/8.jpg" style="margin-top:-100px"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+				</div>
+			</div>
+		</div><!--end container-wrapper-->
+		
+		<div class="pagination-wrapper">
+			<div class="pagination pagination-centered">
+				<ul>
+					<li><a href="#">Prev</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">Next</a></li>
+				</ul>
+			</div>
+		</div><!--end pagination-->
+		
+		<div class="load-more-album"></div>
+		
+	</div><!--end page-wrapper-->
+</body>
+</html>

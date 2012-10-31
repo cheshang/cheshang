@@ -1,0 +1,113 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link type="text/css" rel="stylesheet" href="static/css/reset.css"></link>
+<link type="text/css" rel="stylesheet" href="static/css/qichebook.css"></link>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.masonry.min.js"></script>
+<script>
+$(document).ready(function(){
+	var $container = $('.album-container');
+	$container.imagesLoaded( function(){
+	  $container.masonry({
+	    itemSelector : '.album-photo-list'
+	  });
+	});
+	
+	$('.album-photo-list').hover(
+		function(){
+			$(this).find('.album-new-window').fadeIn();
+		},
+		function(){
+			$(this).find('.album-new-window').fadeOut();
+		}
+	);
+});
+</script>
+</head>
+<body>
+	<div class="page-wrapper">
+		<div class="header-wrapper">
+			<div class="album-basic-info">
+				<div class="album-creater">
+					<span class="album-info-s-t">发布者：</span>
+					<span class="album-info-usseravatar">
+						<a href="me.html"><img src="static/photo/user1.jpg" /></a>
+					</span>
+					<span><a href="me.html">一地鸡毛</a></span>
+					<span class="album-info-time">(2012/09/23)</span>
+				</div>
+				<p>
+					<span class="album-info-s-t">被收藏：</span>1593次
+				</p>
+				<p>
+					<span class="album-info-s-t">专辑名：</span>超霸气兰博基尼LP-700，牛逼的不只是外表，再次证明：牛逼总是一脉相传。
+				</p>
+			</div>
+			
+			<div class="user-count-info">
+				<div class="logo-bar">				
+					<a class="s-logo" href="index.html"></a>
+				</div>
+				<div class="album-fav-bar">
+					<span class="s-ico"></span>
+					<span class="s-word">收藏该专辑</span>
+				</div>
+			</div>
+			
+		</div><!--end header-wrapper-->
+		
+		<div class="container-wrapper">
+			<div class="album-container">
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/1.jpg"></a>
+					<div class="album-new-window" title="新窗口查看"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/2.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/3.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/1.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/2.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/3.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/1.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/2.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/1.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/2.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+				<div class="album-photo-list">
+					<a href="view.html"><img src="static/photo/3.jpg"></a>
+					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+				</div>
+			</div>
+		</div><!--end container-wrapper-->
+	</div><!--end page-wrapper-->
+</body>
+</html>

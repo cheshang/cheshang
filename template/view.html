@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>汽车BOOK</title>
+<link type="text/css" rel="stylesheet" href="static/css/reset.css"></link>
+<link type="text/css" rel="stylesheet" href="static/css/qichebook.css"></link>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="static/js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="static/js/tips/jquery.tiptip.js"></script>
+<link rel="stylesheet" href="static/js/tips/tiptip.css" />
+<script type="text/javascript" src="static/js/view.js"></script>
+<script type="text/javascript" src="static/js/album-datas2.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var s = window.location.search;
+	if( s == '?a=3' ){
+		//
+	}
+})
+
+</script>
+<style>html{overflow:hidden;}</style>
+</head>
+<body>
+	<div class="page-wrapper">
+		<div class="photo-content-wrapper">
+			
+			<div class="msg photo-view-msg-box">
+				<div class="photo-view-msg-ico"></div>
+				<div class="photo-view-msg-word">图片开小差了，没能加载成功。</div>
+				<button class="re-get-image">重新获取图片(R)</button>
+			</div><!--end msg-box -->
+			
+			
+			<div class="photo-view-comment-box">
+				<div class="photo-view-comment-content">
+					<div class="comment-post-box">
+						<div class="comment-post-textarea">
+							<textarea id="comment-post"></textarea>
+							<button id="post-comment-btn">发表</button>
+						</div>
+					</div>
+					
+					<div class="comment-list-box">
+						<div class="comment-list">
+							<div class="user-avatar"><img src="static/photo/user1.jpg" /></div>
+							<div class="comment-info">
+								<div class="comment-attr">
+									<span class="comment-user-name"><a href="">一地鸡毛</a></span>
+									<span class="comment-time">10分钟以前</span>
+									<span class="comment-reply tips-left" title="回复"></span>
+								</div>
+								<div class="comment-content">
+									<div class="comment">这车真心碉堡了，改天去搞一辆~~</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="comment-list">
+							<div class="user-avatar"><img src="static/photo/user1.jpg" /></div>
+							<div class="comment-info">
+								<div class="comment-attr">
+									<span class="comment-user-name"><a href="">阿呆</a></span>
+									<span class="comment-time">10分钟以前</span>
+									<span class="comment-reply tips-left" title="回复"></span>
+								</div>
+								<div class="comment-content">
+									<div class="comment">这车真心碉堡了，改天去搞一辆~~，艾萨拉了思考的房间阿了思考的房间艾斯黛拉飞</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="comment-list">
+							<div class="user-avatar"><img src="static/photo/user1.jpg" /></div>
+							<div class="comment-info">
+								<div class="comment-attr">
+									<span class="comment-user-name"><a href="">普通青少年</a></span>
+									<span class="comment-time">10分钟以前</span>
+									<span class="comment-reply tips-left" title="回复"></span>
+								</div>
+								<div class="comment-content">
+									<div class="comment">太酷了太酷了！哥凌乱了……</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div><!--end comment-box-->
+			
+			
+			<div class="photo-content">
+				<div class="msg photo-loading"><span>加载中...</span></div>
+				<div class="photo-previous"></div>
+				<div class="photo-next"></div>
+				
+				<img src="static/imgs/1px.png" pid="0" class="photo" />
+				
+				
+			</div>
+			
+			<div class="photo-list">
+				<div class="photo-list-title">
+					<span class="photo-list-title-word">全部图片 (35张)</span>
+					<span class="close-photo-list"></span>
+				</div>
+				<div class="photo-list-container">
+					<div class="photo-list-loader">loading...</div>
+					<!--<div class="photo-list-item"><img src="static/photo/1.jpg" /></div>
+					<div class="photo-list-item"><img src="static/photo/1.jpg" /></div>
+					<div class="photo-list-item current-view"><img src="static/photo/1.jpg" /></div>
+					<div class="photo-list-item"><img src="static/photo/1.jpg" /></div>
+					<div class="photo-list-item"><img src="static/photo/1.jpg" /></div>-->
+				</div>
+			</div>
+			
+		</div><!--end photo-content-wrapper -->
+		
+		
+		<div class="open-photo-list-mod tips-right" title="列表模式查看"></div><!--end open-photo-list-mod-->
+		
+		
+		<!--专辑list-mod-->
+		<div class="photo-list-mod-wrapper">
+			<div class="photo-list-mod-box">
+				<div class="close-photo-list-mod tips-right" title="关闭列表模式"></div>
+				
+				<div class="photo-list-mod-content">
+					<div class="p-l-m-item">
+						<div class="p-l-m-tool-bar">
+							<button class="fav-this-photo"><span>132</span></button>
+							<button class="comment-this-photo"><span>356</span></button>
+						</div>
+						<div class="p-l-m-comment-box">aaaaaa</div>
+						<img src="http://www.desktopmachine.com/pics/Bugatti_veyron_cabrio_106_1920x1200.jpg" />
+					</div>
+					
+					<div class="p-l-m-item">
+						<div class="p-l-m-tool-bar">
+							<button class="fav-this-photo"><span>132</span></button>
+							<button class="comment-this-photo"><span>356</span></button>
+						</div>
+						<div class="p-l-m-comment-box">aaaaaa</div>
+						<img src="http://www.desktopmachine.com/pics/Bugatti_Veyron_SS_136_1920x1200.jpg" />
+					</div>
+					
+					<img src="http://www.desktopmachine.com/pics/Bugatti_veyron_GSV_01_1920x1080.jpg" />
+					<img src="http://www.desktopmachine.com/pics/Bugatti_Veyron_SS_135_1920x1200.jpg" />
+					<img src="http://www.desktopmachine.com/pics/Bugatti_veyron-2008_88_1920x1200.jpg" />
+					<img src="http://www.desktopmachine.com/pics/Bugatti_Veyron_66_1920x1200.jpg" />
+					<img src="http://www.desktopmachine.com/pics/Bugatti_Veyron_70_1680x1050.jpg" />
+				</div>
+			</div>
+		</div><!--end photo-list-mod-wrapper-->
+		
+		
+		<div class="tools-bar">
+			<a href="index.html" class="view-logo"></a>
+			
+			<a href="me.html" class="view-mypage"></a>
+			
+			<a href="" class="view-recommend"></a>
+			
+			<div class="p-view-sns-bar">
+				<div class="photo-view-btn view-nice tips-left" title="赞一个^_^">
+					<span class="ico-icon"></span>
+					<span class="ico-word">150</span>
+				</div>
+				<div class="photo-view-btn view-fav tips-left" title="收藏这张图">
+					<span class="ico-icon"></span>
+					<span class="ico-word">3206</span>
+				</div>
+				<div class="photo-view-btn view-comment tips-left" title="查看评论">
+					<span class="ico-icon"></span>
+					<span class="ico-word">224</span>
+				</div>
+			</div>
+			
+		</div>
+	</div><!--end page-wrapper-->
+</body>
+</html>
