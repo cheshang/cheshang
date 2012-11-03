@@ -9,12 +9,12 @@ from model.main import img_list
 
 @route('/')
 class Index:
-    def GET(self, url=''):
+    def GET(self):
         return render.index()
 
 @route('/album')
 class Album:
-    def GET(self, url=''):
+    def GET(self):
         return render.album()
 
 @route('/view')

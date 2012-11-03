@@ -10,6 +10,3 @@ class Register(NoLoginView):
     def GET(self, id=0):
         return render.register()
 
-    def POST(self):
-        print web.data()
-        
