@@ -26,11 +26,10 @@ class View(object):
     def render(self, template_name=None, **kargs):
         if not template_name:
             template_name = '%s/%s.html' % (
-                self.__module__[5:].replace('.', '/'),
-                self.__class__.__name__
+                self.__module__[5:].replace('.', '/').lower(),
+                self.__class__.__name__.lower()
             )
         return _render._render(template_name)
-        return template_name
 
 class LoginView(View):
     def __init__(self):

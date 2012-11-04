@@ -26,7 +26,8 @@ class render_jinja:
 
     def _render(self, name):
         t = self._lookup.get_template(name)
-        return t.render
+        html = t.render()
+        return html
 
 
 class _render_jinja:
