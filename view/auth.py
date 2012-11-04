@@ -4,10 +4,12 @@ import _env
 import web
 from config import render
 from view._base import route, LoginView, NoLoginView
+from model.base import id_new
 
 @route('/signup')
 class Signup(NoLoginView):
     def GET(self):
+        print id_new()
         return self.render()
 
     def POST(self):

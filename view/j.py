@@ -3,7 +3,6 @@
 import _env
 import web
 from config import render
-from model.main import img_list
 from view._base import route, LoginView
 
 @route('/comment/(\d+)')

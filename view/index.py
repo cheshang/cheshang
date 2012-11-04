@@ -5,7 +5,6 @@ import web
 from config import render
 from view._base import route, LoginView, View, NoLoginView
 from lib.base import login as _login
-from model.main import img_list
 
 @route('/')
 class Index(View):
