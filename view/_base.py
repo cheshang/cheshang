@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import web
+from config import render as _render
 from lib.route import Route
 from lib.session import session_new, id_by_session, session_rm
 
@@ -9,17 +10,26 @@ route = Route()
 def logout(self, uid):
     s = web.cookies().get('S')
     session_rm(s)
+    web.setcookie('S', '')
 
 class View(object):
 
     @property
     def login(self):
         s = web.cookies().get('S')
-        uid = session_get(s)
+        uid = id_by_session(s)
         return True if uid else False
 
     def redirect(self, url):
         raise web.seeother(url)
+
+    def render(self, template_name=None, **kargs):
+        if not template_name:
+            template_name = '%s/%s.html' % (
+                self.__module__[5:].replace('.', '/').lower(),
+                self.__class__.__name__.lower()
+            )
+        return _render._render(template_name)
 
 class LoginView(View):
     def __init__(self):

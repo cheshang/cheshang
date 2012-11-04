@@ -5,8 +5,10 @@ import web
 from config import render
 from view._base import route, LoginView, NoLoginView
 
-@route('/register')
-class Register(NoLoginView):
+@route('/signup')
+class Signup(NoLoginView):
     def GET(self, id=0):
-        return render.register()
+        return self.render()
+        #return a 
+        #return render.register()
 
