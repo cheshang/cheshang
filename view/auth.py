@@ -7,8 +7,22 @@ from view._base import route, LoginView, NoLoginView
 
 @route('/signup')
 class Signup(NoLoginView):
-    def GET(self, id=0):
+    def GET(self):
         return self.render()
-        #return a 
-        #return render.register()
 
+    def POST(self):
+        email, passwd, name =  self.argument('email', 'passwd', 'name')
+        if email and passwd and name:
+            account_new(email, passwd, name) 
+        return self.render()
+
+
+@route('/signin')
+class Signin(NoLoginView):
+    def GET(self):
+        return self.render()
+
+    def POST(self):
+        print self.argument('u')
+        print self.argument('p')
+        return 1

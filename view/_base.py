@@ -31,6 +31,17 @@ class View(object):
             )
         return _render._render(template_name)
 
+    def argument(self, name, default=''):
+        return web.input().get(name, default)
+
+    def arguments(self, *args):
+        data = web.input()
+        result = []
+        for i in args:
+            value = data.get(i, '')
+            result.append(value)
+        return result
+
 class LoginView(View):
     def __init__(self):
         s = web.cookies().get('S')

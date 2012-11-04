@@ -8,17 +8,17 @@ from lib.base import login as _login
 from model.main import img_list
 
 @route('/')
-class Index:
+class Index(View):
     def GET(self):
-        return render.index()
+        return self.render()
 
 @route('/album')
-class Album:
+class Album(View):
     def GET(self):
-        return render.album()
+        return self.render()
 
 @route('/view')
-class ViewPage:
+class ViewPage(View):
     def GET(self, url=''):
         return render.view()
 
