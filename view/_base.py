@@ -9,13 +9,14 @@ route = Route()
 def logout(self, uid):
     s = web.cookies().get('S')
     session_rm(s)
+    web.setcookie('S', '')
 
 class View(object):
 
     @property
     def login(self):
         s = web.cookies().get('S')
-        uid = session_get(s)
+        uid = id_by_session(s)
         return True if uid else False
 
     def redirect(self, url):
