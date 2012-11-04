@@ -8,5 +8,6 @@ from view._base import route, LoginView, NoLoginView
 @route('/signup')
 class Register(NoLoginView):
     def GET(self, id=0):
-        return render.register()
+        self.render()
+        #return render.register()
 

@@ -5,7 +5,8 @@ import os
 import web
 from os.path import join
 from redis import StrictRedis
-from web.contrib.template import render_jinja
+#from web.contrib.template import render_jinja
+from lib.render import render_jinja
 from lib.redis_key import RedisKey
 
 
