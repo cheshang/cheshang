@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
 <meta charset="UTF-8">
-<title>Æû³µBook</title>
+<title>æ±½è½¦Book</title>
 <script type="text/javascript" src="static/js/in.js" autoload="true" core="static/js/jquery.min.js"></script>
 <script type="text/javascript">
 var timenow = new Date().getTime();
@@ -11,7 +11,10 @@ In.add('reset',{ path:'static/css/reset.css' });
 In.add('css',{ path:'static/css/qichebook.css?'+timenow });
 In.ready('auth','reset','css',function(){
 	$('.page-wrapper').fadeIn()
+	
+	$.checkAuthForm();
 });
+
 </script>
 <style>
 html{height:100%;width:100%;background:url('static/imgs/loader-1.gif') no-repeat center 40%}
@@ -21,31 +24,40 @@ html{height:100%;width:100%;background:url('static/imgs/loader-1.gif') no-repeat
 	<div class="page-wrapper" style="display: none">
 		<div class="header-wrapper">
 			<div class="header-container">
-				<a href="{$HOST}" class="logo">Æû³µÊ±ÉĞ</a>
-				<a href="{$HOST}register" class="a-btn auth-station">×¢ ²á</a>
+				<a href="" class="logo">æ±½è½¦æ—¶å°š</a>
+				<a href="login" class="a-btn auth-station">ç™» é™†</a>
 			</div>
 		</div><!--end header-wrapper-->
 		
 		<div class="container-wrapper" style="width:950px">
-			<h1 class="auth-tit">µÇÂ½</h1>
+			<h1 class="auth-tit">æ³¨å†Œ</h1>
 			<div class="auth-wrapper">
 				<form action="" method="poost">
 					<p class="text-content">
-						<label>ÓÊÏä£º</label>
-						<input type="text" name="" value="" class="auth-text" />
+						<label>é‚®ç®±ï¼š</label>
+						<input type="text" name="" value="" class="auth-text" require="true" datatype="email" />
 						<span class="auth-notice notice-error"></span>
 					</p>
 					<p class="text-content">
-						<label>ÃÜÂë£º</label>
-						<input type="password" name="" value="" class="auth-text" />
-						<span class="auth-notice"><a href="">Íü¼ÇÃÜÂë£¿</a></span>
+						<label>å¯†ç ï¼š</label>
+						<input type="password" name="" value="" class="auth-text" require="true" datatype="password" />
+						<span class="auth-notice"></span>
 					</p>
-					
 					<p class="text-content">
-						<input type="submit" class="btn auth-btn" value="µÇ Â½" />
+						<label>ç¡®è®¤å¯†ç ï¼š</label>
+						<input type="password" name="" value="" class="auth-text" require="true" datatype="repassword" />
+						<span class="auth-notice"></span>
+					</p>
+					<p class="text-content">
+						<label>æ˜µç§°ï¼š</label>
+						<input type="text" name="" value="" class="auth-text" maxlength="16" />
+						<span class="auth-notice notice-succ"></span>
+					</p>
+					<p class="text-content">
+						<input type="submit" class="btn auth-btn" value="æ³¨ å†Œ" />
 					</p>
 				</form>
-				<div class="che-logo" style="top:240px">
+				<div class="che-logo">
 					<img src="static/photo/car.png" />
 				</div>
 			</div>
