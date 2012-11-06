@@ -1,20 +1,65 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import _env
+import string
+import hashlib
 from config import redis, redis_key
 from model.base import id_new
 
 REDIS_PROFILE = redis_key.Profile('%s')
-REDIS_ID_BY_EMAIL = redis_key.IdByEmail()
+REDIS_EMAIL   = redis_key.Email()
+REDIS_PASSWD  = redis_key.Passwd()
+REDIS_USER    = redis_key.User('%s')
 
-def account_new()
+PROFILE = {
+    'name'  : 1,
+    'sex'   : 2,
+    'email' : 3
+}
+
+def account_new(email, passwd, name):
+    name, passwd, name = map(string.strip, (email, passwd, name))
+    uid = uid_by_email(email)
+    if uid:
+        return
     uid = id_new()
-    pass
+    redis.hset(REDIS_EMAIL, email, uid)
+    passwd_save(uid, passwd)
+    profile_save(uid, email=email, name=name)
+    return uid
 
-def profile_save(uid, name='', sex=''):
-    
+def uid_by_email(email):
+    uid = redis.hget(REDIS_EMAIL, email)
+    return int(uid) if uid else 0
 
+def passwd_save(uid, passwd):
+    _passwd = hashlib.md5('%s.%s' % (uid, passwd)).hexdigest() 
+    redis.hset(REDIS_PASSWD, uid, _passwd)
+
+
+def profile_save(uid, **args):
+    key = REDIS_USER % uid
+    p = redis.pipeline()
+    for i in args:
+        k = PROFILE[i]
+        v = args[i]
+        p.hset(key, k, v)
+    p.execute()
+
+def profile_get(uid):
+    key = REDIS_USER % uid
+    profile = redis.hgetall(key)
+    print profile
+    result = {}
+    for i in profile:
+        print i
+        k = [value  for key, value in PROFILE if value == int(i)]
+        v = profile[i]
+        result[k] = v
+    return result
 
         
 if __name__ == '__main__':
     pass
+    #print account_new('lvdachao@gmail.com', '123', 'Lerry')
+    print profile_get(10014)

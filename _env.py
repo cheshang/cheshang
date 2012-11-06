@@ -1,16 +1,30 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-'''
-by Lerry  http://lerry.org
-Last edit at 2012-08-04 16:18
-'''
+#coding:utf-8
+
 import sys
-from os.path import dirname, abspath
 
 if sys.getdefaultencoding() != 'utf-8':
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
-PWD = dirname(abspath(__file__))
-if PWD and PWD not in sys.path:
-    sys.path.insert(0, PWD)
+    #import logging
+    #logging.basicConfig(
+    #    level=logging.DEBUG,
+    #    format='%(message)s\n',
+    #    datefmt='%H:%M:%S',
+    #)
+
+
+
+from os.path import dirname, abspath, exists
+
+
+PWD = abspath(__file__)
+PREFIX = None
+while True and len(PWD) > 1:
+    PWD = dirname(PWD)
+    if exists('%s/README.md'%PWD):
+        PREFIX = PWD
+        break
+
+if PREFIX and PREFIX not in sys.path:
+    sys.path.insert(0, PREFIX)    
