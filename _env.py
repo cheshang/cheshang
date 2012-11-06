@@ -28,3 +28,4 @@ while True and len(PWD) > 1:
 
 if PREFIX and PREFIX not in sys.path:
     sys.path.insert(0, PREFIX)    
+#print sys.path

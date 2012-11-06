@@ -4,18 +4,18 @@ import _env
 import web
 from config import render
 from view._base import route, LoginView, NoLoginView
-from model.base import id_new
+from model.account import account_new
 
 @route('/signup')
 class Signup(NoLoginView):
     def GET(self):
-        print id_new()
         return self.render()
 
     def POST(self):
-        email, passwd, name =  self.argument('email', 'passwd', 'name')
-        if email and passwd and name:
-            account_new(email, passwd, name) 
+        email, passwd, name =  self.arguments('email', 'passwd', 'name')
+        if email and passwd:
+            id = account_new(email, passwd, name) 
+            print id
         return self.render()
 
 

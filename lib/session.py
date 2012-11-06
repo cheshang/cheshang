@@ -1,7 +1,7 @@
 #coding:utf-8
 
 import _env
-from config import redis, redis_key
+from model._db import redis, redis_key
 from os import urandom
 from struct import pack, unpack
 from base64 import urlsafe_b64encode, urlsafe_b64decode

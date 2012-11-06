@@ -3,7 +3,7 @@
 import _env
 import string
 import hashlib
-from config import redis, redis_key
+from model._db import redis, redis_key
 from model.base import id_new
 
 REDIS_PROFILE = redis_key.Profile('%s')
@@ -49,11 +49,9 @@ def profile_save(uid, **args):
 def profile_get(uid):
     key = REDIS_USER % uid
     profile = redis.hgetall(key)
-    print profile
     result = {}
     for i in profile:
-        print i
-        k = [value  for key, value in PROFILE if value == int(i)]
+        k = [key for key, value in PROFILE.iteritems() if value == int(i)][0]
         v = profile[i]
         result[k] = v
     return result
@@ -62,4 +60,4 @@ def profile_get(uid):
 if __name__ == '__main__':
     pass
     #print account_new('lvdachao@gmail.com', '123', 'Lerry')
-    print profile_get(10014)
+    print profile_get(10025)

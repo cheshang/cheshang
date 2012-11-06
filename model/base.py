@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import _env
-from config import redis, redis_key
+from model._db import redis, redis_key
 REDIS_ID_MAX = redis_key.IdMax()
 
 def init():

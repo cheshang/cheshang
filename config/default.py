@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 import web
-from redis import StrictRedis
 from lib.render import render_jinja
-from lib.redis_key import RedisKey
 
 
 render = render_jinja(
@@ -12,8 +10,16 @@ render = render_jinja(
     encoding='utf-8',
 )
 
-redis = StrictRedis(host='localhost', port=6379, db=1)
-redis_key = RedisKey(redis)
+HOST = "lerry.me"
 
-HOST = 'img.lerry.tk'
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB   = 1
+
+MYSQL_HOST = '127.0.0.1'
+MYSQL_PORT = 3306
+MYSQL_USER = 'work'
+MYSQL_PASSWD = '42qu'
+MYSQL_DB = 'work_car'
+
 
