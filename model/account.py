@@ -2,19 +2,17 @@
 # -*- coding: utf-8 -*-
 import _env
 import string
-import hashlib
 from model._db import redis, redis_key
 from model.base import id_new
+from model.passwd import Passwd, passwd_save
+from model.email import Email, uid_by_email
 
 REDIS_PROFILE = redis_key.Profile('%s')
-REDIS_EMAIL   = redis_key.Email()
-REDIS_PASSWD  = redis_key.Passwd()
 REDIS_USER    = redis_key.User('%s')
 
 PROFILE = {
     'name'  : 1,
     'sex'   : 2,
-    'email' : 3
 }
 
 def account_new(email, passwd, name):
@@ -23,19 +21,10 @@ def account_new(email, passwd, name):
     if uid:
         return
     uid = id_new()
-    redis.hset(REDIS_EMAIL, email, uid)
     passwd_save(uid, passwd)
-    profile_save(uid, email=email, name=name)
+    Email.set(uid, email)
+    profile_save(uid, name=name)
     return uid
-
-def uid_by_email(email):
-    uid = redis.hget(REDIS_EMAIL, email)
-    return int(uid) if uid else 0
-
-def passwd_save(uid, passwd):
-    _passwd = hashlib.md5('%s.%s' % (uid, passwd)).hexdigest() 
-    redis.hset(REDIS_PASSWD, uid, _passwd)
-
 
 def profile_save(uid, **args):
     key = REDIS_USER % uid
@@ -59,5 +48,5 @@ def profile_get(uid):
         
 if __name__ == '__main__':
     pass
-    #print account_new('lvdachao@gmail.com', '123', 'Lerry')
-    print profile_get(10025)
+    print account_new('lvdachao@gmail.com', '123', 'Lerry')
+    print profile_get(10027)

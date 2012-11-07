@@ -63,14 +63,14 @@ class Kv(object):
 
     def delete(self, id):
         cursor = self.cursor
-        cursor.execute('delete from %s where id=%%s' % self.__table__, id)
+        cursor.execute('delete from %s where id=%%s' % self.table, id)
         mc_key = self.prefix % id
         mc.delete(mc_key)
 
     def id_by_value(self, value):
         cursor = self.cursor
         cursor.execute(
-            'select id from %s where value=%%s' % self.__table__,
+            'select id from %s where value=%%s' % self.table,
             value
         )
         r = cursor.fetchone()
