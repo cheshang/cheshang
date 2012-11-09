@@ -3,6 +3,7 @@
 # 初始化数据连接
 import _env
 import MySQLdb
+import pymongo
 from redis import StrictRedis
 from DBUtils.SteadyDB import connect
 from MySQLdb.converters import FIELD_TYPE, conversions
@@ -10,6 +11,7 @@ from lib.redis_key import RedisKey
 from lib.cache import cache as mc
 from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWD,\
     MYSQL_DB, REDIS_HOST, REDIS_PORT, REDIS_DB
+
 
 
 class Connection:
@@ -94,6 +96,7 @@ connection = Connection(
 
 redis = StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 redis_key = RedisKey(redis)
+#mongo = pymongo.
 
 if __name__ == "__main__":
     pass
