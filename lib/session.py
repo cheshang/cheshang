@@ -1,26 +1,25 @@
 #coding:utf-8
 
 import _env
-from model._db import redis, redis_key
-from os import urandom
+import uuid
+from model._db import db
 from struct import pack, unpack
 from base64 import urlsafe_b64encode, urlsafe_b64decode
 import binascii
 
-REDIS_SESSION = redis_key.Session()
-
 # 常量
 class Session(object):
     @staticmethod
-    def get(id):
-        return redis.hget(REDIS_SESSION, id)
+    def get(uid):
+        result = db.session.find_one({'_id':uid})
+        return result['session'] if result else None
 
     @staticmethod
-    def set(id, value):
-        if value: 
-            redis.hset(REDIS_SESSION, id, value)
+    def set(uid, value):
+        if value:
+            db.session.insert({'_id':uid, 'session':value})
         else:
-            redis.hdel(REDIS_SESSION, id)
+            db.session.remove({'_id':uid})
 
 
 # 接口
@@ -28,7 +27,7 @@ class Session(object):
 def session_new(id):
     s = Session.get(id)
     if not s:
-        s = urandom(12)
+        s = str(uuid.uuid4()).replace('-', '')
         Session.set(id, s)
     return _id_binary_encode(id, s)
 
@@ -66,7 +65,7 @@ def _id_binary_decode(session):
     return id, value
 
 def _id_binary_encode(id, session):
-    id_key = pack('Q', int(id))
+    id_key = pack('Q', id)
     id_key = urlsafe_b64encode(id_key).rstrip('=')
     ck_key = urlsafe_b64encode(session)
     return '%s%s'%(id_key, ck_key)

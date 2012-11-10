@@ -12,13 +12,15 @@ def logout(self, uid):
     session_rm(s)
     web.setcookie('S', '')
 
-class View(object):
+def login(self, uid):
+    web.setcookie('S', session_new(uid))
 
+class View(object):
     @property
-    def login(self):
+    def uid(self):
         s = web.cookies().get('S')
-        uid = id_by_session(s)
-        return True if uid else False
+        return id_by_session(s)
+
 
     def redirect(self, url):
         raise web.seeother(url)
@@ -42,6 +44,8 @@ class View(object):
             result.append(value)
         return result
 
+    login = login
+
 class LoginView(View):
     def __init__(self):
         s = web.cookies().get('S')
@@ -53,9 +57,8 @@ class LoginView(View):
 
 class NoLoginView(View):
     def __init__(self):
-        super(NoLoginView, self).__init__()
-        if self.login:
-            self.redirect('/')
+        if self.uid:
+            self.redirect('/hi')
 
 def my_loadhook():
     print "my load hook"

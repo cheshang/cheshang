@@ -12,14 +12,15 @@ render = render_jinja(
 
 HOST = "lerry.me"
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB   = 1
-
-MYSQL_HOST = '127.0.0.1'
-MYSQL_PORT = 3306
-MYSQL_USER = 'work'
-MYSQL_PASSWD = '42qu'
-MYSQL_DB = 'work_car'
-
-
+#REDIS_HOST = 'localhost'
+#REDIS_PORT = 6379
+#REDIS_DB   = 1
+#
+#MYSQL_HOST = '127.0.0.1'
+#MYSQL_PORT = 3306
+#MYSQL_USER = 'work'
+#MYSQL_PASSWD = '42qu'
+#MYSQL_DB = 'work_car'
+MONGO_HOST = '127.0.0.1'
+MONGO_PORT = '27017'
+MONGO_NAME = 'cheshang'
