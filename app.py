@@ -7,7 +7,7 @@ from view._base import route
 from lib.reload.reload_server import auto_reload
 
 urls = route.urls
-#web.config.debug = True
+web.config.debug = True
 app = web.application(urls, globals())
 
 

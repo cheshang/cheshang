@@ -5,9 +5,10 @@ import web
 from config import render, WEIBO_KEY, WEIBO_SECRET
 from view._base import route, View, LoginView, NoLoginView
 from lib.weibo import APIClient
-from model.account import account_new
+from model.account import account_new, oauth2_account_new
 from model.email import uid_by_email
 from model.passwd import passwd_verify
+from model.oauth2 import Oauth2
 
 @route('/signup')
 class Signup(NoLoginView):
@@ -35,28 +36,31 @@ class Signin(NoLoginView):
             self.login(uid)
         return self.render()
 
-@route('/auth/callback')
+@route('/callback/(\w+)')
 class Callback(View):
-    def GET(self):
+    def GET(self, auth_type):
         code = self.argument('code')
-        print code
-        CALLBACK_URL = 'http://ldev.cn/auth/callback'
-        client = APIClient(app_key=WEIBO_KEY, app_secret=WEIBO_SECRET, redirect_uri=CALLBACK_URL)
-        r = client.request_access_token(code)
-        access_token = r.access_token # 新浪返回的token，类似abc123xyz456
-        print access_token
-        expires_in = r.expires_in # token过期的UNIX时间：
-        print expires_in
-        # TODO: 在此可保存access token
-        client.set_access_token(access_token, expires_in)
-        referer = web.ctx.env.get('HTTP_REFERER', 'http://baidu111.com')
-        raise web.seeother(referer)
+        if auth_type in ['weibo']:
+            CALLBACK_URL = 'http://ldev.cn/callback/%s' % auth_type
+            client = APIClient(app_key=WEIBO_KEY, app_secret=WEIBO_SECRET, redirect_uri=CALLBACK_URL)
+            r = client.request_access_token(code)
+            print r.uid
+            uid = oauth2_account_new(auth_type, r.uid)
+            print uid
+            oauth = Oauth2(self.current_user_id, auth_type)
 
+            print r, type(r)
+            access_token = r.access_token # 新浪返回的token
+            expires_in = r.expires_in # token过期的UNIX时间：
+            oauth.code_save(code)
+            print expires_in
+            # TODO: 在此可保存access token
+            client.set_access_token(access_token, expires_in)
 
 @route('/auth/weibo')
 class Weibo(View):
     def GET(self):
-        CALLBACK_URL = 'http://ldev.cn/auth/callback'
+        CALLBACK_URL = 'http://ldev.cn/callback/weibo'
         client = APIClient(app_key=WEIBO_KEY, app_secret=WEIBO_SECRET, redirect_uri=CALLBACK_URL)
         url = client.get_authorize_url()
         self.redirect(url)
