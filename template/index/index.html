@@ -46,10 +46,12 @@ html{height:100%;width:100%;background:url('static/imgs/loader-1.gif') no-repeat
 							<button type="suubmit" class="search-btn"></button>
 						</form>
 					</div>
+					{%  if not current_user %}
 					<div class="auth">
 						<a href="/signin" class="a-go-login">登 陆</a>
 						<a href="/signup" class="a-go-reg">注 册</a>
 					</div>
+					{% endif %}
 				</div>
 			</div>
 		</div><!--end header-wrapper-->

@@ -1,9 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import _env
 import web
 from config import render as _render
 from lib.route import Route
 from lib.session import session_new, id_by_session, session_rm
+from model.user import User
 
 route = Route()
 
@@ -17,7 +19,7 @@ def login(self, uid):
 
 class View(object):
     @property
-    def uid(self):
+    def current_user_id(self):
         s = web.cookies().get('S')
         return id_by_session(s)
 
@@ -25,13 +27,21 @@ class View(object):
     def redirect(self, url):
         raise web.seeother(url)
 
+    @property
+    def current_user(self):
+        uid = self.current_user_id
+        return User(uid) if uid else None
+
+
     def render(self, template_name=None, **kargs):
+        kargs['current_user_id'] = self.current_user_id
+        kargs['current_user'] = self.current_user
         if not template_name:
             template_name = '%s/%s.html' % (
                 self.__module__[5:].replace('.', '/').lower(),
                 self.__class__.__name__.lower()
             )
-        return _render._render(template_name)
+        return _render._render(template_name, **kargs)
 
     def argument(self, name, default=''):
         return web.input().get(name, default)

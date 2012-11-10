@@ -22,11 +22,6 @@ def profile_save(uid, **args):
 
 def profile_get(uid):
     return db.profile.find_one({'_id':uid})
-
         
 if __name__ == '__main__':
     pass
-    print account_new('lvdachao@gmail.com', '123', 'Lerry')
-    print profile_get('509d539417adb907502b8e9d')
-    #@for i in db.profile.find({},{'_id':1,'name':1}):
-    #    print i
