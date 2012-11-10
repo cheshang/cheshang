@@ -3,3 +3,4 @@
 from view.index import *
 from view.j import *
 from view.auth import *
+from view.me import *

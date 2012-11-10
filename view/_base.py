@@ -58,17 +58,13 @@ class View(object):
 
 class LoginView(View):
     def __init__(self):
-        s = web.cookies().get('S')
-        uid = session_get(s)
-        if uid:
-            self.uid = uid
-        else:
-            self.redirect('/login')
+        if not self.current_user:
+            self.redirect('/signin')
 
 class NoLoginView(View):
     def __init__(self):
-        if self.uid:
-            self.redirect('/hi')
+        if self.current_user:
+            self.redirect('/me')
 
 def my_loadhook():
     print "my load hook"
