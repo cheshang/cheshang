@@ -4,11 +4,12 @@ import _env
 import web
 from view._site import *
 from view._base import route
+from lib.reload.reload_server import auto_reload
 
 urls = route.urls
-app = web.application(urls, globals(), autoreload=True)
+#web.config.debug = True
+app = web.application(urls, globals())
+
 
 if __name__ == '__main__':
-    web.config.debug = True
-    app.run()
-
+    auto_reload(app.run)

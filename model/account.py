@@ -8,6 +8,7 @@ from model.email import uid_by_email, email_save
 
 def account_new(email, passwd, name):
     name, passwd, name = map(string.strip, (email, passwd, name))
+    email = email.lower()
     uid = uid_by_email(email)
     if uid:
         return
