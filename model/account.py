@@ -27,8 +27,7 @@ def oauth2_account_new(auth_type, uid):
         return str(oauth_id)
 
 def profile_save(uid, **args):
-    args['_id'] = uid
-    db.profile.insert(args)
+    db.profile.update({'_id':uid}, {'$set':args}, upsert=True)
 
 def profile_get(uid):
     return db.profile.find_one({'_id':uid})

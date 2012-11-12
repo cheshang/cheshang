@@ -5,10 +5,10 @@ import web
 from config import render, WEIBO_KEY, WEIBO_SECRET
 from view._base import route, View, LoginView, NoLoginView
 from lib.weibo import APIClient
-from model.account import account_new, oauth2_account_new
+from model.account import account_new, oauth2_account_new, profile_save
 from model.email import uid_by_email
 from model.passwd import passwd_verify
-from model.oauth2 import Oauth2
+from model.oauth2 import oauth2_save, Oauth2
 
 @route('/signup')
 class Signup(NoLoginView):
@@ -46,16 +46,23 @@ class Callback(View):
             r = client.request_access_token(code)
             auth_uid = r.uid
             uid = oauth2_account_new(auth_type, r.uid)
-            print uid
-            oauth = Oauth2(self.current_user_id, auth_type)
-
-            print r, type(r)
+            r['code'] = code
+            oauth2_save(uid, auth_type, r)
             access_token = r.access_token # 新浪返回的token
             expires_in = r.expires_in # token过期的UNIX时间：
-            oauth.code_save(code)
-            print expires_in
             # TODO: 在此可保存access token
             client.set_access_token(access_token, expires_in)
+            #print client.statuses.user_timeline.get()
+
+            info = client.users.show.get(uid=r.uid)
+            profile_save(uid, 
+                name = info['screen_name'],
+                motto = info['description'],
+                avatar = info['avatar_large'],
+                sex = info['gender'])
+            self.login(uid)
+            print uid, 'aaaaaaaaaaaaaa'
+            self.redirect('/me')
 
 @route('/auth/weibo')
 class Weibo(View):
