@@ -44,7 +44,7 @@ class Callback(View):
             CALLBACK_URL = 'http://ldev.cn/callback/%s' % auth_type
             client = APIClient(app_key=WEIBO_KEY, app_secret=WEIBO_SECRET, redirect_uri=CALLBACK_URL)
             r = client.request_access_token(code)
-            print r.uid
+            auth_uid = r.uid
             uid = oauth2_account_new(auth_type, r.uid)
             print uid
             oauth = Oauth2(self.current_user_id, auth_type)
