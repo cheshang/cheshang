@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 import string
-from model._db import db
 from model.passwd import passwd_save
-from model.email import uid_by_email, email_save
 
 def account_new(email, passwd, name):
     name, passwd, name = map(string.strip, (email, passwd, name))

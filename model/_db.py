@@ -3,15 +3,11 @@
 # 初始化数据连接
 import _env
 import pymongo
-from config import MONGO_HOST, MONGO_PORT, MONGO_NAME
-#import MySQLdb
-#from redis import StrictRedis
-#from DBUtils.SteadyDB import connect
-#from MySQLdb.converters import FIELD_TYPE, conversions
-#from lib.redis_key import RedisKey
-#from lib.cache import cache as mc
-#from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWD,\
-#    MYSQL_DB, REDIS_HOST, REDIS_PORT, REDIS_DB
+import MySQLdb
+from DBUtils.SteadyDB import connect
+from MySQLdb.converters import FIELD_TYPE, conversions
+from lib.cache import cache as mc
+from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWD, MYSQL_DB
 
 
 
@@ -91,14 +87,10 @@ class CursorWrapper(object) :
             raise
 
 
-#connection = Connection(
-#    host=MYSQL_HOST, port=MYSQL_PORT, user=MYSQL_USER, passwd=MYSQL_PASSWD, db=MYSQL_DB, charset='utf8'
-#)
-#
-#redis = StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
-#redis_key = RedisKey(redis)
-db = getattr(pymongo.Connection(), MONGO_NAME)
+connection = Connection(
+    host=MYSQL_HOST, port=MYSQL_PORT, user=MYSQL_USER, passwd=MYSQL_PASSWD, db=MYSQL_DB, charset='utf8'
+)
+
 
 if __name__ == "__main__":
     pass
-    print db.test.insert({'name':'lerry'})
