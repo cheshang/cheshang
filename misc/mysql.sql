@@ -1,22 +1,44 @@
-DROP TABLE IF EXISTS `account`;
-
-CREATE TABLE `account` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `status` int(1) NOT NULL DEFAULT '-1' COMMENT '-1:已注册，未激活，0:冻结，1：正常',
-  `nick_name` varchar(64) DEFAULT NULL,
-  `avatar` varchar(256) DEFAULT NULL,
-  `gender` int(1) DEFAULT NULL COMMENT '0：男，1:女',
-  `birthday` datetime DEFAULT NULL,
-  `province` varchar(11) DEFAULT NULL,
-  `city` int(11) DEFAULT NULL,
-  `auth_type` varchar(16) DEFAULT NULL,
-  `auth_id` varchar(32) DEFAULT NULL,
-  `auth_token` varchar(64) DEFAULT NULL,
-  `auth_expires` datetime DEFAULT NULL,
-  `create_time` datetime NOT NULL,
-  PRIMARY KEY (`uid`)
+DROP TABLE IF EXISTS `Txt`;
+CREATE TABLE `Txt` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `value` mediumtext COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `Passwd`;
+CREATE TABLE `Passwd` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `value` char(32) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `Email`;
+CREATE TABLE `Email` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `value` varchar(128) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+DROP TABLE IF EXISTS `Profile`;
+CREATE TABLE `Profile` (
+  `uid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `avatar` varchar(128) NOT NULL,
+  `gender` tinyint(3) unsigned NOT NULL,
+  `birthday` int(8) unsigned NOT NULL,
+  `city` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+DROP TABLE IF EXISTS `Oauth`;
+CREATE TABLE `Oauth` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` bigint(20) unsigned NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `auth_id` bigint(20) unsigned NOT NULL,
+  `code` varchar(45) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `expires_in` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
 # Dump of table album
@@ -100,18 +122,3 @@ CREATE TABLE `photo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE IF NOT EXISTS `Txt` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `value` mediumtext COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-CREATE TABLE IF NOT EXISTS `Passwd` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `value` char(32) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-CREATE TABLE IF NOT EXISTS `Email` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `value` varchar(128) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
