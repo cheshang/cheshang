@@ -10,18 +10,21 @@ class _Model(type):
         if base0 is object:
             return super(_Model, cls).__new__(cls, name, bases, attrs)
         new_class = type.__new__(cls, name, bases, attrs)
-
         new_class.__table__ = table = name
         cur = connection.cursor()
-        q = cur.execute('SELECT * FROM %s LIMIT 1' % name)
-        print q
-        new_class.__column__ = column = map(itemgetter(0), q.description)
+        cur.execute('SELECT * FROM %s LIMIT 0' % name)
+        new_class.__column__ = column = map(itemgetter(0), cur.description)
+        print map(itemgetter(0), cur.description)
         return new_class        
         
-class A(object):
+class Model(object):
     __metaclass__ = _Model
 
-class B(A):
-    pass
+    def __init__(self):
+        for i in self.__column__:
+            self.__dict__[i] = i
 
-a= B
+class Txt(Model):
+    pass
+t = Txt()
+print t.id
