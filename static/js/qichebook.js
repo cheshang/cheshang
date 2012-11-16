@@ -15,11 +15,11 @@
 		}
 		var container_w = list_box_w*n + n*20;
 		$('.container-wrapper, .header-container').css({width	: container_w});
-		$('.auth-box ').css({width: container_w - 400});
+		//$('.auth-box ').css({width: container_w - 400});
 		if(n>2){
-			$('.auth-box').addClass('auth-box-has-bg');
+			//$('.auth-box').addClass('auth-box-has-bg');
 		}else{
-			$('.auth-box').removeClass('auth-box-has-bg');
+			//$('.auth-box').removeClass('auth-box-has-bg');
 		}
 	}
 	document_resize();
