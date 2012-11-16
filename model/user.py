@@ -1,9 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import _env
-from model._db import db
-from model.email import email_by_uid
-from model.account import profile_get
+from model.email import Email
+from model.profile import profile_get
 
 class User(object):
     """user object"""
@@ -13,7 +12,7 @@ class User(object):
 
     @property
     def email(self):
-        return email_by_uid(self.uid)
+        return Email.get(self.uid)
 
     def __getattr__(self, name):
         return self.data.get(name, '')

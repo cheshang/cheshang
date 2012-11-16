@@ -5,10 +5,11 @@ import web
 from config import render, WEIBO_KEY, WEIBO_SECRET
 from view._base import route, View, LoginView, NoLoginView
 from lib.weibo import APIClient
-from model.account import account_new, oauth2_account_new, profile_save
+from model.account import account_new
 from model.email import uid_by_email
 from model.passwd import passwd_verify
-from model.oauth2 import oauth2_save, Oauth2
+from model.oauth2 import oauth2_new, uid_by_oauth
+from model.profile import profile_new
 
 @route('/signup')
 class Signup(NoLoginView):
@@ -44,27 +45,28 @@ class Callback(View):
             CALLBACK_URL = 'http://ldev.cn/callback/%s' % auth_type
             client = APIClient(app_key=WEIBO_KEY, app_secret=WEIBO_SECRET, redirect_uri=CALLBACK_URL)
             r = client.request_access_token(code)
-            auth_uid = r.uid
-            uid = oauth2_account_new(auth_type, r.uid)
-            r['code'] = code
-            oauth2_save(uid, auth_type, r)
             access_token = r.access_token # 新浪返回的token
-            expires_in = r.expires_in # token过期的UNIX时间：
-            # TODO: 在此可保存access token
-            client.set_access_token(access_token, expires_in)
-            #print client.statuses.user_timeline.get()
+            expires_in = r.expires_in # token过期的UNIX时间：            
+            uid = uid_by_oauth(r.uid, auth_type)
+            if not uid:
+                uid = oauth2_new(oauth_type=auth_type, oauth_id=r.uid, code=code, \
+                    token=access_token, expires_in=expires_in)
 
-            info = client.users.show.get(uid=r.uid)
-            profile_save(uid, 
-                name = info['screen_name'],
-                motto = info['description'],
-                avatar = info['avatar_large'],
-                sex = info['gender'])
+                # TODO: 在此可保存access token
+                client.set_access_token(access_token, expires_in)
+                #print client.statuses.user_timeline.get()
+
+                info = client.users.show.get(uid=r.uid)
+                print info
+                #profile_new(uid, 
+                #    name = info['screen_name'],
+                #    motto = info['description'],
+                #    avatar = info['avatar_large'],
+                #    gender = info['gender'])
             self.login(uid)
-            print uid, 'aaaaaaaaaaaaaa'
             self.redirect('/me')
 
-@route('/auth/weibo')
+@route('/oauth/weibo')
 class Weibo(View):
     def GET(self):
         CALLBACK_URL = 'http://ldev.cn/callback/weibo'

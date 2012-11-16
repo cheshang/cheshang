@@ -4,7 +4,7 @@ import _env
 import web
 from config import render as _render
 from lib.route import Route
-from lib.session import session_new, id_by_session, session_rm
+from model.session import session_new, id_by_session, session_rm
 from model.user import User
 
 route = Route()

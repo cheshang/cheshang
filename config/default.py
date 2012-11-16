@@ -12,18 +12,11 @@ render = render_jinja(
 
 HOST = "lerry.me"
 
-#REDIS_HOST = 'localhost'
-#REDIS_PORT = 6379
-#REDIS_DB   = 1
-#
-#MYSQL_HOST = '127.0.0.1'
-#MYSQL_PORT = 3306
-#MYSQL_USER = 'work'
-#MYSQL_PASSWD = '42qu'
-#MYSQL_DB = 'work_car'
-MONGO_HOST = '127.0.0.1'
-MONGO_PORT = '27017'
-MONGO_NAME = 'cheshang'
+MYSQL_HOST = '192.168.1.122'
+MYSQL_PORT = 3306
+MYSQL_USER = 'work'
+MYSQL_PASSWD = '42qu'
+MYSQL_DB = 'work_car'
 
 WEIBO_KEY  = '313715638'
 WEIBO_SECRET = 'e987fcc38fee0de86b789c04217860dd'
