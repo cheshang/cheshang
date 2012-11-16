@@ -21,7 +21,7 @@ CREATE TABLE `Email` (
 
 DROP TABLE IF EXISTS `Profile`;
 CREATE TABLE `Profile` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `avatar` varchar(128) NOT NULL,
   `gender` tinyint(3) unsigned NOT NULL,
