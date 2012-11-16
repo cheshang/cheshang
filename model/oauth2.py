@@ -1,33 +1,30 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import _env
-from model._db import db
+from model.db import Model
 
-def oauth2_save(uid, auth_type, arg):
-    # uid, code, token
-    db.oauth2.update({'_id':uid, 'auth_type':auth_type}, {'$set':{'code':arg.code, 'access_token':arg.access_token, \
-        'expires_in':arg.expires_in}}, upsert=True)
+class Oauth2(Model):
+    pass
 
-class Oauth2(object):
-    def __init__(self, auth_type, id):
-        self.id = id
-        self.auth_type = auth_type
-        self.data = db.oauth2.find_one({'_id':self.id})
-        
-    def _get_item(self, name, default=''):
-        return self.data.get(name, default)
+def oauth2_new(**kwargs):
+    #oauth_type, oauth_id, code, token, expires_in
+    oauth_id, oauth_type = kwargs['oauth_id'], kwargs['oauth_type']
+    oauth = Oauth2.get(oauth_id=oauth_id, oauth_type=oauth_type)
+    if not oauth:
+        oauth = Oauth2(**kwargs)
+        oauth.save()
+    return oauth.id
 
-    @property
-    def access_token(self):
-        return self._get_item('access_token')
+def uid_by_oauth(oauth_id, oauth_type):
+    oauth = Oauth2.get(oauth_id=oauth_id, oauth_type=oauth_type, debug=True)  
+    if oauth:
+        return oauth.id
 
-    @property
-    def expires_in(self):
-        return self._get_item('expires_in')
 
-    @property
-    def uid(self):
-        return int(self._get_item('_id', 0))
+
 
 if __name__ == '__main__':
     pass
+    #print Oauth2(uid=1, type=2,auth_id=1, code='ss', token='sss', expires_in=123).save()
+    a= Oauth2.get(uid=1, type=2)
+    print a.token

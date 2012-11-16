@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import _env
-from model._db import connection, mc
+from model.connect import connection, mc
 
 class Kv(object):
     def __init__(self, table, NULL=''):

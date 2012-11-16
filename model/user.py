@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 from model.email import Email
-from model.account import profile_get
+from model.profile import profile_get
 
 class User(object):
     """user object"""

@@ -6,15 +6,6 @@ if sys.getdefaultencoding() != 'utf-8':
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
-    #import logging
-    #logging.basicConfig(
-    #    level=logging.DEBUG,
-    #    format='%(message)s\n',
-    #    datefmt='%H:%M:%S',
-    #)
-
-
-
 from os.path import dirname, abspath, exists
 
 

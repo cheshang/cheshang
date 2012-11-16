@@ -3,6 +3,7 @@
 import _env
 import string
 from model.passwd import passwd_save
+from model.profile import profile_new
 
 def account_new(email, passwd, name):
     name, passwd, name = map(string.strip, (email, passwd, name))
@@ -12,23 +13,8 @@ def account_new(email, passwd, name):
         return
     uid = str(email_save(email))
     passwd_save(uid, passwd)
-    profile_save(uid, name=name)
+    profile_new(uid, name=name)
     return uid
-
-def oauth2_account_new(auth_type, uid):
-    query = {'type':auth_type, 'uid':uid}
-    oauth = db.oauth2_account.find_one(query)
-    if oauth:
-        return str(oauth['_id'])
-    else:
-        oauth_id = db.oauth2_account.insert(query)
-        return str(oauth_id)
-
-def profile_save(uid, **args):
-    db.profile.update({'_id':uid}, {'$set':args}, upsert=True)
-
-def profile_get(uid):
-    return db.profile.find_one({'_id':uid})
         
 if __name__ == '__main__':
     pass

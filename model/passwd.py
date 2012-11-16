@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 import hashlib
-from lib.kv import Kv
+from model.db import Kv
 Passwd = Kv('Passwd')
 
 def passwd_save(uid, passwd):

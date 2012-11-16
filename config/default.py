@@ -12,7 +12,7 @@ render = render_jinja(
 
 HOST = "lerry.me"
 
-MYSQL_HOST = '127.0.0.1'
+MYSQL_HOST = '192.168.1.122'
 MYSQL_PORT = 3306
 MYSQL_USER = 'work'
 MYSQL_PASSWD = '42qu'
