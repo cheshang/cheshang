@@ -35,7 +35,7 @@ class Signin(NoLoginView):
         uid = uid_by_email(u)
         if passwd_verify(uid, p):
             self.login(uid)
-        return self.render()
+        return self.redirect('/me')
 
 @route('/callback/(\w+)')
 class Callback(View):

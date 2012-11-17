@@ -9,14 +9,15 @@ class User(object):
     def __init__(self, uid):
         self.uid = uid
         self.data = profile_get(uid)
+        print self.data
 
     @property
     def email(self):
         return Email.get(self.uid)
 
     def __getattr__(self, name):
-        return self.data.get(name, '')
+        return getattr(self.data, name) or ''
         
 if __name__ == '__main__':
-    print User('509e8ed717adb915140a6dd1').avatar
+    print User('2').name
     pass

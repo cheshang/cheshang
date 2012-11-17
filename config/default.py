@@ -15,7 +15,7 @@ HOST = "lerry.me"
 
 MYSQL_HOST = '127.0.0.1'
 if 'Linux' not in platform.platform():
-    MYSQL_HOST = '192.168.1.122'
+    MYSQL_HOST = '113.11.199.27'
 MYSQL_PORT = 3306
 MYSQL_USER = 'work'
 MYSQL_PASSWD = '42qu'

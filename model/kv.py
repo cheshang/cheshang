@@ -15,7 +15,7 @@ class Kv(object):
         r = mc.get(mc_key)
         if r is None:
             cursor = self.cursor
-            cursor.execute('select value from %s where id=%s', (self.table, id))
+            cursor.execute('select value from %s where id=%s' % (self.table, id))
             r = cursor.fetchone()
             if r:
                 r = r[0]
@@ -69,10 +69,8 @@ class Kv(object):
 
     def id_by_value(self, value):
         cursor = self.cursor
-        cursor.execute(
-            'select id from %s where value=%%s' % self.table,
-            value
-        )
+        print 'select id from %s where value=%s' % (self.table, value)
+        cursor.execute('select id from %s where value="%s"' % (self.table, value))
         r = cursor.fetchone()
         if r:
             r = r[0]

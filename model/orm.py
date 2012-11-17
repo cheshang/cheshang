@@ -52,7 +52,7 @@ class Model(object):
                 data = unpackb(data)
                 return cls._data_to_obj(data)
         cur = connection.cursor()
-        values = ['='.join((k, str(v))) for k, v in kwargs.iteritems()]
+        values = ['='.join((k, '"%s"' % v)) for k, v in kwargs.iteritems()]
         sql = 'select * from %s where '+' and '.join(values)+' limit 1'
         if debug:
             print sql % cls.__table__
