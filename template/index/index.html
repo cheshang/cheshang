@@ -13,12 +13,7 @@ In.add('tmpl',{ path:'static/js/jquery.tmpl.min.js',type:'js',charset:'utf-8' })
 In.add('reset',{ path:'static/css/reset.css' });
 In.add('css',{ path:'static/css/qichebook.css?'+timenow });
 
-/*
-In.ready('qichebook','reset','css','easing','tmpl',function(){
-	$('.page-wrapper').fadeIn()
-});*/
-
-In.later(500,'reset','css','qichebook','tmpl','easing',function(){
+In.later(600,'reset','css','qichebook','tmpl','easing',function(){
 	$('.page-wrapper').fadeIn()
 });
 </script>
@@ -28,35 +23,28 @@ html{height:100%;width:100%;background:url('static/imgs/loader-1.gif') no-repeat
 </head>
 <body>
 	<div class="page-wrapper" style="display: none">
-		<div class="header-wrapper">
+		<div class="header-wrapper" style="background:url('static/imgs/index-2.jpg') no-repeat center top;background-size:cover;">
 			<div class="header-container">
-				<a href="" class="logo">汽车时尚</a>
-				<div class="auth-box">
-					<div class="follow-box">
-						<div class="f-qzone">
-							<iframe src="http://open.qzone.qq.com/like?url=http%3A%2F%2Fuser.qzone.qq.com%2F1544129158&type=button_num&width=400&height=30&style=2" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:400px;height:30px;border:none;overflow:hidden;"></iframe>
-						</div>
-						<div class="f-wb">
-							<iframe width="136" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" scrolling="no" border="0" src="http://widget.weibo.com/relationship/followbutton.php?language=zh_cn&width=136&height=24&uid=1642909335&style=2&btn=red&dpc=1"></iframe>
-						</div>
-					</div>
-					<div class="search">
-						<form method="get" action="search">
-							<input type="text" name="key" value="" class="search-text" x-webkit-speech="" autocomplete="off" placeholder="搜索汽车" />
-							<button type="suubmit" class="search-btn"></button>
-						</form>
-					</div>
-					{%  if not current_user %}
-					<div class="auth">
-						<a href="/signin" class="a-go-login">登 陆</a>
-						<a href="/signup" class="a-go-reg">注 册</a>
-					</div>
-					{% endif %}
-				</div>
+				<a href="" class="logo">icheshang.com 汽车时尚</a>
 			</div>
 		</div><!--end header-wrapper-->
 		
-		<div class="container-wrapper">
+		<div class="container-wrapper index-container-wrapper">
+			<div class="container-bar">
+				<div class="search">
+					<form method="get" action="search">
+						<input type="text" name="key" value="" class="search-text" autocomplete="off" placeholder="搜索汽车" />
+						<button type="suubmit" class="search-btn" title="搜索"></button>
+					</form>
+				</div>
+				{%  if not current_user %}
+				<div class="auth-box">
+					<a href="/signin" class="a-go-login">登 陆</a>
+					<a href="/signup" class="a-go-reg">注 册</a>
+				</div>
+				{% endif %}
+			</div>
+
 			<!--
 			<div class="album-list-box album-list-box-long">
 				<div class="album-cover-img">

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 import web
+import platform
 from lib.render import render_jinja
 
 
@@ -12,7 +13,9 @@ render = render_jinja(
 
 HOST = "lerry.me"
 
-MYSQL_HOST = '192.168.1.122'
+MYSQL_HOST = '127.0.0.1'
+if 'Linux' not in platform.platform():
+    MYSQL_HOST = '192.168.1.122'
 MYSQL_PORT = 3306
 MYSQL_USER = 'work'
 MYSQL_PASSWD = '42qu'
