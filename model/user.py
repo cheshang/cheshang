@@ -15,8 +15,8 @@ class User(object):
         return Email.get(self.uid)
 
     def __getattr__(self, name):
-        return self.data.get(name, '')
+        return getattr(self.data, name) or ''
         
 if __name__ == '__main__':
-    print User('509e8ed717adb915140a6dd1').avatar
+    print User(1).email
     pass

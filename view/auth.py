@@ -9,7 +9,7 @@ from model.account import account_new
 from model.email import uid_by_email
 from model.passwd import passwd_verify
 from model.oauth2 import oauth2_new, uid_by_oauth
-from model.profile import profile_new
+from model.profile import profile_new, GENDER_DICT
 
 @route('/signup')
 class Signup(NoLoginView):
@@ -19,8 +19,7 @@ class Signup(NoLoginView):
     def POST(self):
         email, passwd, name =  self.arguments('email', 'passwd', 'name')
         if email and passwd:
-            id = account_new(email, passwd, name) 
-            print id
+            id = account_new(email, passwd, name)
         return self.render()
 
 
@@ -35,7 +34,7 @@ class Signin(NoLoginView):
         uid = uid_by_email(u)
         if passwd_verify(uid, p):
             self.login(uid)
-        return self.render()
+        return self.redirect('/me')
 
 @route('/callback/(\w+)')
 class Callback(View):
@@ -57,12 +56,11 @@ class Callback(View):
                 #print client.statuses.user_timeline.get()
 
                 info = client.users.show.get(uid=r.uid)
-                print info
-                #profile_new(uid, 
-                #    name = info['screen_name'],
-                #    motto = info['description'],
-                #    avatar = info['avatar_large'],
-                #    gender = info['gender'])
+                profile_new(uid, 
+                    name = info['screen_name'],
+                    motto = info['description'],
+                    avatar = info['avatar_large'],
+                    gender = GENDER_DICT.get(info['gender'], 0))
             self.login(uid)
             self.redirect('/me')
 

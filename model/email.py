@@ -6,7 +6,8 @@ from model.db import Kv
 Email = Kv('Email')
 
 def email_save(email):
-    pass
+    id = Email.save(email)
+    return id
 
 def uid_by_email(email):
     email = email.strip().lower()

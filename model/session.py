@@ -13,9 +13,9 @@ def session_new(uid):
     Session.set(uid, s)
     return s
 
-def id_by_session(uid):
-    if uid:
-        return Session.get(uid)
+def id_by_session(s):
+    if s:
+        return Session.id_by_value(s)
 
 def session_rm(uid):
     Session.delete(uid)

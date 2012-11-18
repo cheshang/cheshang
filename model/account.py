@@ -4,6 +4,7 @@ import _env
 import string
 from model.passwd import passwd_save
 from model.profile import profile_new
+from model.email import uid_by_email, email_save
 
 def account_new(email, passwd, name):
     name, passwd, name = map(string.strip, (email, passwd, name))
@@ -11,7 +12,7 @@ def account_new(email, passwd, name):
     uid = uid_by_email(email)
     if uid:
         return
-    uid = str(email_save(email))
+    uid = email_save(email)
     passwd_save(uid, passwd)
     profile_new(uid, name=name)
     return uid

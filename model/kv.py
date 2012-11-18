@@ -8,6 +8,7 @@ class Kv(object):
         self.table = table
         self.cursor = connection.cursor()
         self.prefix = table + '_%s'
+        self.prefix_v = table + '_v_%s'
         self.NULL = NULL
 
     def get(self, id):
@@ -15,7 +16,8 @@ class Kv(object):
         r = mc.get(mc_key)
         if r is None:
             cursor = self.cursor
-            cursor.execute('select value from %s where id=%s', (self.table, id))
+            cursor.execute('SELECT value FROM %s WHERE id=%s' % (self.table, id))
+            print cursor._last_executed
             r = cursor.fetchone()
             if r:
                 r = r[0]
@@ -39,9 +41,10 @@ class Kv(object):
         table = self.table
         cursor = self.cursor
         cursor.execute(
-            'insert into %s (value) values (%%s) ' % table,
+            'INSERT INTO %s (value) VALUES (%%s) ' % table,
             value
         )
+        print cursor._last_executed
         id = cursor.lastrowid
         mc.set(self.prefix%id, value)
         return id
@@ -52,9 +55,10 @@ class Kv(object):
             table = self.table
             cursor = self.cursor
             cursor.execute(
-                'insert into %s (id,value) values (%%s,%%s) on duplicate key update value=%%s' % table,
+                'INSERT INTO %s (id,value) VALUES (%%s,%%s) on duplicate key UPDATE value=%%s' % table,
                 (id, value, value)
             )
+            print cursor._last_executed
             #cursor.connection.commit()
             if value is None:
                 value = False
@@ -62,22 +66,26 @@ class Kv(object):
             mc.set(mc_key, value)
 
     def delete(self, id):
+        value = self.get(id)
         cursor = self.cursor
-        cursor.execute('delete from %s where id=%%s' % self.table, id)
-        mc_key = self.prefix % id
-        mc.delete(mc_key)
+        cursor.execute('DELETE FROM %s WHERE id=%%s' % self.table, id)
+        print cursor._last_executed
+        mc.delete(self.prefix % id)
+        mc.delete(self.prefix_v % value)
 
     def id_by_value(self, value):
-        cursor = self.cursor
-        cursor.execute(
-            'select id from %s where value=%%s' % self.table,
-            value
-        )
-        r = cursor.fetchone()
-        if r:
-            r = r[0]
-        else:
-            r = 0
+        mc_key = self.prefix_v % value
+        r = mc.get(mc_key)
+        if r is None:
+            cursor = self.cursor
+            cursor.execute('SELECT id FROM %s WHERE value="%s"' % (self.table, value))
+            print cursor._last_executed
+            r = cursor.fetchone()
+            if r:
+                r = r[0]
+                mc.set(mc_key, r)
+            else:
+                r = 0
         return r
 
 if __name__ == '__main__':

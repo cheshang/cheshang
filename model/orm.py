@@ -15,6 +15,7 @@ class _Model(type):
         new_class.__table__ = table = name
         cur = connection.cursor()
         cur.execute('SELECT * FROM %s LIMIT 0' % name)
+        print cur._last_executed
         new_class.__column__ = column = map(itemgetter(0), cur.description)
         new_class.MC_KEY = name + '_%s'
         return new_class        
@@ -39,7 +40,7 @@ class Model(object):
             return obj        
 
     @classmethod
-    def get(cls, id=None, debug=False, **kwargs):
+    def get(cls, id=None, **kwargs):
         if id is None:
             if not kwargs:
                 return
@@ -52,18 +53,14 @@ class Model(object):
                 data = unpackb(data)
                 return cls._data_to_obj(data)
         cur = connection.cursor()
-        values = ['='.join((k, str(v))) for k, v in kwargs.iteritems()]
-        sql = 'select * from %s where '+' and '.join(values)+' limit 1'
-        if debug:
-            print sql % cls.__table__
+        values = ['='.join((k, '"%s"' % v)) for k, v in kwargs.iteritems()]
+        sql = 'SELECT * FROM %s WHERE '+' and '.join(values)+' LIMIT 1'
         cur.execute(sql % cls.__table__)
         data = cur.fetchone()
-        id = cur.lastrowid
-        mc_key = cls.MC_KEY % id
+        print cur._last_executed
+        mc_key = cls.MC_KEY % (id or data[-1])
         mc.set(mc_key, packb(data))
         return cls._data_to_obj(data)
-
-
 
 
     @classmethod
@@ -83,6 +80,7 @@ class Model(object):
     def _query(self, query, values):
         cur = connection.cursor()
         cur.execute(query, values)
+        print cur._last_executed
         return cur.lastrowid
 
     def __setattr__(self, name, value):
@@ -110,9 +108,9 @@ class Model(object):
             ','.join(['`%s`=%%s'%f for f in self._updated]),
             ' WHERE id=%s '
         ]
-        print  " ".join(query)
         values = [getattr(self, f) for f in self._updated]
         values.append(self.id)
+        mc.delete(self.MC_KEY % self.id)
         self._query(" ".join(query), values)
 
     def _insert(self):
@@ -134,4 +132,5 @@ class Model(object):
         id = self._query(query, values)
         if self.id is None:
             self.id = id
+        mc.delete(self.MC_KEY % self.id)
         return True
