@@ -83,4 +83,26 @@
 			$(this).find('img').stop()
 		}
 	);
+	
+	$(document).scroll(function(){
+		var back_top = $('#back-top')
+		if($(document).scrollTop() >= 500){
+			if(!back_top[0]){
+				$('body').append('<div id="back-top"><span class="top-car"></span></div>')
+				$('#back-top').show().animate({bottom:20},400,'easeInOutQuart')
+				$('#back-top').click(function(){
+					$(this).animate({bottom:$(window).height()},700,'easeInOutQuart',function(){
+						$(this).fadeOut().remove()
+					})
+					$('body,html').animate({scrollTop:0},400,'easeInOutQuart')
+				})
+			}
+		}else{
+			if(back_top[0]){
+				$('#back-top').animate({bottom:-230},400,'easeInOutQuart',function(){
+					$(this).remove()
+				})
+			}
+		}
+	})
 });

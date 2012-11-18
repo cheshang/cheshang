@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -31,27 +30,8 @@ $(document).ready(function(){
 <body>
 	<div class="page-wrapper">
 		<div class="header-wrapper">
-			<div class="album-basic-info">
-				<div class="album-creater">
-					<span class="album-info-s-t">发布者：</span>
-					<span class="album-info-usseravatar">
-						<a href="me.html"><img src="static/photo/user1.jpg" /></a>
-					</span>
-					<span><a href="me.html">一地鸡毛</a></span>
-					<span class="album-info-time">(2012/09/23)</span>
-				</div>
-				<p>
-					<span class="album-info-s-t">被收藏：</span>1593次
-				</p>
-				<p>
-					<span class="album-info-s-t">专辑名：</span>超霸气兰博基尼LP-700，牛逼的不只是外表，再次证明：牛逼总是一脉相传。
-				</p>
-			</div>
-			
-			<div class="user-count-info">
-				<div class="logo-bar">				
-					<a class="s-logo" href="index.html"></a>
-				</div>
+			<div class="header-container">
+				<a href="/" class="logo">icheshang.com 汽车时尚</a>
 				<div class="album-fav-bar">
 					<span class="s-ico"></span>
 					<span class="s-word">收藏该专辑</span>
@@ -60,8 +40,25 @@ $(document).ready(function(){
 			
 		</div><!--end header-wrapper-->
 		
-		<div class="container-wrapper">
+		<div class="container-wrapper margin_top_20">
+		
 			<div class="album-container">
+				<div class="album-photo-list album-info-box">
+					<div class="album-info-in">
+						<div class="album-count-info">
+							<p class="album-info-tit">超霸气兰博基尼LP-700，牛逼的不只是外表，再次证明：牛逼总是一脉相传。</p>
+							<p class="album-info-datas">
+								<span>1800收藏</span>
+								<span>529评论</span>
+							</p>
+						</div>
+						<div class="album-user-info">
+							<a href="" id="album-user-avatar"><img src="static/photo/user1.jpg" /></a>
+							<p><a href="">一地鸡毛</a> @2012-11-18创建</p>
+						</div>
+					</div>
+				</div>
+
 				<div class="album-photo-list">
 					<a href="view"><img src="static/photo/1.jpg"></a>
 					<div class="album-new-window" title="新窗口查看"><a href="" target="_bllank"></a></div>
@@ -73,6 +70,7 @@ $(document).ready(function(){
 				<div class="album-photo-list">
 					<a href="view"><img src="static/photo/3.jpg"></a>
 					<div class="album-new-window"><a href="" target="_bllank"></a></div>
+							<p></p>
 				</div>
 				<div class="album-photo-list">
 					<a href="view"><img src="static/photo/1.jpg"></a>

@@ -10,12 +10,12 @@ html{
     background: #F5F3EF;
 }
 body{
-    	height: 100% !important;
+    height: 100% !important;
 	color: #333;
 	-webkit-font-smoothing: antialiased;
 	position: relative;
 	font-size: 13px;
-    	font-family: "微软雅黑",Hei,Arial,Helvetica,sans-serif;
+    font-family: "微软雅黑",Arial,Helvetica,sans-serif;
 }
 
 a{
@@ -35,129 +35,40 @@ a:active{
 	
 }
 
-#back-top{
-	position:fixed;
-	width:80px;
-	height:220px;
-	right:20px;
-	bottom:20px;
-	bottom:-230px;
-	background: url('../imgs/top-car.png') no-repeat center top;
-	cursor:pointer;
-	display:none;
-}
-
 .header-wrapper{
-	width:100%;
-	height:100px;
-	margin: 0 auto;
-	background-image:url('../imgs/bg1.jpg');
-	background-repeat:repeat-x;
-}
-.index-header-img{
-	width:100%;
-	position:absolute;
-	z-index:90;
-	top:0;
-}
-.header-container{
 	width:1040px;
-	height:100px;
-	margin: 0 auto;
+	height:170px;
+	margin: 0 auto 20px auto;
+	background-color:#666;
+	background-image:url('../imgs/bg1.jpg');
 	background-repeat:repeat;
 	background-position:0 0;
 	overflow:hidden;
+	border-radius: 0 0 10px 10px;
 }
-
 a.logo{
 	display:block;
 	float:left;
 	width:350px;
-	height:100px;
+	height:170px;
 	text-indent:-99999px;
-	background: url('../imgs/che-logo.png') no-repeat 20px center;
-	margin:0px 0 auto 10px;
+	background: url('../imgs/logo.png') no-repeat 20px 30px;
 }
 .auth-box{
 	width:auto;
-	height:auto;
-	float:right;
-	margin:25px 25px auto 0;
+	height:170px;
+	float:left;
+	margin-left:50px;
 	overflow:hidden;
+	background:#444-;
 }
 .auth-box-has-bg{
 	background:url('../photo/car.png') no-repeat right center
 }
-.search{
-	float:left;
-	width:237px;
-	height:25px;
-	line-height:25px;
-	padding:4px 2px 4px 0;
-	background:url('../imgs/bg-slogan.png') no-repeat -8px center;
-	overflow:hidden;
-	margin:35px 10px auto 25px;
+.auth-box h2{
+	padding:50px 0 30px;
+	font-size:1.2em;
 }
-.search-text{
-	width:195px;
-	border:none;
-	background:none;
-	display:block;
-	float:left;
-	color:white;
-	font-size:12px;
-	margin-top:5px;
-	margin-left:15px;
-	_margin-left:7px;
-	_position:relative;
-	outline: none;
-}
-.search-btn{
-	color:white;
-	font-size:14px;
-	height:26px;
-	width:26px;
-	border:none;
-	display:block;
-	float:right;
-	opacity:0.9;
-	filter: alpha(opacity=90);
-	cursor:pointer;
-	background:url('../imgs/big-searchIcon-x1.png') no-repeat 6px 5px
-}
-.search-btn:hover{
-	background-color:rgba(1,1,1,0.7);
-}
-.auth{
-	width:auto;
-	height:auto;
-	overflow: hidden;
-	float:left;
-	clear:both;
-	margin-top:30px;
-	margin-left:351px;
-}
-.auth-box a{
-	display: block;
-	float:left;
-	width:auto;
-	height:34px;
-	line-height:34px;
-	padding:8px 43px;
-	margin-left:19px;
-	background:#34ABD7;
-	cursor: pointer;
-	color: #FFFFF9;
-	font-size:15px;
-}
-.auth-box a:hover{
-	background:#229fcd;
-	color:#eee;
-}
-.auth-box a:active{
-	background:#118dbb;
-}
-
 .auth-login{
 	width:auto;
 	height:40px;
@@ -189,14 +100,7 @@ a.logo{
 	height:auto;
 	overflow: hidden;
 	margin: 0 auto;
-	background:orange-;
-}
-
-.container-bar{
-	width:auto;
-	height:100px;
-	margin:0 10px;
-	background:rgba(1,1,1,0.5);
+	background:orange-
 }
 
 .album-list-box{
@@ -1159,12 +1063,63 @@ div.view-comment span.ico-icon{
 	color:#777;
 }
 
+.user-count-info{
+	width:auto;
+	height:170px;
+	float:right;
+	background:#999-;
+}
+.logo-bar{
+	width:300px;
+	height:50px;
+	float:right;
+	clear:both;
+}
+.logo-bar a.s-logo{
+	display: block;
+	width:254px;
+	height:50px;
+	float:right;
+	margin-right:30px;
+	background: url('../imgs/s-logo.png') no-repeat right center;
+}
+.count-info{
+	width:auto;
+	height:auto;
+	float: left;
+	clear:both;
+	margin-top:8px;
+}
+.count-info div{
+	width:auto;
+	height:auto;
+	float:left;
+	margin-top:13px;
+	margin-left:0px;
+	margin-right:50px;
+	text-align:left;
+}
+.count-info div span{
+	display:block;
+	width:auto;
+	clear:both;
+	margin:0 auto;
+	padding:0px 10px 0 0;
+}
+.count-info div span.c-i-w{
+	font-size:1.2em;
+}
+.count-info div span.c-i-n{
+	padding-top:0px;
+	font-size:1.8em;
+}
 
 .user-settings-bar{
 	width:30px;
 	height:30px;
 	float:right;
-	margin:35px 10px 0 0;
+	clear:both;
+	margin:35px 140px 0 0;
 }
 .user-profiles-settings{
 	display: block;
@@ -1214,13 +1169,58 @@ div.view-comment span.ico-icon{
 
 
 /* album */
+.album-basic-info{
+	float:left;
+	width:auto;
+	height:auto;
+	margin-left:30px;
+	background:#ccc-;
+	font-size:1.2em;
+}
+.album-creater{
+	width:auto;
+	height:40px;
+	line-height:40px;
+	margin-top:20px;
+	clear:both;
+}
+.album-creater span{
+	display: block;
+	float:left;
+}
+.album-creater span.album-info-s-t{
+	
+	margin-right:10px;
+}
+.album-creater span.album-info-usseravatar{
+	margin-right:10px;
+}
+.album-creater span.album-info-usseravatar img{
+	width:40px;
+	height:40px;
+	border-radius:5px;
+}
+.album-basic-info p{
+	clear:both;
+	padding-top:10px;
+	padding-bottom:5px;
+}
+.album-basic-info p span.album-info-s-t{
+	margin-right:10px;
+}
+span.album-info-time{
+	padding-left:15px;
+	font-size:13px;
+	color:#777;
+}
 
 .album-fav-bar{
 	width: 160px;
 	height: 50px;
 	cursor: pointer;
 	float: right;
-	margin: 25px 10px 0 0;
+	clear: both;
+	margin: 35px 70px 0 0;
 	background:#34ABD7;
 }
 .ablum-fav-bar:hover{
@@ -1295,58 +1295,6 @@ div.view-comment span.ico-icon{
 .album-photo-list div.album-new-window a:active{
 	background-color:rgba(1,1,1,0.8);
 	background-image:url('../imgs/new_window_24_h.png');
-}
-
-.album-info-box{
-	height:auto;
-	background:#34ABD7;
-}
-.album-info-in{
-	height:auto;
-	overflow:hidden;
-	padding:20px;
-	color:white;
-}
-.album-count-info{
-	width:auto;
-	clear:both;
-	padding-bottom:10px;
-}
-p.album-info-tit{
-	font-size:1.4em;
-}
-p.album-info-datas{
-	font-size:1.0em;
-	padding:10px 0;
-}
-p.album-info-datas span{
-	padding-right:30px;
-}
-.album-user-info{
-	width:auto;
-	height:auto;
-	overflow:hidden;
-}
-#album-user-avatar{
-	display:block;
-	float:left;
-	width:40px;
-	height:40px;
-	overflow:hidden;
-}
-#album-user-avatar img{
-	width:40px;
-	height:40px;
-}
-.album-user-info p{
-	padding:10px;
-}
-.album-user-info p a{
-	padding-left:20px;
-	color:white;
-}
-.album-user-info p a:hover{
-	text-decoration:underline;
 }
 /* end album */
 
@@ -1448,127 +1396,14 @@ form p.form-content-p label{
 }
 
 
-/* btn */
-.btn{
-	padding:10px 15px;
-	outline: none;
-	border: none;
-	background: #34ABD7;
-	height: 36px;
-	padding: 0 15px;
-	cursor: pointer;
-	color: #FFFFF9;
-	display: inline;
-	font-size:14px;
-}
-.btn:hover{
-	background:#229fcd;
-}
-.btn:active{
-	background:#118dbb;
-}
-
-/* end btn */
 
 
-/* auth */
-.auth-station{
-	display: block;
-	position: absolute;
-	height:34px;
-	line-height:34px;
-	padding:8px 30px;
-	background: #158A53;
-	cursor: pointer;
-	color: #FFFFF9;
-	font-size:15px;
-	margin-left:800px;
-	top:40px;
-}
-.auth-station:hover{
-	background:#229fcd;
-	color:#eee;
-}
-.auth-station:active{
-	background:#118dbb;
-}
 
-h1.auth-tit{
-	padding:30px 0 10px;
-	font-size:2.0em;
-}
-.auth-wrapper{
-	height:auto;
-	overflow:hidden;
-}
-.text-content{
-	display:block;
-	height:auto;
-	overflow:hidden;
-	padding:10px 0;
-	
-}
-.auth-wrapper label{
-	display:block;
-	float:left;
-	clear:both;
-	padding-bottom:5px;
-}
-.auth-text{
-	margin-bottom: 5px;
-	background-color: white;
-	border: 1px solid #3A81C0;
-	font-size: 14px;
-	width: 300px;
-	height: 27px;
-	line-height: 27px	9;
-	padding: 5px;
-	color: #333;
-	outline: none;
-}
-.text-content .auth-text{
-	display:block;
-	float:left;
-	clear:both;
-}
-.text-content span.auth-notice{
-	display:block;
-	float:left;
-	clear:both;
-}
-span.notice-error{
-	color:#c10;
-}
-span.notice-succ{
-	color:#10A105
-}
-
-.che-logo{
-	position: absolute;
-	width:392px;
-	height:200px;
-	top:300px;
-	margin-left:500px;
-}
-
-/*end auth*/
-
-
-/* form */
-.form-text-error{
-	border:1px #c33 solid;
-	background:#FFC896;
-}
-/* end form */
-
-
-/* upload */
-
+/* uploader */
 .uploader-wrapper{
 	width:1020px;
 	height:auto;
 	margin:0 auto;
-	overflow:hidden;
 }
 
 .uploader-header{
@@ -1577,6 +1412,8 @@ span.notice-succ{
 	background:#ddd;
 	border-radius:8px;
 	overflow:hidden;
+	position: absolute;
+	z-index:120;
 }
 .uploader{
 	width:700px;
@@ -1617,14 +1454,6 @@ span.total-progress-tit{
 	width:320px;
 	height:120px;
 	float:right;
-}
-.post-btn-box-fixed{
-	width:320px;
-	height:120px;
-	position:fixed;
-	margin-left:700px;
-	margin-top:0;
-	top:0;
 }
 .button{
 	display:block;
@@ -1670,7 +1499,6 @@ span.total-progress-tit{
 	margin-top:35px;
 	margin-left:35px;
 	overflow: hidden;
-	background:url('../imgs/loader.gif') no-repeat center center;
 }
 
 .post-button{
@@ -1683,7 +1511,7 @@ span.total-progress-tit{
 	width:1020px;
 	height:auto;
 	overflow:hidden;
-	margin-top:20px;
+	margin-top:150px;
 	float:left;
 	margin-bottom:50px;
 }
@@ -1789,13 +1617,6 @@ span.cancel-img:hover{
 span.cancel-img:active{
 	background: url('../imgs/big_close.png') no-repeat -1px -3px;
 }
-/* end upload */
 
 
-
-.margin_top_10{margin-top:10px}
-.margin_top_15{margin-top:15px}
-.margin_top_20{margin-top:20px}
-.margin_top_25{margin-top:25px}
-.margin_top_30{margin-top:30px}
-
+/* end uploader */

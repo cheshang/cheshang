@@ -1,0 +1,186 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图片上传</title>
+<link type="text/css" rel="stylesheet" href="static/css/reset.css"></link>
+<link type="text/css" rel="stylesheet" href="static/css/qichebook.css"></link>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/conf.js"></script>
+<script type="text/javascript" src="static/js/uploader.js"></script>
+
+
+</head>
+<body>
+	<div class="page-wrapper">
+		<div class="header-wrapper">
+			<div class="header-container">
+				<a href="/" class="logo">icheshang.com 汽车时尚</a>
+				<div class="user-settings-bar">
+					<a class="user-profiles-settings" href="">设置</a>
+				</div>
+			</div>
+		</div><!--end header-wrapper-->
+		
+		
+		<div class="container-wrapper">
+			<form id="form1" action="" method="post" enctype="multipart/form-data">
+			<div class="uploader-wrapper margin_top_20">
+				<div class="uploader-header">
+					<div class="uploader" style="display:none-;">
+						<div class="uploader-button">
+							<span id="file-selecter"></span>
+						</div>
+						<span class="uploader-notice">可以上传JPG, GIF, PNG格式图片，单张最大20M，单次最多50张。</span>
+					</div>
+					<div class="total-uploader-progress-box">
+						<span class="total-progress-tit">上传总进度：40%</span>
+						<div class="total-progress"></div>
+					</div>
+					
+					<div class="post-btn-box">
+						<button type="suubmit" class="button post-button white">保存图片</button>
+					</div>
+				</div>
+				
+				<div class="uploader-content">
+					<!-- 图片上传成功后显示内容
+					<div class="uploader-photo-list">
+						<div class="uploader-photo-imgbox">
+							<img src="static/photo/4.jpg" />
+						</div>
+						<div class="uploader-photo-dec">
+							<textarea placeholder="图片描述"></textarea>
+						</div>
+						<div class="uploader-photo-tools">
+							<span class="photo-delete"></span>
+						</div>
+					</div>
+					
+					<div class="uploader-photo-list">
+						<div class="uploader-photo-imgbox">
+							<img src="static/photo/4.jpg" />
+						</div>
+						<div class="uploader-photo-dec">
+							<textarea placeholder="图片描述"></textarea>
+						</div>
+					</div>
+					-->
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:40%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:100%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:70%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:40%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:100%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:70%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:40%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:100%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:70%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:40%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:100%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:70%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:100%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:70%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:40%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:100%"></span>
+					</div>
+					
+					<div class="puloader-ready-list">
+						<span class="img-name">sdlfjasldfjsldfjsldfjasdf.jpg</span>
+						<span class="cancel-img"></span>
+						<span class="progress" style="width:70%"></span>
+					</div>
+					
+				</div>
+				
+			</div><!--end uploader-wrapper-->
+			</form>
+			
+		</div><!--end container-wrapper-->
+	</div><!--end page-wrapper-->
+
+<script type="text/javascript" src="static/js/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="static/js/swfupload/swfupload.queue.js"></script>
+<script type="text/javascript" src="static/js/swfupload/fileprogress.js"></script>
+<script type="text/javascript" src="static/js/swfupload/handlers.js"></script>
+</body>
+</html>

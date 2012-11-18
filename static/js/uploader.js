@@ -1,14 +1,9 @@
 $(document).ready(function(){
 	$(document).scroll(function(){
-		console.log( $(document).scrollTop() )
 		if($(document).scrollTop() >= 190){
-			if($('.uploader-header').css('position')!='fixed'){
-				$('.uploader-header').css({'position':'fixed','top':'0','border-radius':'0'})
-			}
+			$('.post-btn-box').addClass('post-btn-box-fixed')
 		}else{
-			if($('.uploader-header').css('position')!='absolute'){
-				$('.uploader-header').css({'position':'absolute','top':'','border-radius':'8px'})
-			}
+			$('.post-btn-box').removeClass('post-btn-box-fixed')
 		}
 	});
 	
