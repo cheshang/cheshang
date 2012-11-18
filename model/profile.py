@@ -3,6 +3,10 @@
 import _env
 from model.db import Model, Kv
 
+GENDER_DICT = {
+    'm': 1,
+    'f': 2
+}
 
 class Profile(Model):
     pass

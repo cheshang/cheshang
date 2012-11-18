@@ -9,7 +9,6 @@ class User(object):
     def __init__(self, uid):
         self.uid = uid
         self.data = profile_get(uid)
-        print self.data
 
     @property
     def email(self):
@@ -19,5 +18,5 @@ class User(object):
         return getattr(self.data, name) or ''
         
 if __name__ == '__main__':
-    print User('2').name
+    print User(1).email
     pass

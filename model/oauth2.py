@@ -3,11 +3,16 @@
 import _env
 from model.db import Model
 
+OAUTH_TYPE = {
+    'weibo': 1,
+} 
+
 class Oauth2(Model):
     pass
 
 def oauth2_new(**kwargs):
     #oauth_type, oauth_id, code, token, expires_in
+    kwargs['oauth_type'] = OAUTH_TYPE[kwargs['oauth_type']]
     oauth_id, oauth_type = kwargs['oauth_id'], kwargs['oauth_type']
     oauth = Oauth2.get(oauth_id=oauth_id, oauth_type=oauth_type)
     if not oauth:
@@ -16,12 +21,10 @@ def oauth2_new(**kwargs):
     return oauth.id
 
 def uid_by_oauth(oauth_id, oauth_type):
-    oauth = Oauth2.get(oauth_id=oauth_id, oauth_type=oauth_type, debug=True)  
+    oauth_type = OAUTH_TYPE[oauth_type]
+    oauth = Oauth2.get(oauth_id=oauth_id, oauth_type=oauth_type)  
     if oauth:
         return oauth.id
-
-
-
 
 if __name__ == '__main__':
     pass

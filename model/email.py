@@ -7,7 +7,6 @@ Email = Kv('Email')
 
 def email_save(email):
     id = Email.save(email)
-    print id, type(id)
     return id
 
 def uid_by_email(email):
