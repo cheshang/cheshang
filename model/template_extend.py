@@ -3,6 +3,7 @@
 import _env
 import hashlib
 from json import dumps
+from time import time
 from base64 import b64encode
 from config import UPYUN
 
@@ -16,3 +17,8 @@ def policy_signature_get(bucket):
     policy = b64encode(dumps(policy))
     signature = hashlib.md5('%s&%s'% (policy, key)).hexdigest()
     return policy, signature
+
+FUNCTIONS = {
+    'upyun': policy_signature_get,
+    'dumps': dumps,
+}
