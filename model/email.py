@@ -5,12 +5,12 @@ from model.db import Kv
 
 Email = Kv('Email')
 
-def email_save(email):
-    id = Email.save(email)
-    return id
+def email_save(uid, email):
+    Email.set(uid, email)
+
 
 def uid_by_email(email):
-    email = email.strip().lower()
+    email = email.lower()
     return Email.id_by_value(email)
 
 if __name__ == '__main__':

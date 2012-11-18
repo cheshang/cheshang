@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 from model.db import Model
+from model.account import uid_new
 
 OAUTH_TYPE = {
     'weibo': 1,
@@ -16,7 +17,8 @@ def oauth2_new(**kwargs):
     oauth_id, oauth_type = kwargs['oauth_id'], kwargs['oauth_type']
     oauth = Oauth2.get(oauth_id=oauth_id, oauth_type=oauth_type)
     if not oauth:
-        oauth = Oauth2(**kwargs)
+        uid = uid_new()
+        oauth = Oauth2(id=uid, **kwargs)
         oauth.save()
     return oauth.id
 

@@ -58,8 +58,10 @@ class Model(object):
         cur.execute(sql % cls.__table__)
         data = cur.fetchone()
         print cur._last_executed
-        mc_key = cls.MC_KEY % (id or data[-1])
-        mc.set(mc_key, packb(data))
+        if id or data:
+            _id = data[0] if data else id
+            mc_key = cls.MC_KEY % _id
+            mc.set(mc_key, packb(data))
         return cls._data_to_obj(data)
 
 

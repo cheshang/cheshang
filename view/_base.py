@@ -46,13 +46,13 @@ class View(object):
         return _render._render(template_name, **kargs)
 
     def argument(self, name, default=''):
-        return web.input().get(name, default)
+        return web.input().get(name, default).strip()
 
     def arguments(self, *args):
         data = web.input()
         result = []
         for i in args:
-            value = data.get(i, '')
+            value = data.get(i, '').strip()
             result.append(value)
         return result
 
