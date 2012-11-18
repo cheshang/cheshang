@@ -14,12 +14,10 @@ render = render_jinja(
 HOST = "lerry.me"
 
 MYSQL_HOST = '127.0.0.1'
-if 'Linux' not in platform.platform():
-    MYSQL_HOST = '113.11.199.27'
 MYSQL_PORT = 3306
 MYSQL_USER = 'work'
 MYSQL_PASSWD = '42qu'
 MYSQL_DB = 'work_car'
 
-WEIBO_KEY  = '2640561235'
-WEIBO_SECRET = 'e9291642a66f70a3d8db5fb6b8c60949'
+WEIBO_KEY  = '123'
+WEIBO_SECRET = 'xxxooo'
