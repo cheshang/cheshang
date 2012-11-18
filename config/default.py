@@ -19,5 +19,5 @@ MYSQL_USER = 'work'
 MYSQL_PASSWD = '42qu'
 MYSQL_DB = 'work_car'
 
-WEIBO_KEY  = '123'
-WEIBO_SECRET = 'xxxooo'
+OAUTH2 = dict()
+OAUTH2['weibo'] = (123, 'xxxooo')

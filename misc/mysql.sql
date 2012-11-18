@@ -49,7 +49,8 @@ CREATE TABLE `Oauth2` (
   `oauth_type` tinyint(3) unsigned NOT NULL,
   `oauth_id` int(12)  unsigned NOT NULL,
   `code` varchar(45) NOT NULL,
-  `token` varchar(64) NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `refresh_token` varchar(100),
   `expires_in` int(12)  unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

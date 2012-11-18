@@ -7,13 +7,13 @@ __author__ = 'Liao Xuefeng (askxuefeng@gmail.com)'
 '''
 Python client SDK for sina weibo API using OAuth 2.
 '''
-
+from lib.jsdict import JsDict
 try:
     import json
 except ImportError:
     import simplejson as json
 
-import time, urllib, urllib2, logging, mimetypes
+import time, urllib, urllib2, logging, mimetypes, hashlib
 
 class APIError(StandardError):
     '''
@@ -37,6 +37,7 @@ def _parse_json(s):
         for k, v in pairs.iteritems():
             o[str(k)] = v
         return o
+    print s, type(s)
     return json.loads(s, object_hook=_obj_hook)
 
 class JsonDict(dict):
@@ -104,28 +105,13 @@ def _http_upload(url, authorization=None, **kw):
     logging.info('MULTIPART POST %s' % url)
     return _http_call(url, _HTTP_UPLOAD, authorization, **kw)
 
-def _http_call(the_url, method, authorization, **kw):
+def _http_call(url, http_method, authorization, **kw):
     '''
     send an http request and expect to return a json object if no error.
     '''
-    params = None
-    boundary = None
-    if method==_HTTP_UPLOAD:
-        # fix sina upload url:
-        the_url = the_url.replace('https://api.', 'https://upload.api.')
-        params, boundary = _encode_multipart(**kw)
-    else:
-        params = _encode_params(**kw)
-        if '/remind/' in the_url:
-            # fix sina remind api:
-            the_url = the_url.replace('https://api.', 'https://rm.api.')
-    http_url = '%s?%s' % (the_url, params) if method==_HTTP_GET else the_url
-    http_body = None if method==_HTTP_GET else params
-    req = urllib2.Request(http_url, data=http_body)
-    if authorization:
-        req.add_header('Authorization', 'OAuth2 %s' % authorization)
-    if boundary:
-        req.add_header('Content-Type', 'multipart/form-data; boundary=%s' % boundary)
+    params = _encode_params(**kw)
+    http_body = params
+    req = urllib2.Request(url, data=http_body)
     try:
         resp = urllib2.urlopen(req)
         body = resp.read()
@@ -156,13 +142,13 @@ class APIClient(object):
     '''
     API client using synchronized invocation.
     '''
-    def __init__(self, app_key, app_secret, redirect_uri=None, response_type='code', domain='api.weibo.com', version='2'):
+    def __init__(self, app_key, app_secret, redirect_uri=None, response_type='code', domain='renren.com', version='2'):
         self.client_id = app_key
         self.client_secret = app_secret
         self.redirect_uri = redirect_uri
         self.response_type = response_type
-        self.auth_url = 'https://%s/oauth2/' % domain
-        self.api_url = 'https://%s/%s/' % (domain, version)
+        self.auth_url = 'https://graph.%s/oauth/' % domain
+        self.api_url = 'https://api.%s/restserver.do' % domain
         self.access_token = None
         self.expires = 0.0
         self.get = HttpObject(self, _HTTP_GET)
@@ -192,23 +178,38 @@ class APIClient(object):
         redirect = redirect_uri if redirect_uri else self.redirect_uri
         if not redirect:
             raise APIError('21305', 'Parameter absent: redirect_uri', 'OAuth2 request')
-        r = _http_post('%s%s' % (self.auth_url, 'access_token'), \
+        r = _http_post('%s%s' % (self.auth_url, 'token'), \
                 client_id = self.client_id, \
                 client_secret = self.client_secret, \
                 redirect_uri = redirect, \
                 code = code, grant_type = 'authorization_code')
         current = int(time.time())
         expires = r.expires_in + current
-        remind_in = r.get('remind_in', None)
-        if remind_in:
-            rtime = int(remind_in) + current
-            if rtime < expires:
-                expires = rtime
-        jo = JsonDict(access_token=r.access_token, expires_in=expires)
-        uid = r.get('uid', None)
-        if uid:
-            jo.uid = uid
+        jo = JsonDict(access_token=r.access_token, 
+                      expires_in=expires,
+                      refresh_token=r.refresh_token)
         return jo
+
+    def get_sig(self, api):
+        s = 'access_token=%s' % self.access_token + \
+        'format=json' + \
+        'method=%s' % api +\
+        'v=1.0'
+        return hashlib.md5(s).hexdigest()
+
+    def api_call(self, api):
+        r = _http_post(self.api_url,
+                sig = self.get_sig(api),
+                access_token = self.access_token,
+                format = 'json',
+                method = api,
+                v = 1.0
+                )
+        return r
+        current = int(time.time())
+        jo = JsonDict(access_token=r.access_token, 
+                      expires_in=expires,
+                      refresh_token=r.refresh_token)        
 
     def is_expires(self):
         return not self.access_token or time.time() > self.expires
@@ -277,10 +278,10 @@ class WeiboClient(object):
     def is_expires(self):
         return not self._access_token or time.time() > self._expires
 
-    def __getattr__(self, attr):
-        if attr.startswith('_'):
-            raise AttributeError('WeiboClient object has no attribute \'%s\'' % attr)
-        return _Callable(self, attr)
+    #def __getattr__(self, attr):
+    #    if attr.startswith('_'):
+    #        raise AttributeError('WeiboClient object has no attribute \'%s\'' % attr)
+    #    return _Callable(self, attr)
 
 _METHOD_MAP = { 'GET': _HTTP_GET, 'POST': _HTTP_POST, 'UPLOAD': _HTTP_UPLOAD }
 

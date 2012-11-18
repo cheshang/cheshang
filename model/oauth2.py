@@ -5,7 +5,8 @@ from model.db import Model
 from model.account import uid_new
 
 OAUTH_TYPE = {
-    'weibo': 1,
+    'weibo' : 1,
+    'renren': 2,
 } 
 
 class Oauth2(Model):
