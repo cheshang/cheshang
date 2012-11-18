@@ -58,11 +58,11 @@ class Callback(View):
 
                 info = client.users.show.get(uid=r.uid)
                 print info
-                #profile_new(uid, 
-                #    name = info['screen_name'],
-                #    motto = info['description'],
-                #    avatar = info['avatar_large'],
-                #    gender = info['gender'])
+                profile_new(uid, 
+                    name = info['screen_name'],
+                    motto = info['description'],
+                    avatar = info['avatar_large'],
+                    gender = info['gender'])
             self.login(uid)
             self.redirect('/me')
 
