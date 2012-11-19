@@ -13,7 +13,11 @@ class Profile(Model):
 
 def profile_new(uid, **args):
     #name, avatar, motto, gender, birthday, city
-    Profile(id=uid, **args).save()
+    profile = Profile.get(uid)
+    if not profile:
+        profile = Profile(id=uid)
+    profile.update(**args)
+    profile.save()
         
 def profile_get(uid):
     return Profile.get(uid)

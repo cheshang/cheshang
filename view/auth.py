@@ -6,6 +6,7 @@ from config import render, OAUTH2_CONFIG
 from view._base import route, View, LoginView, NoLoginView
 from lib.weibo import APIClient as weibo_client
 from lib.renren import APIClient as renren_client
+from lib.jsdict import JsDict
 from model.account import account_new
 from model.email import uid_by_email
 from model.passwd import passwd_verify
@@ -47,25 +48,26 @@ class Callback(View):
             APIClient = globals()['%s_client' % oauth_type]
             client = APIClient(app_key=key, app_secret=secret, redirect_uri=CALLBACK_URL)
             r = client.request_access_token(code)
+            if oauth_type == 'weibo':
+                r = JsDict(r)
             access_token = r.access_token # 新浪返回的token
             expires_in = r.expires_in # token过期的UNIX时间：  
+            oauth_uid = r.uid if oauth_type == 'weibo' else r.user.id
+            uid = oauth2_new(oauth_type=oauth_type, oauth_id=oauth_uid,\
+                token=r.access_token, expires_in=r.expires_in, refresh_token=r.refresh_token)
             client.set_access_token(access_token, expires_in)
-            return client.api_call('users.getInfo')         
-            uid = uid_by_oauth(r.uid, oauth_type)
-            if not uid:
-                uid = oauth2_new(oauth_type=oauth_type, oauth_id=r.uid, code=code, \
-                    token=access_token, expires_in=expires_in)
-
-                # TODO: 在此可保存access token
-                client.set_access_token(access_token, expires_in)
-                #print client.statuses.user_timeline.get()
-
+            if oauth_type == 'weibo':
                 info = client.users.show.get(uid=r.uid)
                 profile_new(uid, 
                     name = info['screen_name'],
                     motto = info['description'],
                     avatar = info['avatar_large'],
                     gender = GENDER_DICT.get(info['gender'], 0))
+            else:
+                info = r#client.api_call('users.getInfo')
+                profile_new(uid, 
+                    name = info['name'],
+                    avatar = r.user.avatar[-1]['url'])
             self.login(uid)
             self.redirect('/me')
 
@@ -78,5 +80,3 @@ class Weibo(View):
         client = APIClient(app_key=key, app_secret=secret, redirect_uri=CALLBACK_URL)
         url = client.get_authorize_url()
         self.redirect(url)
-
-#print globals()['weibo_client']

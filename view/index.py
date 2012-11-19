@@ -17,9 +17,9 @@ class Album(View):
         return self.render()
 
 @route('/view')
-class ViewPage(View):
+class View_Page(View):
     def GET(self, url=''):
-        return render.view()
+        return self.render()
 
 @route('/login')
 class Login(NoLoginView):
