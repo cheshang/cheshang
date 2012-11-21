@@ -20,7 +20,7 @@ def album_new(name, uid):
         time   = int(time())
     )
     album.save()
-    return album.id
+    return album
         
 
         

@@ -74,6 +74,7 @@ CREATE TABLE  `Photo` (
   `status` tinyint(3) unsigned NOT NULL,
   `uid` int(12) unsigned NOT NULL,
   `album_id` int(12) unsigned NOT NULL,
+  `size` varchar(16) NOT NULL,
   `time` int(14) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `album_id` (`album_id`)
