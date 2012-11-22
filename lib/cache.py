@@ -23,7 +23,10 @@ class InterCache(object):
         self.cache[k] = v
 
     def delete(self, k):
-        del self.cache[k]
+        try:
+            del self.cache[k]
+        except KeyError:
+            pass
 
 cache = InterCache(CACHE_DICT)
 

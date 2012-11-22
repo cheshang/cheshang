@@ -4,8 +4,9 @@ import _env
 import web
 from config import render as _render
 from lib.route import Route
-from model.session import session_new, id_by_session, session_rm
 from model.user import User
+from model.session import session_new, id_by_session, session_rm
+from model.template_extend import FUNCTIONS
 
 route = Route()
 
@@ -36,6 +37,7 @@ class View(object):
     def render(self, template_name=None, **kargs):
         kargs['current_user_id'] = self.current_user_id
         kargs['current_user'] = self.current_user
+        kargs.update(FUNCTIONS)
         if not template_name:
             template_name = '%s/%s.html' % (
                 self.__module__[5:].replace('.', '/').lower(),
@@ -44,13 +46,13 @@ class View(object):
         return _render._render(template_name, **kargs)
 
     def argument(self, name, default=''):
-        return web.input().get(name, default)
+        return web.input().get(name, default).strip()
 
     def arguments(self, *args):
         data = web.input()
         result = []
         for i in args:
-            value = data.get(i, '')
+            value = data.get(i, '').strip()
             result.append(value)
         return result
 

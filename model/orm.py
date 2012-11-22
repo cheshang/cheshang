@@ -14,7 +14,7 @@ class _Model(type):
         new_class = type.__new__(cls, name, bases, attrs)
         new_class.__table__ = table = name
         cur = connection.cursor()
-        cur.execute('SELECT * FROM %s LIMIT 0' % name)
+        cur.execute('SELECT * FROM %s LIMIT 1' % name)
         print cur._last_executed
         new_class.__column__ = column = map(itemgetter(0), cur.description)
         new_class.MC_KEY = name + '_%s'
@@ -58,10 +58,15 @@ class Model(object):
         cur.execute(sql % cls.__table__)
         data = cur.fetchone()
         print cur._last_executed
-        mc_key = cls.MC_KEY % (id or data[-1])
-        mc.set(mc_key, packb(data))
+        if id or data:
+            _id = data[0] if data else id
+            mc_key = cls.MC_KEY % _id
+            mc.set(mc_key, packb(data))
         return cls._data_to_obj(data)
 
+    def update(self, **kwargs):
+        for i in kwargs:
+            self.__dict__[i] = kwargs[i]
 
     @classmethod
     def get_list(self, id_li):

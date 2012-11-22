@@ -19,7 +19,10 @@ class JsDict(object):
             self.__o[name] = val
 
     def __getattr__(self, name):
-        return self.__o.get(name, '')
+        data = self.__o.get(name, '')
+        if type(data) == dict:
+            return JsDict(data)
+        return data
 
     def __getitem__(self, name):
         return self.__o.get(name, '')
@@ -34,4 +37,6 @@ class JsDict(object):
     def __delitem__(self, name):
         del self.__o[name]
 
+    def __repr__(self):
+        return str(self.__dict__['_JsDict__o'])
 

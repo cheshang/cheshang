@@ -29,3 +29,6 @@ pip-log.txt
 
 #config
 config/_private
+
+
+test.py
