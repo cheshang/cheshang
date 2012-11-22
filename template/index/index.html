@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>汽车Book</title>
+<link rel="stylesheet" href="static/css/reset.css" type="text/css">
+<link rel="stylesheet" href="static/css/qichebook.css" type="text/css">
 <script type="text/javascript" src="static/js/in.js" autoload="true" core="static/js/jquery.min.js"></script>
 <script type="text/javascript">
 var timenow = new Date().getTime();
@@ -11,15 +13,14 @@ In.add('qichebook',{ path:'static/js/qichebook.js?'+timenow,type:'js',charset:'u
 In.add('easing',{ path:'static/js/jquery.easing.1.3.js',type:'js',charset:'utf-8' });
 In.add('tmpl',{ path:'static/js/jquery.tmpl.min.js',type:'js',charset:'utf-8' });
 In.add('scroll',{ path:'static/js/jquery.scrollTo-1.4.3.1-min.js',type:'js',charset:'utf-8' });
-In.add('reset',{ path:'static/css/reset.css' });
-In.add('css',{ path:'static/css/qichebook.css?'+timenow });
 
-In.later(600,'reset','css','qichebook','tmpl','easing','scroll',function(){
+In.later(600,'qichebook','tmpl','easing','scroll',function(){
+	$('html').css('background-image','none')
 	$('.page-wrapper').fadeIn()
 });
 </script>
 <style>
-html{height:100%;width:100%;background:url('static/imgs/loader-1.gif') no-repeat center 40%}
+html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat center 40%}
 </style>
 </head>
 <body>
