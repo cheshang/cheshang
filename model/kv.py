@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import _env
+import hashlib
 from model.connect import connection, mc
 
 class Kv(object):
@@ -71,11 +72,13 @@ class Kv(object):
         cursor.execute('DELETE FROM %s WHERE id=%%s' % self.table, id)
         print cursor._last_executed
         mc.delete(self.prefix % id)
-        mc.delete(self.prefix_v % value)
+        _key = hashlib.md5(self.prefix_v % value).hexdigest()
+        mc.delete(_key)
 
     def id_by_value(self, value):
-        mc_key = self.prefix_v % value
+        mc_key = hashlib.md5(self.prefix_v % value).hexdigest()
         r = mc.get(mc_key)
+
         if r is None:
             cursor = self.cursor
             cursor.execute('SELECT id FROM %s WHERE value="%s"' % (self.table, value))
