@@ -19,5 +19,9 @@ MYSQL_USER = 'work'
 MYSQL_PASSWD = '42qu'
 MYSQL_DB = 'work_car'
 
+MEMCACHED_ADDR = '127.0.0.1:11211'
+
 OAUTH2 = dict()
 OAUTH2['weibo'] = (123, 'xxxooo')
+
+
