@@ -74,8 +74,8 @@ def auto_reload(app):
     from time import sleep
     while True:
         _auto_reload(app)
-        print '\nAuto Reloading After 3 seconds : '
+        print '\nAuto Reloading After 2 seconds : '
         for i in xrange(10, 0, -1):
-            sleep(0.3)
+            sleep(0.2)
             print i,
         print ''
