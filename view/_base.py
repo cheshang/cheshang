@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import _env
 import web
+import json
 from config import render as _render
 from lib.route import Route
 from model.user import User
@@ -63,21 +64,22 @@ class LoginView(View):
         if not self.current_user:
             self.redirect('/signin')
 
+class JsonView(View):
+    def render(self, arg):
+        web.header('Content-Type', 'application/json; charset=UTF-8')
+        return json.dumps(arg)
+
+class JsonLoginView(JsonView):
+    def __init__(self):
+        if not self.current_user:
+            self.render({'login':0})
+
 class NoLoginView(View):
     def __init__(self):
         if self.current_user:
             self.redirect('/me')
 
-def my_loadhook():
-    print "my load hook"
-
-    def my_unloadhook():
-        print "my unload hook"
-
-        app.add_processor(web.loadhook(my_loadhook))
-        app.add_processor(web.unloadhook(my_unloadhook))
-    
-
+   
 '''
 setcookie(name, value, expires="", domain=None, secure=False): 
 web.cookies().get(cookieName) 
