@@ -201,3 +201,13 @@ FileProgress.prototype.disappear = function () {
 		this.setTimer(null);
 	}
 };
+
+
+//cheshang add
+FileProgress.prototype.showTotalProgress = function () {
+    $('.uploader').hide()
+    $('.total-uploader-progress-box').show()
+    return true;
+    //document.getElementById('uploader').style.display = 'none'
+    //document.getElementById('total-progress').style.display = 'block'
+}

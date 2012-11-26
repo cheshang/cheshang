@@ -1608,7 +1608,7 @@ span.total-progress-tit{
 	font-size:1.4em;
 }
 .total-progress{
-	width:40%;
+	width:0%;
 	height:120px;
 	background:#5BB75B
 }
@@ -1700,10 +1700,10 @@ span.total-progress-tit{
 	height:150px;
 	float:left;
 	overflow:hidden;
-	background:#c33;
+	background:url('../imgs/loader.gif') no-repeat center center;
 }
 .uploader-photo-list img{
-	width:250px;
+	width:150px;
 }
 
 .uploader-photo-dec{
@@ -1789,6 +1789,56 @@ span.cancel-img:hover{
 span.cancel-img:active{
 	background: url('../imgs/big_close.png') no-repeat -1px -3px;
 }
+
+
+
+/*progress*/
+.progressWrapper, .progressContainer{
+	width:700px;
+	height:50px;
+	margin-bottom:30px;
+	background:#ddd;
+	overflow:hidden;
+}
+.progressContainer{}
+.progressCancel{
+	position:absolute;
+	z-index:100;
+	width:50px;
+	height:50px;
+	margin-left:650px;
+	background: url('../imgs/big_close.png') no-repeat -1px -113px;
+	cursor:pointer;
+}
+.progressCancel:hover{
+	background: url('../imgs/big_close.png') no-repeat -1px -57px;
+}
+.progressCancel:active{
+	background: url('../imgs/big_close.png') no-repeat -1px -3px;
+}
+.progressName{
+	position:absolute;
+	z-index:101;
+	width:640px;
+	height:50px;
+	line-height:50px;
+	float:left;
+	padding-left:10px;
+	overflow: hidden;
+	color:#333;
+}
+.progressBarStatus{
+    display:none;
+}
+.progressBarInProgress{
+	display:block;
+	width:0%;
+	height:50px;
+	background:#49AFCD
+}
+/*end progress*/
+
+
 /* end upload */
 
 
