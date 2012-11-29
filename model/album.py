@@ -3,6 +3,7 @@
 import _env
 from time import time
 from model.db import Model
+from model.photo import album_photo_list
 
 class ALBUM_STATUS:
     PUBLIC = 1
@@ -10,11 +11,19 @@ class ALBUM_STATUS:
 
 
 class Album(Model):
-    pass
 
-def album_new(name, uid):
+    @property
+    def photos(self):
+        return album_photo_list(self.id, limit=100)
+
+def album_get(id):
+    return Album.get(id)
+
+
+def album_new(name, txt, uid):
     album = Album(
         name   = name,
+        txt    = txt,
         status = ALBUM_STATUS.PUBLIC,
         uid    = uid,
         time   = int(time())

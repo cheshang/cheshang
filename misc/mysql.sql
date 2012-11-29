@@ -59,12 +59,13 @@ DROP TABLE IF EXISTS `Album`;
 CREATE TABLE  `Album` (
   `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8_bin NOT NULL,
+  `txt` varchar(150) COLLATE utf8_bin,
   `status` tinyint(3) unsigned NOT NULL,
   `uid` int(12) unsigned NOT NULL,
   `time` int(14) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=100000;
 
 DROP TABLE IF EXISTS `Photo`;
 CREATE TABLE  `Photo` (

@@ -15,7 +15,7 @@ function swfUploader(o){
     //console.log(UPYUN)
 
     return new SWFUpload({
-        flash_url : "static/js/swfupload/swfupload.swf",
+        flash_url : "/static/js/swfupload/swfupload.swf",
         //upload_url: "http://v0.api.upyun.com/"+UPYUN[2],
         upload_url: "http://v0.api.upyun.com/"+UPYUN[2]+'/',
         post_params: {
@@ -37,7 +37,7 @@ function swfUploader(o){
         debug: false,
 
         // Button settings
-        button_image_url: "static/imgs/select-img-btn.png",
+        button_image_url: "/static/imgs/select-img-btn.png",
         button_width: "196",
         button_height: "48",
         //button_placeholder_id: "spanButtonPlaceHolder",

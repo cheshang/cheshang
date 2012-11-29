@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>
+    <p>{{ album.name }}</p>
+    <p>{{ album.txt }}</p>
+    <ul>
+        {% for photo in album.photos %}
+        <li><img src="http://cheshang.b0.upaiyun.com/{{ photo.md5}}" alt="{{ photo.name }}"></li>
+        {% endfor %}
+    </ul>
+</p>
+</body>
+</html>

@@ -46,6 +46,7 @@ class Model(object):
                 return
         data = None
         if id:
+            id = str(id)
             kwargs['id'] = id
             mc_key = cls.MC_KEY % id
             data = mc.get(mc_key)
@@ -63,6 +64,20 @@ class Model(object):
             mc_key = cls.MC_KEY % _id
             mc.set(mc_key, packb(data))
         return cls._data_to_obj(data)
+
+    @classmethod
+    def where(cls, limit=1, offset=0, **kwargs):
+        cur = connection.cursor()
+        values = ['='.join((k, '"%s"' % v)) for k, v in kwargs.iteritems()]
+        sql = 'SELECT * FROM %s WHERE '+' and '.join(values)+' LIMIT %s OFFSET %s'
+        cur.execute(sql % (cls.__table__, limit, offset))
+        data = cur.fetchall()
+        print cur._last_executed
+        result = []
+        for i in data:
+            result.append(cls._data_to_obj(i))
+        return result
+
 
     def update(self, **kwargs):
         for i in kwargs:

@@ -205,7 +205,7 @@ FileProgress.prototype.disappear = function () {
 
 //cheshang add
 FileProgress.prototype.showTotalProgress = function () {
-    $('.uploader').hide()
+    //$('.uploader').hide()
     $('.total-uploader-progress-box').show()
     return true;
     //document.getElementById('uploader').style.display = 'none'
