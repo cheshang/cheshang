@@ -11,3 +11,8 @@ class Upload(View):
     def GET(self):
         return self.render()
 
+    def POST(self):
+        data = web.input(url=[], name=[], size=[])
+        url, size, name = [data[i] for i in ('url', 'size', 'name')]
+        print url, size, name
+

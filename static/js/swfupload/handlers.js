@@ -139,10 +139,9 @@ function uploadSuccess(file, serverData) {
                     '<img src="'+src+'" />'+
                 '</div>'+
                 '<div class="uploader-photo-dec">'+
-                    '<textarea name="img_dec'+file.id+'" placeholder="图片描述"></textarea>'+
-                    '<input type="hidden" name="img_url_'+file.id+'" value="'+s.url+'" />'+
-                    '<input type="hidden" name="img_width_'+file.id+'" value="'+s['image-width']+'" />'+
-                    '<input type="hidden" name="img_height_'+file.id+'" value="'+s['image-height']+'" />'+
+                    '<textarea name="name" placeholder="图片描述"></textarea>'+
+                    '<input type="hidden" name="url" value="'+s.url.substr(1)+'" />'+
+                    '<input type="hidden" name="size" value="'+s['image-width']+","+s['image-height']+'" />'+
                 '</div>'+
                 '<div class="uploader-photo-tools">'+
                     '<span class="photo-delete"></span>'+
