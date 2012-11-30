@@ -27,7 +27,7 @@ def album_get(id):
 
 def album_new(name, txt, uid):
     album = Album(
-        name   = name,
+        title   = name,
         txt    = txt,
         status = ALBUM_STATUS.PUBLIC,
         uid    = uid,
