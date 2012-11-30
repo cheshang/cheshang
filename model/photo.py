@@ -29,7 +29,11 @@ def photo_new(url, title, size, uid, album_id):
     return photo.id
 
 def album_photo_list(album_id, limit=1, offset=0):
-    return Photo.where(album_id=album_id, limit=limit, offset=offset)
+    return Photo.where(
+        album_id=album_id, 
+        limit=limit, 
+        offset=offset
+    )
 
         
 if __name__ == '__main__':

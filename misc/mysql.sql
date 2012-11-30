@@ -4,18 +4,21 @@ CREATE TABLE `Session` (
   `value` binary(16) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 DROP TABLE IF EXISTS `Account`;
 CREATE TABLE `Account` (
   `id` int(12)  unsigned NOT NULL AUTO_INCREMENT,
   `value` int(14) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000;
+
 DROP TABLE IF EXISTS `Txt`;
 CREATE TABLE `Txt` (
   `id` int(12)  unsigned NOT NULL AUTO_INCREMENT,
   `value` mediumtext COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAUL   T CHARSET=utf8 COLLATE=utf8_bin;
+
 
 DROP TABLE IF EXISTS `Passwd`;
 CREATE TABLE `Passwd` (
@@ -24,12 +27,14 @@ CREATE TABLE `Passwd` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+
 DROP TABLE IF EXISTS `Email`;
 CREATE TABLE `Email` (
   `id` int(12)  unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 DROP TABLE IF EXISTS `Profile`;
 CREATE TABLE `Profile` (
@@ -58,19 +63,19 @@ CREATE TABLE `Oauth2` (
 DROP TABLE IF EXISTS `Album`;
 CREATE TABLE  `Album` (
   `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE utf8_bin NOT NULL,
+  `title` varchar(45) COLLATE utf8_bin NOT NULL,
   `txt` varchar(150) COLLATE utf8_bin,
   `status` tinyint(3) unsigned NOT NULL,
   `uid` int(12) unsigned NOT NULL,
   `time` int(14) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=100000;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000;
 
 DROP TABLE IF EXISTS `Photo`;
 CREATE TABLE  `Photo` (
-  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
-  `url` binary(16) NOT NULL,
+  `id` int(14) unsigned NOT NULL AUTO_INCREMENT,
+  `md5` binary(16) NOT NULL,
   `title` varchar(45) DEFAULT NULL,
   `status` tinyint(3) unsigned NOT NULL,
   `uid` int(12) unsigned NOT NULL,
@@ -79,7 +84,7 @@ CREATE TABLE  `Photo` (
   `time` int(14) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `album_id` (`album_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10000000;
 
 
 # Dump of table at
@@ -134,6 +139,3 @@ CREATE TABLE `fav` (
 
 # Dump of table photo
 # ------------------------------------------------------------
-
-
-
