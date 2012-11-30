@@ -12,12 +12,12 @@ class PHOTO_STATUS:
 class Photo(Model):
 
     @property 
-    def md5(self):
-        return b2a_hex(self.url)
+    def url(self):
+        return b2a_hex(self.md5)
 
 def photo_new(url, title, size, uid, album_id):
     photo = Photo(
-        url      = a2b_hex(url),
+        md5      = a2b_hex(url),
         title    = title,
         status   = PHOTO_STATUS.PUBLIC,
         uid      = uid,
