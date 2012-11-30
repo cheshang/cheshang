@@ -16,6 +16,11 @@ class Album(Model):
     def photos(self):
         return album_photo_list(self.id, limit=100)
 
+    def can_edit(self, uid):
+        print self.uid, 'uid'
+        return self.uid == int(uid)
+
+
 def album_get(id):
     return Album.get(id)
 

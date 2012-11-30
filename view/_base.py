@@ -25,6 +25,9 @@ class View(object):
         s = web.cookies().get('S')
         return id_by_session(s)
 
+    @property 
+    def uid(self):
+        return self.current_user_id
 
     def redirect(self, url):
         raise web.seeother(url)
