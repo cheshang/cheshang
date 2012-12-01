@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>汽车Book</title>
 <script type="text/javascript" src="static/js/in.js" autoload="true" core="static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/base.js" ></script>
+<script type="text/javascript" src="/static/js/auth.js" ></script>
 <script type="text/javascript">
 var timenow = new Date().getTime();
 In.add('auth',{ path:'static/js/auth.js?'+timenow,type:'js',charset:'utf-8' });
@@ -35,17 +37,17 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
 				<form action="" method="post">
 					<p class="text-content">
 						<label>邮箱：</label>
-						<input type="text" name="email" value="" class="auth-text" require="true" datatype="email" />
+						<input type="text" name="email" value="" id="auth-mail" class="auth-text" require="true" datatype="email" />
 						<span class="auth-notice notice-error"></span>
 					</p>
 					<p class="text-content">
 						<label>密码：</label>
-						<input type="password" name="passwd" value="" class="auth-text" require="true" datatype="password" />
+						<input type="password" name="passwd" value="" id="auth-passwd" class="auth-text" require="true" datatype="password" />
 						<span class="auth-notice"></span>
 					</p>
 					<p class="text-content">
 						<label>确认密码：</label>
-						<input type="password" name="password1" value="" class="auth-text" require="true" datatype="repassword" />
+						<input type="password" name="password1" value="" id="auth-passwd1" class="auth-text" require="true" datatype="repassword" />
 						<span class="auth-notice"></span>
 					</p>
 					<p class="text-content">
@@ -54,7 +56,7 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
 						<span class="auth-notice notice-succ"></span>
 					</p>
 					<p class="text-content">
-						<input type="submit" class="btn auth-btn" value="注 册" />
+						<input type="submit" id="auth-submit" class="btn auth-btn" value="注 册" />
 					</p>
 				</form>
 				<div class="che-logo">

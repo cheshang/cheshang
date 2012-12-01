@@ -6,16 +6,18 @@ from config import render
 from view._base import route, JsonView, JsonLoginView
 from model.album import album_new
 from model.email import uid_by_email
+from lib.utils import RE_EMAIL
 
-
-@route('/j/email/exists')
+@route('/j/email/verify')
 class email_exists(JsonView):
     def POST(self):
         email = self.argument('email')
+        if not RE_EMAIL.match(email):
+            return self.render('邮箱格式不正确')
         if uid_by_email(email):
-            return self.render(1)
+            return self.render('邮箱已被注册')
         else:
-            return self.render(0)
+            return self.render('')
 
     GET = POST
 
