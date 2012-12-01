@@ -3,7 +3,8 @@
 import _env
 from time import time
 from model.db import Model
-from model.photo import album_photo_list
+from model.photo import album_photo_list, Photo
+
 
 class ALBUM_STATUS:
     PUBLIC = 1
@@ -19,6 +20,12 @@ class Album(Model):
     def can_edit(self, uid):
         print self.uid, 'uid'
         return self.uid == int(uid)
+
+    @property
+    def cover_link(self):
+        p = Photo.get(album_id=self.id)
+        return p.link if p else ''
+
 
 
 def album_get(id):

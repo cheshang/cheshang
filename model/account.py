@@ -13,12 +13,9 @@ Account = Kv('Account')
 def uid_new():
     return Account.save(int(time()))
 
-    
-
 def account_new(email, passwd, name):
     email = email.lower()
-    uid = uid_by_email(email)
-    if uid:
+    if uid_by_email(email):
         return
     uid = uid_new()
     email_save(uid, email)

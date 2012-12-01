@@ -13,6 +13,7 @@ from model.passwd import passwd_verify
 from model.oauth2 import oauth2_new, uid_by_oauth, OAUTH_TYPE
 from model.profile import profile_new, GENDER_DICT
 
+
 @route('/signup')
 class Signup(NoLoginView):
     def GET(self):
@@ -21,7 +22,9 @@ class Signup(NoLoginView):
     def POST(self):
         email, passwd, name =  self.arguments('email', 'passwd', 'name')
         if email and passwd:
-            id = account_new(email, passwd, name)
+            uid = account_new(email, passwd, name)
+        if uid:
+            return self.redirect('/signin')
         return self.render()
 
 

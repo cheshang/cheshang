@@ -65,6 +65,7 @@ CREATE TABLE  `Album` (
   `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(45) COLLATE utf8_bin NOT NULL,
   `txt` varchar(150) COLLATE utf8_bin,
+  `cover` int(14) COLLATE utf8_bin,
   `status` tinyint(3) unsigned NOT NULL,
   `uid` int(12) unsigned NOT NULL,
   `time` int(14) unsigned NOT NULL,

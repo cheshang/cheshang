@@ -5,9 +5,23 @@ import web
 from config import render
 from view._base import route, JsonView, JsonLoginView
 from model.album import album_new
+from model.email import uid_by_email
+
+
+@route('/j/email/exists')
+class email_exists(JsonView):
+    def POST(self):
+        email = self.argument('email')
+        if uid_by_email(email):
+            return self.render(1)
+        else:
+            return self.render(0)
+
+    GET = POST
+
 
 @route('/j/catagory/new')
-class cata_new(JsonView):
+class cata_new(JsonLoginView):
     def POST(self):
         user_id = self.current_user_id
         name = self.argument('name')
