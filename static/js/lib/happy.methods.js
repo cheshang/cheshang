@@ -22,5 +22,17 @@ var happy = {
   
   equal: function (val1, val2) {
     return (val1 == val2);
+  },
+    
+  passwd_verify: function(val) {
+    return val.length >= 6;
+  },
+
+  mail_verify: function(val) {
+    $.postJSON('/j/email/verify', {
+      'email': val
+    }, function(r) {
+      return r == "ok";
+    });
   }
 };

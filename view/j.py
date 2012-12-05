@@ -17,7 +17,7 @@ class email_exists(JsonView):
         if uid_by_email(email):
             return self.render('邮箱已被注册')
         else:
-            return self.render('')
+            return self.render('ok')
 
     GET = POST
 
