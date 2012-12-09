@@ -31,6 +31,11 @@ a:active{
 
 }
 
+
+.none{
+    display:none;
+}
+
 .page-wrapper{
 	
 }
@@ -157,6 +162,65 @@ a.logo{
 .auth-box a:active{
 	background:#118dbb;
 }
+
+.auth-me{
+    width:50px;
+    height:50px;
+    float:left;
+}
+.auth-box .auth-me a.a-go-me{
+    padding:0;
+    height:50px;
+    width:50px;
+    margin:0;
+}
+.auth-box .auth-me a.a-go-me img{
+    width:50px;
+    height:50px;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+.auth-menu-box{
+    position:absolute;
+    z-index:1000;
+    width:50px;
+    height:auto;
+    overflow:hidden;
+    margin-top:50px;
+    background:rgba(1, 1, 1, 0.5);
+    display:none;
+}
+.auth-menu-box a{
+    width:50px;
+    height:50px;
+    margin:0;
+    padding:0;
+    background-color:rgba(1, 1, 1, 0.5);
+    background-image:url('../imgs/auth-ico.png');
+    background-repeat:no-repeat;
+}
+.auth-menu-box a.auth-menu-setting{
+    background-position:0px -50px;
+}
+.auth-menu-box a.auth-menu-logout{
+    background-position:0px 0px;
+    border-top:1px black solid;
+    box-shadow:1px 3px 6px white;
+}
+.auth-menu-box a:hover{
+    background-color:rgba(1, 1, 1, 0.8);
+    background-image:url('../imgs/auth-ico.png');
+    background-repeat:no-repeat;
+}
+.auth-menu-box a.auth-menu-setting:hover{
+    background-position:-49px -50px;
+}
+.auth-menu-box a.auth-menu-logout:hover{
+    background-position:-49px -1px;
+}
+
 
 .auth-login{
 	width:auto;
@@ -293,6 +357,30 @@ a.logo{
 	height:50px;
 	background:#ddd;
 }
+
+
+/*顶部推荐*/
+.recommend-box{
+    width:1020px;
+    height:350px; 
+    overflow:hidden;
+    margin-top:20px;
+    margin-left:10px;
+    margin-bottom:10px;
+    float:left;
+}
+.cheshang-info{
+    position:absolute;
+    z-index:100;
+    width:250px;
+    height:350px;
+    margin-top:0px;
+    margin-left:746px;
+    background:rgba(1,1,1,0.5);
+}
+/*end 顶部推荐*/
+
+
 
 /*翻页*/
 .pagination-wrapper{
@@ -579,15 +667,14 @@ a.logo{
 	height:41px;
 	left:5px;
 	top:5px;
-	background:rgba(1,1,1,0.5);
-	background: rgba(1,1,1,0.5) url('../imgs/btn_info.gif') no-repeat right center;
-	opacity:0.5;
+	background: rgba(1,1,1,0.7) url('../imgs/btn_info.gif') no-repeat right center;
+	opacity:0.7;
 	cursor:pointer;
 	z-index:30;
 }
 .open-photo-list-mod:hover{
-	background: rgba(1,1,1,0.5) url('../imgs/btn_info.gif') no-repeat left center;
-	opacity:0.8;
+	background: rgba(1,1,1,0.8) url('../imgs/btn_info.gif') no-repeat left center;
+	opacity:0.85;
 }
 .open-photo-list-mod:active{
 	opacity:1;
@@ -615,6 +702,11 @@ a.logo{
 	height:100%;
 	overflow-x:hidden;
 	overflow-y:auto;
+}
+.photo-list-mod-for-getheight{
+    width:auto;
+    height:auto;
+    overflow:hidden;
 }
 
 .p-l-m-item{
@@ -924,7 +1016,7 @@ button#post-comment-btn:active{
 	background: url('../imgs/photo-arrow.png') no-repeat center top;
 }
 .photo-previous,.photo-next{
-	opacity: 0.4;
+	opacity: 0.6;
 }
 .photo-previous:hover, .photo-next:hover{
 	opacity: 0.8;
@@ -1013,6 +1105,7 @@ button#post-comment-btn:active{
 
 .tools-bar{
 	width:150px;
+    width:100px;
 	height:auto;
 	position:absolute;
 	z-index:5;
@@ -1029,19 +1122,6 @@ a.view-logo{
 	width:150px;
 	height:100px;
 	background: url('../imgs/view-logo.png');
-	border-bottom:0px #00b3f5 solid;
-}
-a.view-mypage{
-	display:block;
-	width:150px;
-	height:70px;
-	background: url('../imgs/mypage.png') no-repeat center center;
-}
-a.view-recommend{
-	display:block;
-	width:150px;
-	height:70px;
-	background: url('../imgs/recommend.png') no-repeat center center;
 	border-bottom:0px #00b3f5 solid;
 }
 
@@ -1079,26 +1159,17 @@ a.view-recommend{
 	padding-left:10px;
 	color:white;
 }
-div.view-nice{
-	background:#34ABD7;
-}
-div.view-nice:hover{
-	background:#229fcd;
-}
-div.view-nice:active{
-	background:#118dbb;
-}
 
 div.view-fav{
 	margin-top:20px;
 	margin-bottom:20px;
-	background:#158A53;
+	background:#34ABD7;
 }
 div.view-fav:hover{
-	background:#0d7b48;
+	background:#229fcd;
 }
 div.view-fav:active{
-	background:#06683b;
+	background:#118dbb;
 }
 
 div.view-comment{
@@ -1111,16 +1182,10 @@ div.view-comment:active{
 	background:#b93316
 }
 
-div.view-nice span.ico-icon{
-	background:url('../imgs/heart_24.png') no-repeat center center;
-	background:url('../imgs/thumbs_up.png') no-repeat center center;
-}
 div.view-fav span.ico-icon{
-	background:url('../imgs/wallet_24.png') no-repeat center center;
 	background:url('../imgs/star.png') no-repeat center center;
 }
 div.view-comment span.ico-icon{
-	background:url('../imgs/comment_24.png') no-repeat center center;
 	background:url('../imgs/speech_bubble.png') no-repeat center center;
 }
 /* end photo view */
@@ -1313,7 +1378,7 @@ div.view-comment span.ico-icon{
 	padding-bottom:10px;
 }
 p.album-info-tit{
-	font-size:1.4em;
+	font-size:1.8em;
 }
 p.album-info-datas{
 	font-size:1.0em;

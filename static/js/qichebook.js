@@ -70,7 +70,7 @@
 			});
 		}
 	}
-	
+
 	//hover index img
 	$('.album-cover-img').hover(
 		function(){
@@ -105,4 +105,15 @@
 			}
 		}
 	})
+
+
+    //hover auth-menu-box
+    $('a.a-go-me, .auth-menu-box').hover(
+        function(){
+            $('.auth-menu-box').show()
+        },
+        function(){
+            $('.auth-menu-box').hide()
+        }
+    )
 });

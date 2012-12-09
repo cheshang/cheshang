@@ -17,6 +17,8 @@
 	var photo_list_mod_open	= $('.open-photo-list-mod');
 	var photo_list_mod_close= $('.close-photo-list-mod');
 	
+	var album_datas = DATAS;
+	
 	//保存当前专辑的信息
 	window.album_info = {
 		id				:	null,	//id
@@ -25,25 +27,20 @@
 		dec				:	null,	//描述
 		fav_nums		:	null,	//被收藏数
 		comment_nums	:	null,	//评论数
-		status			:	null,	//专辑状态
 		uid				:	null,	//发布者uid
 	}
 	
 	//保存当前加载图片的信息
+    var default_pid = window.location.hash ? parseInt(window.location.hash.split('+')[1]) : album_datas.photo[0].id;
 	window.photo_info = {
 		width			:	null,	//width
 		height			:	null,	//height
 		url				:	null,	//url
-		id				:	null,	//id
+		id				:	default_pid,	//id
 		dec				:	null,	//descraption
 		fav_nums		:	null,	//被收藏数
 		comment_nums	:	null,	//评论数
-		status 			:	null,	//status: loading & loaded
-		floor			:	window.location.hash ? parseInt(window.location.hash.split('+')[1]) : 0	//该图片是所在专辑的第几张(通过location.href传递) [0,n]
 	}
-	
-	var album_datas = datas;
-	
 	
 	var view_document_resize = function(){
 		var document_w = $(window).width();
@@ -103,6 +100,50 @@
 		view_document_resize();
 	});
 	
+
+    //根据图片的ID获取图片的信息 return object
+    window.getPhotoById = function(id){
+        _photo = album_datas.photo
+        _p_length = _photo.length
+        for(i=0;i<_p_length;i++){
+            img = _photo[i]
+            if(_photo[i].id == id){
+                return _photo[i]
+            }
+        }
+    }
+
+    //根据当前Pid获取下一张图片的信息
+    window.getNextPhotoByCurrentId = function(id){
+        _photo = album_datas.photo
+        _p_length = _photo.length
+        for(i=0;i<_p_length;i++){
+            if(_photo[i].id == id){
+                if(i==_p_length-1){
+                    return _photo[0]
+                }else{
+                    return _photo[i+1]
+                }
+            }
+        }
+    }
+
+    //根据当前Pid获取上一张图片的信息
+    window.getPrevPhotoByCurrentId = function(id){
+        _photo = album_datas.photo
+        _p_length = _photo.length
+        for(i=0;i<_p_length;i++){
+            if(_photo[i].id == id){
+                if(i==0){
+                    return _photo[_p_length-1]
+                }else{
+                    return _photo[i-1]
+                }
+            }
+        }
+    }
+
+
 	//load remote image
 	var imgLoad = function (url, callback) {
 	    var img = new Image();
@@ -152,65 +193,88 @@
 			}
 		);
 	}//( url[0].url )
-	getImage( album_datas.photo[photo_info.floor].url );
+    getImage( getPhotoById(photo_info.id).url );
 	
 	//把该专辑的所有图片的缩略图装入phto list
-	$.each(album_datas.photo,function(i,n){
-		$('.photo-list-loader').remove();
-		var curr;
-		i==0 ? curr = ' current-view' : ''
-		console.log(n.id)
-		$('.photo-list-container').append('<div class="photo-list-item '+curr+'"><img src="'+n.s_url+'" pid="'+n.id+'" /></div>')
-	})
-	$('.photo-list-item').click(function(){
-		var pid = parseInt( $(this).find('img').attr('pid') );
+    window.loadPhotosToListBox = function(){
+        _length = $('.photo-list-container').find('.photo-list-item').length
+        if(_length > 0){
+            //如果缩略图已经加载过则不重复加载，只刷新缩略图当前标示
+            _plist = $('.photo-list-container .photo-list-item')
+            _plist.removeClass('current-view')
+            _plist.each(function(){
+                _pid = $(this).attr('pid')
+                if(_pid == photo_info.id){
+                    $(this).addClass('current-view')
+                }
+
+            })
+            return
+        }
+        //装载缩略图
+        $.each(album_datas.photo, function(i,n){
+            var curr = (n.id == photo_info.id) ? ' current-view' : ''
+            $('.photo-list-loader').remove();
+            $('.photo-list-container').append('<div class="photo-list-item '+curr+'" pid="'+n.id+'"><img src="'+n.url1+'" /></div>');
+        })
+    }
+
+	$('.photo-list-item').live('click',function(){
+		var pid = parseInt( $(this).attr('pid') );
 		
 		$(this).prevAll().removeClass('current-view');
 		$(this).nextAll().removeClass('current-view');
 		$(this).addClass('current-view');
 		
 		//load this photo
-		getImage( album_datas.photo[pid].url );
+        img = getPhotoById(pid)
+		getImage( img.url );
+        resetPhotoInfoData(img)
 	})
 	
 	
 	var reGetCurrentPhoto = function(){
-		getImage( album_datas.photo[photo_info.floor].url );
+        getImage( getPhotoById(photo_info.id).url )
 	}
 	
-	//点击上一个或下一个中某个缩略图后，
-	
+    //重置当前图片的数据
+    resetPhotoInfoData = function(o){
+        photo_info.id           = o.id;
+        photo_info.width        = o.width;
+        photo_info.height       = o.height;
+        photo_info.url          = o.url;
+        photo_info.dec          = o.dec;
+        photo_info.comment_nums = o.comment_nums;
+        photo_info.fav_nums     = o.fav_nums;
+        window.location.href = window.location.pathname+'#p+'+o.id;
+        
+        //刷新缩略图列表
+        loadPhotosToListBox()
+    }
 	
 	var toNextPhoto = function(){
-		if(photo_info.floor < (album_datas.photo.length-1)){
-			var next_floor = photo_info.floor + 1;
-			getImage( album_datas.photo[next_floor].url );
-			window.location.href = window.location.pathname+'#p+'+next_floor;
-			photo_info.floor++;
-		}else{
-			getImage( album_datas.photo[0].url);
-			window.location.href = window.location.pathname+'#p+0';
-			photo_info.floor = 0;
-		}
+        var img = getNextPhotoByCurrentId( photo_info.id )
+        getImage( img.url);
+        resetPhotoInfoData(img)
 	}
 	
 	var toPrevPhoto = function(){
-		photo_info.floor--;
-		if(photo_info.floor < 0){
-			photo_info.floor = album_datas.photo.length-1;
-		}
-		getImage( album_datas.photo[photo_info.floor].url );
-		window.location.href = window.location.pathname+'#p+'+photo_info.floor;
+        var img = getPrevPhotoByCurrentId( photo_info.id )
+        getImage( img.url);
+        resetPhotoInfoData(img)
 	}
 	
 	//展开photo list
 	var showPhotoList = function(){
 		photo_list.animate({bottom:'0px'},500,'easeInOutQuart',function(){})
+        loadPhotosToListBox()
 	}
+
 	//隐藏photo list
 	var hidePhotoList = function(){
 		photo_list.animate({bottom:'-300px'},500,'easeInOutQuart',function(){})
 	}
+
 	//点击图片后显示photo list
 	photo_content.click(function(event){
 		var event = event || window.event;
@@ -230,15 +294,43 @@
 		hidePhotoList()
 	})
 	
-	
 	//打开photo-list-mod
 	var showPhotoListMod = function(){
+        _content = $('.photo-list-mod-content')
+        _plist_box = _content.find('.p-l-m-item')
+        if($(_plist_box[0]).find('img').length == 0){
+            _plist_box.each(function(i){
+                if(i+1 > 3) return false
+                self = $(this)
+                src = self.attr('src')
+                self.html('<img src="'+src+'" />')
+            })
+        }
 		photo_list_mod_wp.show();
 	}
 	//隐藏 photo-list-mod
 	var hidePhotoListMod = function(){
 		photo_list_mod_wp.fadeOut();
 	}
+
+    //list模式下滚动鼠标滚轮时动态加载列表图片
+    $('.photo-list-mod-content').scroll(function(){
+        o = $('.photo-list-mod-content').find('.p-l-m-item')
+        t = $(this).scrollTop()
+        if(t > ( $('.photo-list-mod-for-getheight').height()-900 )){
+            var k = 1
+            o.each(function(i){
+                if(k > 3) return false
+                self = $(this)
+                if(self.find('img').length == 0){
+                    src = self.attr('src')
+                    self.html('<img src="'+src+'" />')
+                    k++
+                }
+            })
+        }
+        console.log(t)
+    })
 	
 	
 	//打开评论
