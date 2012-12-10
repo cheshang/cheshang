@@ -16,6 +16,7 @@
 	var photo_list_mod_box	= $('.photo-list-mod-box');
 	var photo_list_mod_open	= $('.open-photo-list-mod');
 	var photo_list_mod_close= $('.close-photo-list-mod');
+    var photo_list_mod_top  = $('.photo-list-mod-backtop');
 	
 	var album_datas = DATAS;
 	
@@ -329,7 +330,7 @@
                 }
             })
         }
-        console.log(t)
+       //console.log(t)
     })
 	
 	
@@ -444,6 +445,9 @@
 	photo_list_mod_close.live('click',function(){
 		hidePhotoListMod()
 	});
+    photo_list_mod_top.live('click',function(){
+        $('.photo-list-mod-content').animate({scrollTop:0},300,"easeInOutQuart")
+    })
 	
 	$('.p-l-m-item').hover(
 		function(){

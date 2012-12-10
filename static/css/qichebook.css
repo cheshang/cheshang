@@ -697,6 +697,24 @@ a.logo{
 	opacity: 0.8;
 }
 
+.photo-list-mod-backtop{
+	position:absolute;
+	width:41px;
+	height:41px;
+	margin:70px 0 0 1000px;
+	background:url('../imgs/btn_up.gif') no-repeat right center;
+	text-indent:-99999px;
+	cursor: pointer;
+}
+.photo-list-mod-backtop:hover{
+	background:url('../imgs/btn_up.gif') no-repeat left center;
+}
+.photo-list-mod-backtop:active{
+	background:url('../imgs/btn_up.gif') no-repeat left center;
+	opacity: 0.8;
+}
+
+
 .photo-list-mod-content{
 	width:1000px;
 	height:100%;
