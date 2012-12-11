@@ -183,13 +183,14 @@ var DATAS = {
 				</div>
 			</div>
 
-            <div class="view-share-box">
-                <a href="" class="share-sina tips-left" target="_blank" title="分享到新浪微博"></a>
-                <a href="" class="share-qq tips-left" target="_blank" title="分享到QQ空间"></a>
-                <a href="" class="share-douban tips-left" target="_blank" title="分享到豆瓣"></a>
+            <div class="view-share-box share-list" data-img="" data-title="">
+                <a href="" class="share-sina tips-left" data-site="weibo" target="_blank" title="分享到新浪微博" onclick="return SocialShareButton.share(this)"></a>
+                <a href="" class="share-qq tips-left" data-site="qq" target="_blank" title="分享到QQ空间" onclick="return SocialShareButton.share(this)"></a>
+                <a href="" class="share-douban tips-left" data-site="douban" target="_blank" title="分享到豆瓣" onclick="return SocialShareButton.share(this)"></a>
             </div>
 			
 		</div>
 	</div><!--end page-wrapper-->
+<script type="text/javascript" src="/static/js/lib/share.js"></script>
 </body>
 </html>

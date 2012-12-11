@@ -103,6 +103,7 @@
 	
 
     //根据图片的ID获取图片的信息 return object
+    //如果图片不在专辑中，则返回false
     window.getPhotoById = function(id){
         _photo = album_datas.photo
         _p_length = _photo.length
@@ -110,6 +111,11 @@
             img = _photo[i]
             if(_photo[i].id == id){
                 return _photo[i]
+            }else{
+                if(i==_p_length-1){
+                    //return 'not in album'
+                    return false
+                }
             }
         }
     }
@@ -144,6 +150,56 @@
         }
     }
 
+	//把该专辑的所有图片的缩略图装入phto list
+    window.loadPhotosToListBox = function(){
+        _length = $('.photo-list-container').find('.photo-list-item').length
+        if(_length > 0){
+            //如果缩略图已经加载过则不重复加载，只刷新缩略图当前标示
+            _plist = $('.photo-list-container .photo-list-item')
+            _plist.removeClass('current-view')
+            _plist.each(function(){
+                _pid = $(this).attr('pid')
+                if(_pid == photo_info.id){
+                    $(this).addClass('current-view')
+                }
+            })
+            return
+        }
+        //装载缩略图
+        $.each(album_datas.photo, function(i,n){
+            var curr = (n.id == photo_info.id) ? ' current-view' : ''
+            $('.photo-list-loader').remove();
+            $('.photo-list-container').append('<div class="photo-list-item '+curr+'" pid="'+n.id+'"><img src="'+n.url1+'" /></div>');
+        })
+    }
+
+    //重置当前图片的数据
+    resetPhotoInfoData = function(o){
+        photo_info.id           = o.id;
+        photo_info.width        = o.width;
+        photo_info.height       = o.height;
+        photo_info.url          = o.url;
+        photo_info.dec          = o.dec || '';
+        photo_info.comment_nums = o.comment_nums;
+        photo_info.fav_nums     = o.fav_nums;
+        window.location.href = window.location.pathname+'#p+'+o.id;
+        
+        //刷新缩略图列表
+        loadPhotosToListBox()
+        
+        //刷新分享按钮数据
+        //refreshShareData()
+        var _title,_img;
+        if(photo_info.dec==''){
+            _title = album_datas.title
+        }else{
+            _title = photo_info.dec
+        }
+        _img = photo_info.url
+        $('.share-list').attr('data-img',_img)
+        $('.share-list').attr('data-title',_title)
+    }
+	
 
 	//load remote image
 	var imgLoad = function (url, callback) {
@@ -194,32 +250,15 @@
 			}
 		);
 	}//( url[0].url )
-    getImage( getPhotoById(photo_info.id).url );
-	
-	//把该专辑的所有图片的缩略图装入phto list
-    window.loadPhotosToListBox = function(){
-        _length = $('.photo-list-container').find('.photo-list-item').length
-        if(_length > 0){
-            //如果缩略图已经加载过则不重复加载，只刷新缩略图当前标示
-            _plist = $('.photo-list-container .photo-list-item')
-            _plist.removeClass('current-view')
-            _plist.each(function(){
-                _pid = $(this).attr('pid')
-                if(_pid == photo_info.id){
-                    $(this).addClass('current-view')
-                }
 
-            })
-            return
-        }
-        //装载缩略图
-        $.each(album_datas.photo, function(i,n){
-            var curr = (n.id == photo_info.id) ? ' current-view' : ''
-            $('.photo-list-loader').remove();
-            $('.photo-list-container').append('<div class="photo-list-item '+curr+'" pid="'+n.id+'"><img src="'+n.url1+'" /></div>');
-        })
+    curr_img = getPhotoById(photo_info.id)
+    if(!curr_img){
+        //如果当前图片不存在，则读取专辑第一张图片
+        curr_img = album_datas.photo[0]
     }
-
+    getImage( curr_img.url );
+    resetPhotoInfoData(curr_img)
+	
 	$('.photo-list-item').live('click',function(){
 		var pid = parseInt( $(this).attr('pid') );
 		
@@ -237,21 +276,6 @@
 	var reGetCurrentPhoto = function(){
         getImage( getPhotoById(photo_info.id).url )
 	}
-	
-    //重置当前图片的数据
-    resetPhotoInfoData = function(o){
-        photo_info.id           = o.id;
-        photo_info.width        = o.width;
-        photo_info.height       = o.height;
-        photo_info.url          = o.url;
-        photo_info.dec          = o.dec;
-        photo_info.comment_nums = o.comment_nums;
-        photo_info.fav_nums     = o.fav_nums;
-        window.location.href = window.location.pathname+'#p+'+o.id;
-        
-        //刷新缩略图列表
-        loadPhotosToListBox()
-    }
 	
 	var toNextPhoto = function(){
         var img = getNextPhotoByCurrentId( photo_info.id )
