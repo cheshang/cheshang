@@ -20,7 +20,8 @@ def id_by_session(s):
     if s:
         return Session.id_by_value(a2b_hex(s))
 
-def session_rm(uid):
+def session_rm(s):
+    uid = id_by_session(s)
     Session.delete(uid)
         
 if __name__ == '__main__':

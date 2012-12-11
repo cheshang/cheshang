@@ -41,6 +41,12 @@ class Signin(NoLoginView):
             self.login(uid)
         return self.redirect('/me')
 
+@route('/signout')
+class Signout(LoginView):
+    def GET(self):
+        self.logout()
+        return self.redirect('/')
+
 @route('/callback/(\w+)')
 class Callback(View):
     def GET(self, oauth_type):

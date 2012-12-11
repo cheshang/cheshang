@@ -46,10 +46,10 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
                         <div class="auth-me">
                             <div class="auth-menu-box">
                                 <a href="/me/setting" class="auth-menu-setting"></a>
-                                <a href="/me/signout" class="auth-menu-logout"></a>
+                                <a href="/signout" class="auth-menu-logout"></a>
                             </div>
                             <a href="/me" class="a-go-me">
-                                <img src="http://113.11.199.27:8080/static/photo/8.jpg" />
+                                <img src="{{ current_user.avatar }}" />
                             </a>
                         </div>
 						<a href="/signup" class="a-go-reg" style="padding:8px 30px">上传车图</a>

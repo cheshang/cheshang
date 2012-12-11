@@ -11,10 +11,10 @@ from model.template_extend import FUNCTIONS
 
 route = Route()
 
-def logout(self, uid):
+def logout(self):
     s = web.cookies().get('S')
     session_rm(s)
-    web.setcookie('S', '')
+    web.setcookie('S', '', expires=-1)
 
 def login(self, uid):
     web.setcookie('S', session_new(uid))
@@ -61,6 +61,7 @@ class View(object):
         return result
 
     login = login
+    logout = logout
 
 class LoginView(View):
     def __init__(self):
