@@ -1,9 +1,14 @@
-﻿/**
- * 
- * 图片view
- *
- * */
-$(document).ready(function(){
+﻿/*
+ * base.class
+ */
+
+var ICHESHANG = function(){}
+
+//图片查看
+ICHESHANG.prototype.photoView = function(DATAS){
+
+    DATAS = DATAS || window.DATAS
+
 	var content_wrapper 	= $('.photo-content-wrapper');
 	var tools_bar 			= $('.tools-bar');
 	var photo_content		= $('.photo-content');
@@ -540,36 +545,4 @@ $(document).ready(function(){
 	$('.tips-bottom').tipTip({
 		defaultPosition:'bottom',fadeIn: 600
 	});
-});
-
-
-//cheshang.class
-var TEST = {
-    
-    //config
-	content_wrapper 	: $('.photo-content-wrapper'),
-	tools_bar 			: $('.tools-bar'),
-	photo_content		: $('.photo-content'),
-	photo				: $('.photo-content img.photo'),
-	photo_arrow			: $('.photo-previous, .photo-next'),
-	photo_prev			: $('.photo-previous'),
-	photo_next			: $('.photo-next'),
-	photo_list 			: $('.photo-list'),
-	photo_msg_box		: $('.photo-view-msg-box'),
-	photo_comment_box	: $('.photo-view-comment-box'),
-	photo_comment 		: $('.view-comment'),
-	photo_loading 		: $('.photo-loading'),
-	
-	photo_list_mod_wp	: $('.photo-list-mod-wrapper'),
-	photo_list_mod_box	: $('.photo-list-mod-box'),
-	photo_list_mod_open	: $('.open-photo-list-mod'),
-	photo_list_mod_close: $('.close-photo-list-mod'),
-    photo_list_mod_top  : $('.photo-list-mod-backtop'),
-	
-    init : function(){
-        console.log('init...')
-    }
-
-
 }
-
