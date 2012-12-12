@@ -58,17 +58,18 @@ In.add('share',{ path:'/static/js/lib/share.js',type:'js',charset:'utf-8' });
 In.add('tips',{ path:'/static/js/tips/jquery.tiptip.js',type:'js',charset:'utf-8' });
 In.add('easing',{ path:'/static/js/jquery.easing.1.3.js',type:'js',charset:'utf-8' });
 
-In.later(300,'view','share','easing','tips',function(){
+In.later(100,'view','share','easing','tips',function(){
 	$('html').css('background-image','none')
 	$('.page-wrapper').fadeIn()
-    //console.log($('body').height())
-    //CHESHANG.init()
+
+    var ALBUM = new ICHESHANG
+    ALBUM.photoView()
 });
 </script>
 
 <style>html{overflow:hidden;}</style>
 <style>
-html{height:100%;width:100%;background:url('/static/imgs/loader.gif') no-repeat center 40%}
+html{height:100%;width:100%;background:#ddd url('/static/imgs/loader.gif') no-repeat center 40%}
 </style>
 </head>
 <body>
