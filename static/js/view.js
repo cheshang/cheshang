@@ -1,4 +1,9 @@
-﻿$(document).ready(function(){
+﻿/**
+ * 
+ * 图片view
+ *
+ * */
+$(document).ready(function(){
 	var content_wrapper 	= $('.photo-content-wrapper');
 	var tools_bar 			= $('.tools-bar');
 	var photo_content		= $('.photo-content');
@@ -196,8 +201,9 @@
             _title = photo_info.dec
         }
         _img = photo_info.url
+        _suffix = " - 车尚-高品质汽车图片社区"
         $('.share-list').attr('data-img',_img)
-        $('.share-list').attr('data-title',_title)
+        $('.share-list').attr('data-title',_title+_suffix)
     }
 	
 
@@ -319,7 +325,7 @@
 		hidePhotoList()
 	})
 	
-	//打开photo-list-mod
+	//打开photo-list-mod [列表模式]
 	var showPhotoListMod = function(){
         _content = $('.photo-list-mod-content')
         _plist_box = _content.find('.p-l-m-item')
@@ -327,9 +333,15 @@
             _plist_box.each(function(i){
                 if(i+1 > 3) return false
                 self = $(this)
+                self.hide()
                 src = self.attr('src')
-                self.html('<img src="'+src+'" />')
+                self.prepend('<img src="'+src+'" />')
+                self.find('.photo-list-comment-box').show()
             })
+            setTimeout(function(){
+                _plist_box.show()
+                _content.css('background','none')
+            },1400)
         }
 		photo_list_mod_wp.show();
 	}
@@ -349,17 +361,41 @@
                 self = $(this)
                 if(self.find('img').length == 0){
                     src = self.attr('src')
-                    self.html('<img src="'+src+'" />')
+                    self.prepend('<img src="'+src+'" />')
+                    self.find('.photo-list-comment-box').show()
                     k++
                 }
             })
         }
        //console.log(t)
     })
+
+    //列表模式下收藏某图片
+    $('.p-l-count-fav').live('click',function(){
+        var self = $(this)
+        var pid = self.attr('pid')
+        self.find('span').addClass('faved')
+    })
+	
+    //列表模式下打开某图片的评论
+    $('.p-l-count-comment').live('click',function(){
+        var self = $(this)
+        var pid = self.attr('pid')
+        //alert(self.attr('pid'))
+        var comment_box = $('#p-l-c-box-'+pid)
+        if(comment_box.css('display')=='none'){
+            //展开
+            comment_box.slideDown()
+        }else{
+            //关闭
+            comment_box.slideUp()
+        }
+    })
 	
 	
 	//打开评论
 	var showComment = function(){
+        photo_comment_box.show()
 		photo_comment_box.animate({
 			'right' : '0'
 		},400,"easeInOutExpo",function(){
@@ -507,8 +543,33 @@
 });
 
 
-//依赖jquery
-var missilePhoto = function(){
-	//alert('1');
-}()
+//cheshang.class
+var TEST = {
+    
+    //config
+	content_wrapper 	: $('.photo-content-wrapper'),
+	tools_bar 			: $('.tools-bar'),
+	photo_content		: $('.photo-content'),
+	photo				: $('.photo-content img.photo'),
+	photo_arrow			: $('.photo-previous, .photo-next'),
+	photo_prev			: $('.photo-previous'),
+	photo_next			: $('.photo-next'),
+	photo_list 			: $('.photo-list'),
+	photo_msg_box		: $('.photo-view-msg-box'),
+	photo_comment_box	: $('.photo-view-comment-box'),
+	photo_comment 		: $('.view-comment'),
+	photo_loading 		: $('.photo-loading'),
+	
+	photo_list_mod_wp	: $('.photo-list-mod-wrapper'),
+	photo_list_mod_box	: $('.photo-list-mod-box'),
+	photo_list_mod_open	: $('.open-photo-list-mod'),
+	photo_list_mod_close: $('.close-photo-list-mod'),
+    photo_list_mod_top  : $('.photo-list-mod-backtop'),
+	
+    init : function(){
+        console.log('init...')
+    }
+
+
+}
 
