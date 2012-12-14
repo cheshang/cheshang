@@ -1370,6 +1370,7 @@ div.view-fav span.faved{
     background-position:right -60px;
 }
 
+/*
 .view-share-box{
     width:90px;
     height:34px;
@@ -1406,6 +1407,35 @@ div.view-fav span.faved{
 }
 .view-share-box a.share-douban:hover{
     background-position:-68px -83px;
+}
+*/
+
+.view-share-box{
+    width:84px;
+    height:84px;
+    clear:both;
+    margin-left:8px;
+    margin-top:60px;
+}
+.view-share-box a{
+    display:inline-block;
+    width:40px;
+    height:40px;
+    background-image: url('../imgs/sns-ico.png');
+    background-color:translate;
+    background-repeat:no-repeat;
+}
+.view-share-box a.share-sina{
+    background-position:0 0;
+}
+.view-share-box a.share-qq{
+    background-position:-40px -40px;
+}
+.view-share-box a.share-douban{
+    background-position:0 -40px;
+}
+.view-share-box a.share-renren{
+    background-position:-40px 0;
 }
 /* end photo view */
 
