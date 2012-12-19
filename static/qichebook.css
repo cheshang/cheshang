@@ -811,6 +811,16 @@ button#post-comment-btn:active{
 .photo-loading span{
 	color:white;
 }
+
+.photo-end-recommend{
+    position:absolute;
+    z-index:20;
+    width:400px;
+    height:300px;
+    background: rgba(1,1,1,0.6);
+    border-radius: 3px;
+}
+
 .photo-previous{
 	width:62px;
 	height:62px;
