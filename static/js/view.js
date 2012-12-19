@@ -21,6 +21,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
 	var photo_comment_box	= $('.photo-view-comment-box');
 	var photo_comment 		= $('.view-comment');
 	var photo_loading 		= $('.photo-loading');
+    var photo_end_box       = $('.photo-end-recommend');
 	
 	var photo_list_mod_wp	= $('.photo-list-mod-wrapper');
 	var photo_list_mod_box	= $('.photo-list-mod-box');
@@ -68,7 +69,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
 		if(photo_info.width >= photo_info.height){
 			if(photo_info.width > content_wrapper.width()){
 				photo.css( {width: content_wrapper.width()} );
-				//alert(111)
 			}
 			photo.css( 'margin-top',(content_wrapper.height()-photo.height())/2 );
 		}else{
@@ -87,6 +87,12 @@ ICHESHANG.prototype.photoView = function(DATAS){
 			left	:	(content_wrapper.width()-photo_loading.width())/2,
 			top		:	(content_wrapper.height()-photo_loading.height())/2
 		});
+
+        //set photo_end_box
+        photo_end_box.css({
+			left	:	(content_wrapper.width()-photo_end_box.width())/2,
+			top		:	(content_wrapper.height()-photo_end_box.height())/2
+        })
 		
 		//set .photo-previous & .photo-next btn
 		photo_arrow.css({top: (content_wrapper.height()-photo_arrow.height())/2});
@@ -160,6 +166,29 @@ ICHESHANG.prototype.photoView = function(DATAS){
         }
     }
 
+    //判断当前图片是否是专辑里最后一张
+    window.isLastPhoto = function(id){
+        _photo = album_datas.photo
+        _total = _photo.length
+        //_photo.reverse()
+        _last_id = _photo[_total-1].id
+        if( parseInt(_last_id) == parseInt(id) ){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    //判断当前图片是否是专辑第一张图片
+    window.isFirstPhoto = function(id){
+        _photo = album_datas.photo
+        if( parseInt(_photo[0].id) == parseInt(id) ){
+            return true
+        }else{
+            return false
+        }
+    }
+
 	//把该专辑的所有图片的缩略图装入phto list
     window.loadPhotosToListBox = function(){
         _length = $('.photo-list-container').find('.photo-list-item').length
@@ -186,8 +215,8 @@ ICHESHANG.prototype.photoView = function(DATAS){
     //重置当前图片的数据
     resetPhotoInfoData = function(o){
         photo_info.id           = o.id;
-        photo_info.width        = o.width;
-        photo_info.height       = o.height;
+        //photo_info.width        = o.width;
+        //photo_info.height       = o.height;
         photo_info.url          = o.url;
         photo_info.dec          = o.dec || '';
         photo_info.comment_nums = o.comment_nums;
@@ -289,16 +318,37 @@ ICHESHANG.prototype.photoView = function(DATAS){
 	}
 	
 	var toNextPhoto = function(){
+        //如果是最后一张图片则弹出提示框(也就是说，下一张是专辑第一张图片)
         var img = getNextPhotoByCurrentId( photo_info.id )
+        isFirst = isFirstPhoto(img.id)
+        if( isFirst ){
+            photo_end_box.show()
+            return
+        }else{
+            photo_end_box.hide()
+        }
+
         getImage( img.url);
         resetPhotoInfoData(img)
 	}
 	
 	var toPrevPhoto = function(){
+        photo_end_box.hide()//如果专辑末尾的弹出提示框可见则隐藏掉
         var img = getPrevPhotoByCurrentId( photo_info.id )
         getImage( img.url);
         resetPhotoInfoData(img)
 	}
+    
+    //再看一遍专辑
+    $('.photo-end-restart').click(function(){
+        var img = getNextPhotoByCurrentId( photo_info.id )
+        getImage( img.url);
+        resetPhotoInfoData(img)
+        photo_end_box.hide()
+    })
+    $('.photo-end-close').click(function(){
+        photo_end_box.hide()
+    })
 	
 	//展开photo list
 	var showPhotoList = function(){
@@ -312,7 +362,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
 	}
 
 	//点击图片后显示photo list
-	photo_content.click(function(event){
+	photo_content.find('img.photo').click(function(event){
 		var event = event || window.event;
 		var e = event.srcElement || event.target;
 		var current_click = $(e).attr('class');
@@ -372,7 +422,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
                 }
             })
         }
-       //console.log(t)
     })
 
     //列表模式下收藏某图片
@@ -459,7 +508,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
 				hideComment()
 			}
 			else if(e.keyCode==27){
-				alert('close')
+                photo_end_box.hide()
 			}
 		}
 	});

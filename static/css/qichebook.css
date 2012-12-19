@@ -1147,6 +1147,76 @@ button#post-comment-btn:active{
 .photo-loading span{
 	color:white;
 }
+
+.photo-end-recommend{
+    position:absolute;
+    z-index:20;
+    width:280px;
+    height:250px;
+    background:rgba(1,1,1,0.7);
+    border-radius:2px;
+    border:1px #222 solid;
+    display:none;
+}
+.photo-end-tit{
+    padding:10px 0;
+    background:rgba(1,1,1,0.85);
+    border-radius:2px 2px 0 0;
+    color:#bbb;
+    text-align:center;
+}
+.photo-end-tit span{
+    padding-left:10px;
+}
+.photo-end-content{
+
+}
+.photo-end-fav-box{
+    width:161px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    background:#34ABD7;
+    margin:20px auto;
+    cursor:pointer;
+    color:white;
+    font-size:1.6em;
+}
+.photo-end-fav-box:hover{
+    background:#229FCD;
+}
+.photo-end-fav-box:active{
+    background:#118dbb;
+}
+.photo-end-bottom{
+    width:161px;
+    height:auto;
+    clear:both;
+    margin:0 auto;
+}
+.photo-end-btn{
+    width:80px;
+    height:80px;
+    float:left;
+    cursor:pointer;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-color:rgba(104, 104, 104, 0.63);
+    /*border:1px #686464 solid;
+    box-shadow:1px 1px 1px #747474;*/
+}
+.photo-end-restart{
+    background-image: url('../imgs/reload.png');
+    border-right:1px #686464 solid;
+}
+.photo-end-close{
+    background-image: url('../imgs/close.png');
+    border-left:none;
+}
+.photo-end-btn:hover{
+    background-color:rgba(1,1,1,0.5);
+}
+
 .photo-previous{
 	width:62px;
 	height:62px;
@@ -1906,11 +1976,15 @@ span.uploader-notice{
 }
 
 .total-uploader-progress-box{
+    position:absolute;
+    z-index:200;
 	width:700px;
 	height:120px;
 	float:left;
 	background:#ccc;
 	overflow: hidden;
+    border-radius:8px 0;
+    margin:0;
 	
 	display:none;
 }
@@ -1921,10 +1995,15 @@ span.total-progress-tit{
 	margin-left:10px;
 	font-size:1.4em;
 }
+.progress-wrapper{
+    width:100%;
+    height:60px;
+    margin-top:30px;
+    background:#bbb;
+}
 .total-progress{
 	width:0%;
 	height:60px;
-    margin-top:30px;
 	background:#5BB75B
 }
 
