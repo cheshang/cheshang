@@ -66,11 +66,11 @@ class Model(object):
         return cls._data_to_obj(data)
 
     @classmethod
-    def where(cls, limit=1, offset=0, **kwargs):
+    def where(cls, limit=1, offset=0, order_by='id', **kwargs):
         cur = connection.cursor()
         values = ['='.join((k, '"%s"' % v)) for k, v in kwargs.iteritems()]
-        sql = 'SELECT * FROM %s WHERE '+' and '.join(values)+' LIMIT %s OFFSET %s'
-        cur.execute(sql % (cls.__table__, limit, offset))
+        sql = 'SELECT * FROM %s WHERE '+' and '.join(values)+' LIMIT %s OFFSET %s ORDER BY'
+        cur.execute(sql % (cls.__table__, limit, offset, order_by))
         data = cur.fetchall()
         print cur._last_executed
         result = []
