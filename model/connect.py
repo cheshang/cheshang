@@ -1,5 +1,5 @@
 #coding:utf-8
-import _env
+import _envi
 import MySQLdb
 import DBUtils.PersistentDB
 import memcache

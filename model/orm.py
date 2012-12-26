@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 from msgpack import packb, unpackb
 from operator import itemgetter
 from model.connect import connection, mc
@@ -69,8 +69,9 @@ class Model(object):
     def where(cls, limit=1, offset=0, order_by='id', **kwargs):
         cur = connection.cursor()
         values = ['='.join((k, '"%s"' % v)) for k, v in kwargs.iteritems()]
-        sql = 'SELECT * FROM %s WHERE '+' and '.join(values)+' LIMIT %s OFFSET %s ORDER BY'
-        cur.execute(sql % (cls.__table__, limit, offset, order_by))
+        condition = 'WHERE '+' and '.join(values) if kwargs else ''
+        sql = 'SELECT * FROM %s '+ condition +'ORDER BY %s LIMIT %s OFFSET %s'
+        cur.execute(sql % (cls.__table__, order_by, limit, offset))
         data = cur.fetchall()
         print cur._last_executed
         result = []

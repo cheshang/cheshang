@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 import web
 from view._site import *
 from view._base import route

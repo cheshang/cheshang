@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 from time import time
 from model.db import Model
 from model.photo import album_photo_list, Photo
@@ -42,9 +42,15 @@ def album_new(name, txt, uid):
     )
     album.save()
     return album
-        
 
+def album_latest(limit, offset, order_by='id DESC'):
+    return Album.where(limit=limit, offset=offset, order_by=order_by)
+
+def user_album_latest(limit, offset, uid, order_by='id DESC'):
+    return Album.where(limit=limit, offset=offset, order_by=order_by, uid=uid)
+        
         
 if __name__ == '__main__':
     pass
-    print album_new('鲜花', 1)
+    print album_latest(10, 0)
+    print user_album_latest(10, 0, 4)

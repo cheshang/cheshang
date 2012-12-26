@@ -1,0 +1,379 @@
+diff --git a/app.py b/app.py
+index b906bae..d2b6707 100644
+--- a/app.py
++++ b/app.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envii
+ import web
+ from view._site import *
+ from view._base import route
+@@ -12,4 +12,4 @@ app = web.application(urls, globals())
+ 
+ 
+ if __name__ == '__main__':
+-    auto_reload(app.run)
+\ No newline at end of file
++    auto_reload(app.run)
+diff --git a/config/__init__.py b/config/__init__.py
+index 4d5eca8..6611adc 100644
+--- a/config/__init__.py
++++ b/config/__init__.py
+@@ -1,7 +1,7 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ import os
+-import _env
++import _envi
+ from default import *
+ if os.path.exists(os.path.join(os.path.dirname(__file__), '_private')):
+     from config._private import *
+diff --git a/config/default.py b/config/default.py
+index 4a35d85..d7d8d95 100644
+--- a/config/default.py
++++ b/config/default.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ import platform
+ from lib.render import render_jinja
+diff --git a/lib/cache.py b/lib/cache.py
+index 927a757..42ba4da 100644
+--- a/lib/cache.py
++++ b/lib/cache.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ CACHE_DICT = {}
+ 
+ class InterCache(object):
+diff --git a/lib/reload/reload_server.py b/lib/reload/reload_server.py
+index 0c4c5c7..b7c1979 100644
+--- a/lib/reload/reload_server.py
++++ b/lib/reload/reload_server.py
+@@ -36,13 +36,13 @@ def _turn_sigterm_into_systemexit():
+ def restart_with_monitor():
+     while 1:
+         args = [quote_first_command_arg(sys.executable)] + sys.argv
+-        new_environ = os.environ.copy()
+-        new_environ['_run'] = '1'
++        new_enviiron = os.environ.copy()
++        new_enviiron['_run'] = '1'
+         proc = None
+         try:
+             try:
+                 _turn_sigterm_into_systemexit()
+-                proc = subprocess.Popen(args, env=new_environ)
++                proc = subprocess.Popen(args, env=new_enviiron)
+                 exit_code = proc.wait()
+                 proc = None
+             except KeyboardInterrupt:
+diff --git a/misc/connnect.py b/misc/connnect.py
+index 8928827..9389940 100644
+--- a/misc/connnect.py
++++ b/misc/connnect.py
+@@ -1,7 +1,7 @@
+ #coding:utf-8
+ 
+ # 初始化数据连接
+-import _env
++import _envi
+ import MySQLdb
+ from DBUtils.SteadyDB import connect
+ from MySQLdb.converters import FIELD_TYPE, conversions
+diff --git a/misc/misc.py b/misc/misc.py
+index 6103433..3807696 100644
+--- a/misc/misc.py
++++ b/misc/misc.py
+@@ -4,7 +4,7 @@
+ by Lerry  http://lerry.org
+ Start from 2012-08-05 15:19
+ '''
+-import _env
++import _envi
+ 
+ import os
+ import Image
+diff --git a/misc/nginx.py b/misc/nginx.py
+index 2c02dbb..5a3985d 100644
+--- a/misc/nginx.py
++++ b/misc/nginx.py
+@@ -4,7 +4,7 @@
+ Start from 2012-08-18 20:59
+ Last edit at 2012-08-18 20:59
+ '''
+-import _env
++import _envi
+ from os.path import join
+ from jinja2 import Template
+ from config import HOST, IMG_ROOT, PWD
+diff --git a/model/_example.py b/model/_example.py
+index a95bd04..d0416b8 100644
+--- a/model/_example.py
++++ b/model/_example.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from model.db import Model, Kv
+         
+ if __name__ == '__main__':
+diff --git a/model/account.py b/model/account.py
+index 679b14e..9ab82a9 100644
+--- a/model/account.py
++++ b/model/account.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import string
+ from time import time
+ from model.db import Kv
+diff --git a/model/album.py b/model/album.py
+index 5046a23..c99f05e 100644
+--- a/model/album.py
++++ b/model/album.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from time import time
+ from model.db import Model
+ from model.photo import album_photo_list, Photo
+diff --git a/model/connect.py b/model/connect.py
+index 890ee8f..e382f1b 100644
+--- a/model/connect.py
++++ b/model/connect.py
+@@ -1,5 +1,5 @@
+ #coding:utf-8
+-import _env
++import _envi
+ import MySQLdb
+ import DBUtils.PersistentDB
+ import memcache
+diff --git a/model/db.py b/model/db.py
+index fee4094..53c2b96 100644
+--- a/model/db.py
++++ b/model/db.py
+@@ -1,6 +1,6 @@
+ #coding:utf-8
+ 
+-import _env
++import _envi
+ from model.orm import Model
+ from model.kv import Kv
+ 
+diff --git a/model/email.py b/model/email.py
+index e62ee9d..0f07ed1 100644
+--- a/model/email.py
++++ b/model/email.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from model.db import Kv
+ 
+ Email = Kv('Email')
+diff --git a/model/kv.py b/model/kv.py
+index 2b54856..35a4240 100644
+--- a/model/kv.py
++++ b/model/kv.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import hashlib
+ from model.connect import connection, mc
+ 
+diff --git a/model/oauth2.py b/model/oauth2.py
+index 74b906f..fabffdf 100644
+--- a/model/oauth2.py
++++ b/model/oauth2.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from model.db import Model
+ from model.account import uid_new
+ 
+diff --git a/model/orm.py b/model/orm.py
+index 4b5f3c7..c5428ec 100644
+--- a/model/orm.py
++++ b/model/orm.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from msgpack import packb, unpackb
+ from operator import itemgetter
+ from model.connect import connection, mc
+diff --git a/model/passwd.py b/model/passwd.py
+index d16a844..d2aa131 100644
+--- a/model/passwd.py
++++ b/model/passwd.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import hashlib
+ from model.db import Kv
+ from binascii import a2b_hex
+diff --git a/model/photo.py b/model/photo.py
+index a3ced9f..5af5697 100644
+--- a/model/photo.py
++++ b/model/photo.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from time import time
+ from binascii import a2b_hex, b2a_hex
+ from model.db import Model
+diff --git a/model/profile.py b/model/profile.py
+index b24511d..ded06d9 100644
+--- a/model/profile.py
++++ b/model/profile.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from model.db import Model, Kv
+ 
+ GENDER_DICT = {
+diff --git a/model/session.py b/model/session.py
+index b8c96ef..51ef77f 100644
+--- a/model/session.py
++++ b/model/session.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import uuid
+ from binascii import a2b_hex, b2a_hex
+ from model.db import Model, Kv
+diff --git a/model/template_extend.py b/model/template_extend.py
+index b69a8cf..f05f3ed 100644
+--- a/model/template_extend.py
++++ b/model/template_extend.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import hashlib
+ from yajl import dumps
+ from time import time
+diff --git a/model/txt.py b/model/txt.py
+index 666e277..5808676 100644
+--- a/model/txt.py
++++ b/model/txt.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from config import redis, redis_key
+ from lib.kv import Kv
+ 
+diff --git a/model/user.py b/model/user.py
+index ebb91e0..2b1a32c 100644
+--- a/model/user.py
++++ b/model/user.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ from model.email import Email
+ from model.profile import profile_get
+ 
+diff --git a/view/_base.py b/view/_base.py
+index e3f35c0..db68f38 100644
+--- a/view/_base.py
++++ b/view/_base.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ import json
+ from config import render as _render
+diff --git a/view/album.py b/view/album.py
+index 1a1b964..48b40a0 100644
+--- a/view/album.py
++++ b/view/album.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ from view._base import route, View, LoginView
+ from model.album import album_new, album_get
+diff --git a/view/auth.py b/view/auth.py
+index 7a7f301..636bbfd 100644
+--- a/view/auth.py
++++ b/view/auth.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ from config import render, OAUTH2_CONFIG
+ from view._base import route, View, LoginView, NoLoginView
+diff --git a/view/index.py b/view/index.py
+index 8d5ac2a..f708562 100644
+--- a/view/index.py
++++ b/view/index.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ #from config import render
+ from view._base import route, LoginView, View, NoLoginView
+diff --git a/view/j.py b/view/j.py
+index fc1b9ad..4bc6627 100644
+--- a/view/j.py
++++ b/view/j.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ from config import render
+ from view._base import route, JsonView, JsonLoginView
+diff --git a/view/me.py b/view/me.py
+index e523ff7..8255ba9 100644
+--- a/view/me.py
++++ b/view/me.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+-import _env
++import _envi
+ import web
+ from config import render
+ from view._base import route, LoginView, NoLoginView, login

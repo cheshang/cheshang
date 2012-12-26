@@ -1,15 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 import web
-#from config import render
 from view._base import route, LoginView, View, NoLoginView
-#from lib.base import login as _login
+from model.album import album_latest
 
 @route('/')
 class Index(View):
     def GET(self):
-        return self.render()
+        album_li = album_latest(10, 0)
+        return self.render(album_li=album_li)
 
 @route('/album')
 class Album(View):

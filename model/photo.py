@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 from time import time
 from binascii import a2b_hex, b2a_hex
 from model.db import Model
 from config import UPYUN
 
-URL_BASE = UPYUN['cheshang'][1]
+URL_BASE = 'http://%s/' % UPYUN['cheshang'][1] + '%s'
 
 
 class PHOTO_STATUS:

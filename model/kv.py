@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 import hashlib
 from model.connect import connection, mc
 
