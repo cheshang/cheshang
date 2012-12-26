@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 import hashlib
 from model.db import Kv
 from binascii import a2b_hex

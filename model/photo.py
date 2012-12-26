@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 from time import time
 from binascii import a2b_hex, b2a_hex
 from model.db import Model

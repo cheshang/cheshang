@@ -4,7 +4,7 @@
 by Lerry  http://lerry.org
 Start from 2012-08-05 15:19
 '''
-import _env
+import _envi
 
 import os
 import Image

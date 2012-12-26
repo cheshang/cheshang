@@ -1,7 +1,7 @@
 #coding:utf-8
 
 # 初始化数据连接
-import _env
+import _envi
 import MySQLdb
 from DBUtils.SteadyDB import connect
 from MySQLdb.converters import FIELD_TYPE, conversions

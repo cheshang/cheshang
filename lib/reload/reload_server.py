@@ -36,13 +36,13 @@ def _turn_sigterm_into_systemexit():
 def restart_with_monitor():
     while 1:
         args = [quote_first_command_arg(sys.executable)] + sys.argv
-        new_environ = os.environ.copy()
-        new_environ['_run'] = '1'
+        new_enviiron = os.environ.copy()
+        new_enviiron['_run'] = '1'
         proc = None
         try:
             try:
                 _turn_sigterm_into_systemexit()
-                proc = subprocess.Popen(args, env=new_environ)
+                proc = subprocess.Popen(args, env=new_enviiron)
                 exit_code = proc.wait()
                 proc = None
             except KeyboardInterrupt:

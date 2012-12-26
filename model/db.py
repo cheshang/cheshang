@@ -1,6 +1,6 @@
 #coding:utf-8
 
-import _env
+import _envi
 from model.orm import Model
 from model.kv import Kv
 

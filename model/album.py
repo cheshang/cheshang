@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 from time import time
 from model.db import Model
 from model.photo import album_photo_list, Photo

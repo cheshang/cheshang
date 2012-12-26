@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 import web
 from config import render, OAUTH2_CONFIG
 from view._base import route, View, LoginView, NoLoginView

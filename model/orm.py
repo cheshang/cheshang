@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import _env
+import _envi
 from msgpack import packb, unpackb
 from operator import itemgetter
 from model.connect import connection, mc
