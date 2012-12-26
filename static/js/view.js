@@ -206,9 +206,11 @@ ICHESHANG.prototype.photoView = function(DATAS){
         }
         //装载缩略图
         $.each(album_datas.photo, function(i,n){
-            var curr = (n.id == photo_info.id) ? ' current-view' : ''
-            $('.photo-list-loader').remove();
-            $('.photo-list-container').append('<div class="photo-list-item '+curr+'" pid="'+n.id+'"><img src="'+n.url1+'" /></div>');
+            if(n){
+                var curr = (n.id == photo_info.id) ? ' current-view' : ''
+                $('.photo-list-loader').remove();
+                $('.photo-list-container').append('<div class="photo-list-item '+curr+'" pid="'+n.id+'"><img src="'+n.url1+'" /></div>');
+            }
         })
     }
 

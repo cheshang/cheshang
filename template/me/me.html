@@ -20,7 +20,6 @@ In.later(200,'qichebook','tmpl','easing','scroll',function(){
 {{ dumps(upyun('avatar')) }}
 </script>
 <style>
-html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat center 40%}
 </style>
 </head>
 <body>
@@ -28,7 +27,7 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
 		
 		<div class="header-wrapper">
 			<div class="header-container">
-				<a href="" class="logo">icheshang.com 汽车时尚</a>
+				<a href="/" class="logo">icheshang.com 汽车时尚</a>
 				<div class="container-bar">
 					<div class="search none">
 						<form method="get" action="search">
@@ -52,7 +51,7 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
                                 <img src="{{ current_user.avatar }}" />
                             </a>
                         </div>
-						<a href="/signup" class="a-go-reg" style="padding:8px 30px">上传车图</a>
+						<a href="/upload" class="a-go-reg" style="padding:8px 30px">上传车图</a>
 					</div>
 					{% endif %}
 				</div>
@@ -70,57 +69,23 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
 		
 		<div class="container-wrapper">
 
-        {% for album in album_li %}
+            {% for album in album_li %}
 			<div class="album-list-box">
-				<div class="album-cover-img"><img src="{{ album.cover_link }}"></div>
+				<div class="album-cover-img">
+                    <a href="/album/{{ album.id }}" target="_blank"><img src="{{ album.cover_link }}!3"></a>
+                </div>
 				<div class="album-info">
-					<div class="album-tit"><span><a href="">{{ album.title }}</a></span></div>
+					<div class="album-tit">
+                        <span><a href="/album/{{ album.id }}" target="_blank">{{ album.title }}</a></span>
+                    </div>
 					<div class="album-count">
 						<span class="count-fav">185</span>
 						<span class="count-comment">96</span>
 					</div>
                 </div>
 			</div>
-        {% endfor %}
+            {% endfor %}
 
-
-			
-			<div class="album-list-box">
-				<div class="album-cover-img"><img src="static/photo/1.jpg"></div>
-				<div class="album-info">
-					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
-					<div class="album-count">
-						<span class="count-fav">185</span>
-						<span class="count-comment">96</span>
-					</div>
-                </div>
-			</div>
-			<div class="album-list-box">
-				<div class="album-cover-img"><img src="static/photo/2.jpg"></div>
-				<div class="album-info">
-					<div class="album-tit"><span><a href="">超霸气兰博基尼LP700黑色磨砂限量版：喜欢你咆哮的声音！</a></span></div>
-					<div class="album-count">
-						<span class="count-fav">185</span>
-						<span class="count-comment">96</span>
-					</div>
-                </div>
-			</div>
-			<div class="album-list-box">
-				<div class="album-cover-img"><img src="static/photo/3.jpg"></div>
-				<div class="album-info"></div>
-			</div>
-			<div class="album-list-box">
-				<div class="album-cover-img"><img src="static/photo/1.jpg"></div>
-				<div class="album-info"></div>
-			</div>
-			<div class="album-list-box">
-				<div class="album-cover-img"><img src="static/photo/2.jpg"></div>
-				<div class="album-info"></div>
-			</div>
-			<div class="album-list-box">
-				<div class="album-cover-img"><img src="static/photo/3.jpg"></div>
-				<div class="album-info"></div>
-			</div>
 		</div><!--end container-wrapper-->
 	</div><!--end page-wrapper-->
 </body>

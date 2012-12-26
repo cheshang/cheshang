@@ -29,6 +29,8 @@
 	});
 	
 	var zoomImg = function(img){
+        return false
+
 		var img 	= img;
 		var w		= img.parent().parent().attr('w');
 		var h		= img.parent().parent().attr('h');
@@ -74,8 +76,6 @@
 	//hover index img
 	$('.album-cover-img').hover(
 		function(){
-			//var w 	= $(this).attr('w');
-			//var h 	= $(this).attr('h');
 			var img = $(this).find('img');
 			zoomImg(img)
 		},
