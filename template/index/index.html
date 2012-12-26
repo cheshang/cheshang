@@ -73,6 +73,25 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
 			</div>
 			
 
+        {% for album in album_li %}
+			<div class="album-list-box">
+				<div class="album-cover-img" w="500" h="500">
+					<a href="album.html"><img src="{{ album.cover_link }}" id="missile"></a>
+				</div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="/album/{{ album.id }}">{{ album.title }}</a></span></div>
+					<div class="album-count">
+						<span class="count-fav" title="185人收藏">185</span>
+						<span class="count-comment" title="96条评论">96</span>
+					</div>
+				</div>
+			</div>
+        {% endfor %}
+
+
+
+
+
 			<div class="album-list-box">
 				<div class="album-cover-img" w="500" h="500">
 					<a href="album.html"><img src="static/photo/1.jpg" id="missile"></a>

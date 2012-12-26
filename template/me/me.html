@@ -69,6 +69,21 @@ html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat c
 		</div>
 		
 		<div class="container-wrapper">
+
+        {% for album in album_li %}
+			<div class="album-list-box">
+				<div class="album-cover-img"><img src="{{ album.cover_link }}"></div>
+				<div class="album-info">
+					<div class="album-tit"><span><a href="">{{ album.title }}</a></span></div>
+					<div class="album-count">
+						<span class="count-fav">185</span>
+						<span class="count-comment">96</span>
+					</div>
+                </div>
+			</div>
+        {% endfor %}
+
+
 			
 			<div class="album-list-box">
 				<div class="album-cover-img"><img src="static/photo/1.jpg"></div>
