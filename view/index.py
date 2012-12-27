@@ -11,7 +11,7 @@ from lib.page import page_limit_offset
 class Index(View):
     def GET(self, n=1):
         count = album_count()
-        page, limit, offset = page_limit_offset('/list/%s', count, n, 4)
+        page, limit, offset = page_limit_offset('/list/%s', count, n, 50)
         album_li = album_latest(limit, offset)
         return self.render(album_li=album_li, page=page)
 

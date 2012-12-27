@@ -2,7 +2,7 @@
 
 PAGE_LIMIT = 42
 
-PAGE_NO_TEMPLATE = """<a href="%s">%s</a>"""
+PAGE_NO_TEMPLATE = """<li><a href="%s">%s</a></li>"""
 
 def limit_offset(n, limit):
     if n:
@@ -72,7 +72,7 @@ class Page(str):
 
 class _Page(object):
     limit = PAGE_LIMIT
-    def __init__(self, href, count, now, limit=PAGE_LIMIT, template='<div class="page">%s</div>'):
+    def __init__(self, href, count, now, limit=PAGE_LIMIT, template='<div class="pagination pagination-centered"><ul>%s</ul></div>'):
         now = int(now)
         if now <= 0:
             now = 1
@@ -136,10 +136,10 @@ class _Page(object):
             links = []
             if now > 1:
                 links.append(
-                    PAGE_NO_TEMPLATE%(href%(now-1), '&lt;')
+                    PAGE_NO_TEMPLATE%(href%(now-1), '上一页')
                 )
             else:
-                links.append('<span class="plt">&lt;</span>')
+                links.append('<li class="disabled"><a href="#">上一页</a></li>')
 
             if merge_begin:
                 links.append(
@@ -161,7 +161,7 @@ class _Page(object):
                     PAGE_NO_TEMPLATE%(href%i, i)
                 )
 
-            links.append("""<span class="now">%s</span>"""%now)
+            links.append("""<li class="active"><a href="">%s</a></li>"""%now)
 
             for i in xrange(now+1, end+1):
                 links.append(
@@ -186,11 +186,11 @@ class _Page(object):
 
             if now < total:
                 links.append(
-                    PAGE_NO_TEMPLATE%(href%(now+1), '&gt;')
+                    PAGE_NO_TEMPLATE%(href%(now+1), '下一页')
                 )
             else:
                 links.append(
-                    """<span class="pgt">&gt;</span>"""
+                    """<li class="disabled"><a href="">下一页</a></li>"""
                 )
             htm = ''.join(links)
             return self.template%htm
