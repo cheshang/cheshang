@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 import _envi
 import hashlib
-from yajl import dumps
+try:
+    from yajl import dumps
+except ImportError:
+    from json import dumps
 from time import time
 from base64 import b64encode
 from config import UPYUN

@@ -49,6 +49,11 @@ def album_latest(limit, offset, order_by='id DESC'):
 def user_album_latest(limit, offset, uid, order_by='id DESC'):
     return Album.where(limit=limit, offset=offset, order_by=order_by, uid=uid)
 
+def album_count(uid=0):
+    if uid:
+        return Album.count(uid=uid)
+    return Album.count()
+
 
 if __name__ == '__main__':
     pass

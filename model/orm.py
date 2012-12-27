@@ -79,6 +79,18 @@ class Model(object):
             result.append(cls._data_to_obj(i))
         return result
 
+    @classmethod
+    def count(cls, **kwargs):
+        cur = connection.cursor()
+        values = ['='.join((k, '"%s"' % v)) for k, v in kwargs.iteritems()]
+        condition = 'WHERE '+' and '.join(values) if kwargs else ''
+        sql = 'SELECT count(1) FROM %s '+ condition
+        cur.execute(sql % cls.__table__)
+        data = cur.fetchone()
+        print cur._last_executed
+        return data[0] if data else 0
+
+
 
     def update(self, **kwargs):
         for i in kwargs:

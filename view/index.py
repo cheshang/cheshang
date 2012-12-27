@@ -3,13 +3,17 @@
 import _envi
 import web
 from view._base import route, LoginView, View, NoLoginView
-from model.album import album_latest
+from model.album import album_latest, album_count
+from lib.page import page_limit_offset
 
 @route('/')
+@route('/list/(\d+)')
 class Index(View):
-    def GET(self):
-        album_li = album_latest(10, 0)
-        return self.render(album_li=album_li)
+    def GET(self, n=1):
+        count = album_count()
+        page, limit, offset = page_limit_offset('/list/%s', count, n, 4)
+        album_li = album_latest(limit, offset)
+        return self.render(album_li=album_li, page=page)
 
 @route('/album')
 class Album(View):
