@@ -1,68 +1,29 @@
-<!doctype html>
-<html lang="zh-cn">
-<head>
 <meta charset="UTF-8">
-<title>汽车Book</title>
-<script type="text/javascript" src="static/js/in.js" autoload="true" core="static/js/jquery.min.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="/static/imgs/favicon.ico">
+
+<link rel="stylesheet" href="/static/css/reset.css" type="text/css">
+<link rel="stylesheet" href="/static/css/cheshang.css" type="text/css">
+
+<script type="text/javascript" src="/static/js/conf.js"></script>
+<script type="text/javascript" src="/static/js/in.js" autoload="true" core="/static/js/jquery.min.js"></script>
 <script type="text/javascript">
 var timenow = new Date().getTime();
-In.add('auth',{ path:'static/js/auth.js?'+timenow,type:'js',charset:'utf-8' });
-In.add('reset',{ path:'static/css/reset.css' });
-In.add('css',{ path:'static/css/qichebook.css?'+timenow });
-In.ready('auth','reset','css',function(){
-	$('.page-wrapper').fadeIn()
-	
-	$.checkAuthForm();
-});
 
+//In.add('reset_css',{path:'/static/css/reset.css'});
+//In.add('cheshang_css',{path:'/static/css/cheshang.css'});
+
+In.add('tips_css',{path:'/static/js/tips/tiptip.css'});
+
+In.add('cheshang',{ path:'/static/js/cheshang.js?'+timenow,type:'js',charset:'utf-8' });
+In.add('lazyload',{ path:'/static/js/jquery.lazyload.js',type:'js',charset:'utf-8'});
+In.add('easing',{ path:'/static/js/jquery.easing.1.3.js',type:'js',charset:'utf-8' });
+In.add('tmpl',{ path:'/static/js/jquery.tmpl.min.js',type:'js',charset:'utf-8' });
+In.add('scroll',{ path:'/static/js/jquery.scrollTo-1.4.3.1-min.js',type:'js',charset:'utf-8' });
+
+In.add('view',{ path:'/static/js/view.js?'+timenow,type:'js',charset:'utf-8',rely:['easing','tips']});
+In.add('share',{ path:'/static/js/lib/share.js',type:'js',charset:'utf-8' });
+In.add('tips',{ path:'/static/js/tips/jquery.tiptip.js',type:'js',charset:'utf-8',rely:['tips_css']});
+
+In.add('auth',{ path:'/static/js/auth.js',type:'js',charset:'utf-8'});
+In.add('settings',{ path:'/static/js/settings.js',type:'js',charset:'utf-8'});
 </script>
-<style>
-html{height:100%;width:100%;background:url('static/imgs/loader.gif') no-repeat center 40%}
-</style>
-</head>
-<body>
-	<div class="page-wrapper" style="display: none">
-		<div class="header-wrapper">
-			<div class="header-container">
-				<a href="" class="logo">汽车时尚</a>
-				<a href="/signin" class="a-btn auth-station">登 陆</a>
-			</div>
-		</div><!--end header-wrapper-->
-		
-		<div class="container-wrapper" style="width:950px">
-			<h1 class="auth-tit">注册</h1>
-			<div class="auth-wrapper">
-				<form action="" method="post">
-					<p class="text-content">
-						<label>邮箱：</label>
-						<input type="text" name="email" value="" id="auth-mail" class="auth-text" require="true" datatype="email" />
-						<span class="auth-notice notice-error"></span>
-					</p>
-					<p class="text-content">
-						<label>密码：</label>
-						<input type="password" name="passwd" value="" class="auth-text" require="true" datatype="password" />
-						<span class="auth-notice"></span>
-					</p>
-					<p class="text-content">
-						<label>确认密码：</label>
-						<input type="password" name="password1" value="" class="auth-text" require="true" datatype="repassword" />
-						<span class="auth-notice"></span>
-					</p>
-					<p class="text-content">
-						<label>昵称：</label>
-						<input type="text" name="name" value="" class="auth-text" maxlength="16" />
-						<span class="auth-notice notice-succ"></span>
-					</p>
-					<p class="text-content">
-						<input type="submit" class="btn auth-btn" value="注 册" />
-					</p>
-				</form>
-				<div class="che-logo">
-					<img src="static/photo/car.png" />
-				</div>
-			</div>
-		</div><!--end container-wrapper-->
-		
-	</div><!--end page-wrapper-->
-</body>
-</html>

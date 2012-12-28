@@ -4,11 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>图片上传</title>
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/static/imgs/favicon.ico">
 <link type="text/css" rel="stylesheet" href="/static/css/reset.css"></link>
-<link type="text/css" rel="stylesheet" href="/static/css/qichebook.css"></link>
+<link type="text/css" rel="stylesheet" href="/static/css/cheshang.css"></link>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/conf.js"></script>
+<script type="text/javascript" src="/static/js/cheshang.js"></script>
 
 <script>
 var UPYUN={{ dumps(upyun('cheshang')) }}
@@ -18,14 +19,8 @@ UPYUN.push(CONST.UPYUN.CHESHANG.BUCKET, CONST.UPYUN.CHESHANG.URL)
 </head>
 <body>
 	<div class="page-wrapper">
-		<div class="header-wrapper">
-			<div class="header-container">
-				<a href="/" class="logo">icheshang.com 汽车时尚</a>
-				<div class="user-settings-bar">
-					<a class="user-profiles-settings" href="">设置</a>
-				</div>
-			</div>
-		</div><!--end header-wrapper-->
+        
+        {% include 'header.html' %}
 		
 		<div class="container-wrapper">
 			<form id="album-form" action="" method="post" enctype="multipart/form-data">

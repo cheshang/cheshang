@@ -1,0 +1,33 @@
+<div class="header-wrapper">
+	<div class="header-container">
+		<a href="/" class="logo">che</a>
+		<div class="container-bar">
+			<div class="search none">
+				<form method="get" action="search">
+					<input type="text" name="key" value="" class="search-text" autocomplete="off" placeholder="搜索汽车" />
+					<button type="suubmit" class="search-btn" title="搜索"></button>
+				</form>
+			</div>
+			{%  if not current_user %}
+			<div class="auth-box">
+				<a href="/signin" class="a-go-login">登 陆</a>
+				<a href="/signup" class="a-go-reg">注 册</a>
+			</div>
+            {% else %}
+			<div class="auth-box">
+                <div class="auth-me">
+                    <div class="auth-menu-box">
+                        <a href="/me/setting" class="auth-menu-setting"></a>
+                        <a href="/me/signout" class="auth-menu-logout"></a>
+                    </div>
+                    <a href="/me" class="a-go-me" title="{{ current_user.name }}">
+                        <img src="http://113.11.199.27:8080/static/photo/8.jpg" />
+                    </a>
+                </div>
+				<a href="/signup" class="a-go-reg" style="padding:8px 30px">上传车图</a>
+			</div>
+			{% endif %}
+		</div>
+
+	</div>
+</div><!--end header-wrapper-->

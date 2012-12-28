@@ -1,19 +1,14 @@
 <!doctype html>
-<html lang="zh-cn">
+<html lang="zh-cn" class="loading-html">
 <head>
-<meta charset="UTF-8">
-<title>汽车Book</title>
-<script type="text/javascript" src="static/js/in.js" autoload="true" core="static/js/jquery.min.js"></script>
+<title>注册-车尚-高品质汽车图片分享社区</title>
+{% include 'base.html' %}
 <script type="text/javascript" src="/static/js/base.js" ></script>
+
 <script type="text/javascript">
-var timenow = new Date().getTime();
-In.add('auth',{ path:'static/js/auth.js?'+timenow,type:'js',charset:'utf-8' });
-In.add('reset',{ path:'static/css/reset.css' });
-In.add('css',{ path:'static/css/qichebook.css?'+timenow });
-In.ready('auth', 'reset','css',function(){
+In.ready('auth',function(){
+	$('html').css('background-image','none')
 	$('.page-wrapper').fadeIn()
-	
-	//$.checkAuthForm();
 });
 passwd_verify = function(o) {
     return $('#auth-passwd').val() == o

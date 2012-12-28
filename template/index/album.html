@@ -1,12 +1,8 @@
 <!doctype html>
-<html>
+<html class="loading-html">
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link type="text/css" rel="stylesheet" href="static/css/reset.css"></link>
-<link type="text/css" rel="stylesheet" href="static/css/qichebook.css"></link>
-<script type="text/javascript" src="static/js/jquery.min.js"></script>
-<script type="text/javascript" src="static/js/jquery.masonry.min.js"></script>
+<title>专辑列表</title>
+{% include 'base.html' %}
 <script>
 $(document).ready(function(){
 	var $container = $('.album-container');
@@ -29,16 +25,8 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="page-wrapper">
-		<div class="header-wrapper">
-			<div class="header-container">
-				<a href="/" class="logo">icheshang.com 汽车时尚</a>
-				<div class="album-fav-bar">
-					<span class="s-ico"></span>
-					<span class="s-word">收藏该专辑</span>
-				</div>
-			</div>
-			
-		</div><!--end header-wrapper-->
+
+        {% include 'header.html' %}
 		
 		<div class="container-wrapper margin_top_20">
 		

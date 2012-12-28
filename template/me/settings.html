@@ -1,30 +1,22 @@
-
 <!doctype html>
-<html>
+<html lang="zh-cn" class="loading-html">
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link type="text/css" rel="stylesheet" href="static/css/reset.css"></link>
-<link type="text/css" rel="stylesheet" href="static/css/qichebook.css"></link>
-<script type="text/javascript" src="static/js/jquery.min.js"></script>
-<script type="text/javascript" src="static/js/settings.js"></script>
+<title>我的车尚-高清图片分享社区</title>
+
+{% include 'base.html' %}
+
+<script type="text/javascript">
+In.ready('cheshang','settings',function(){
+	$('html').css('background-image','none')
+	$('.page-wrapper').fadeIn()
+});
+</script>
 </head>
 <body>
-	<div class="page-wrapper">
-		<div class="header-wrapper" style="height:60px;">
-			<a class="s-logo" href="index.html">汽车book</a>
-			<div class="settings-header-uinfo">
-				<img src="static/photo/user1.jpg" />
-				<a href="">一地鸡毛</a>
-			</div>
-		</div><!--end header-wrapper-->
-		
-		<div class="nav-box" style="margin-top:30px;margin-bottom:20px;">
-			<a class="current-nav" href="settings.html">基本信息</a>
-			<a href="avatar.html">设置头像</a>
-			<a href="sync.html">设置同步</a>
-		</div>
-		
+	<div class="page-wrapper none">
+
+        {% include 'header.html' %}
+
 		<div class="container-wrapper">
 			<div class="settings-container">
 				<form action="" method="post">

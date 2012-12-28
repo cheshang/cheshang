@@ -121,6 +121,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
     //根据图片的ID获取图片的信息 return object
     //如果图片不在专辑中，则返回false
     window.getPhotoById = function(id){
+        console.log(id,'getting photo id')
         _photo = album_datas.photo
         _p_length = _photo.length
         for(i=0;i<_p_length;i++){
@@ -149,6 +150,13 @@ ICHESHANG.prototype.photoView = function(DATAS){
                 }
             }
         }
+    }
+
+    //预加载一张图片
+    window.preLoadNextPhotoByCurrentId = function(id){
+        console.log(id,'curr id')
+        var p = getNextPhotoByCurrentId(id)
+        getImage(p.url)
     }
 
     //根据当前Pid获取上一张图片的信息
@@ -267,7 +275,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
 	    }
 	}
 	
-	var getImage = function(url){
+	var getImage = function(url,callback){
 		photo_msg_box.fadeOut();
 		imgLoad( url,
 			function(w,h){
@@ -276,7 +284,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
 				photo_info.url 		= url;
 				photo.attr('src',url).fadeIn();
 				photo.removeAttr('style');//清除上一张图片的样式
-				
+
 				if(w >= h){
 					if(w > content_wrapper.width()){
 						photo.css( {width: content_wrapper.width()} );
@@ -289,6 +297,10 @@ ICHESHANG.prototype.photoView = function(DATAS){
 					}
 				}
 				photo_loading.hide();
+                
+                if(callback){
+                    callback()
+                }
 			}
 		);
 	}//( url[0].url )
@@ -330,8 +342,14 @@ ICHESHANG.prototype.photoView = function(DATAS){
             photo_end_box.hide()
         }
 
-        getImage( img.url);
-        resetPhotoInfoData(img)
+        getImage( img.url, function(){
+            resetPhotoInfoData(img)
+
+            //预加载下一张图片
+            //imgLoad( getNextPhotoByCurrentId(img.id).url )
+        });
+
+        console.log(photo_info.id,'getting photo id[next]')
 	}
 	
 	var toPrevPhoto = function(){
