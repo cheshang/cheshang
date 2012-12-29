@@ -1,7 +1,8 @@
 <!doctype html>
+{% include 'cheshang.html' %}
 <html lang="zh-cn" class="loading-html">
 <head>
-<title>我的车尚-高清图片分享社区</title>
+<title>设置 - 车尚-高清图片分享社区</title>
 
 {% include 'base.html' %}
 
@@ -18,12 +19,22 @@ In.ready('cheshang','settings',function(){
         {% include 'header.html' %}
 
 		<div class="container-wrapper">
-			<div class="settings-container">
+			<div class="settings-container margin_top_20">
+                <p style="padding:0 0 10px 20px;">设置个人信息：</p>
 				<form action="" method="post">
 					<p class="form-content-p">
 						<label>昵称</label>
-						<input type="text" name="name" value="" class="settings-text"  />
+						<input type="text" name="nickname" value="" class="settings-text" placeholder="昵称"  />
 					</p>
+					<p class="form-content-p">
+						<label>邮箱</label>
+						<input type="text" name="nickname" value="" class="settings-text" placeholder="登录邮箱"  />
+					</p>
+					<p class="form-content-p">
+						<label>密码</label>
+						<input type="password" name="nickname" value="" class="settings-text" placeholder="新密码"  />
+					</p>
+                    {#
 					<p class="form-content-p">
 						<label>城市</label>
 						<select name="" class="settings-select">
@@ -31,6 +42,7 @@ In.ready('cheshang','settings',function(){
 							<option value="">北京</option>
 						</select>
 					</p>
+                    #}
 					<p class="form-content-p">
 						<label>简介</label>
 						<textarea name="desc" class="settings-textarea"></textarea>

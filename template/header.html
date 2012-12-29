@@ -1,6 +1,6 @@
 <div class="header-wrapper">
 	<div class="header-container">
-		<a href="/" class="logo">che</a>
+		<a href="/" class="logo">车尚-高清汽车图片分享交流社区</a>
 		<div class="container-bar">
 			<div class="search none">
 				<form method="get" action="search">
@@ -17,11 +17,15 @@
 			<div class="auth-box">
                 <div class="auth-me">
                     <div class="auth-menu-box">
-                        <a href="/me/setting" class="auth-menu-setting"></a>
+                        <a href="/me/settings" class="auth-menu-setting"></a>
                         <a href="/me/signout" class="auth-menu-logout"></a>
                     </div>
-                    <a href="/me" class="a-go-me" title="{{ current_user.name }}">
-                        <img src="http://113.11.199.27:8080/static/photo/8.jpg" />
+                    <a href="/me" class="a-go-me" title="{{ current_user.name }}" style="background:rgba(1,1,1,0.3);">
+                        {% if not current_user.ico %}
+                        <img src="/static/imgs/avatar.png" />
+                        {% else %}
+                        <img src="{{ current_user.ico }}" />
+                        {% endif %}
                     </a>
                 </div>
 				<a href="/signup" class="a-go-reg" style="padding:8px 30px">上传车图</a>

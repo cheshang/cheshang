@@ -943,6 +943,15 @@ a.logo{
 }
 
 
+.p-list-end{
+    background:#ddd;
+    text-align:center;
+    padding:30px 0;
+}
+.p-list-end span{
+    font-size:1.2em;
+}
+
 /* end photo-list-mod-wrapper */
 
 
@@ -1500,6 +1509,7 @@ div.view-fav span.faved{
 }
 */
 
+
 .view-share-box{
     width:84px;
     height:84px;
@@ -1527,6 +1537,35 @@ div.view-fav span.faved{
 .view-share-box a.share-renren{
     background-position:-40px 0;
 }
+
+#share-wrapper{
+    position:absolute;
+    z-index:99;
+    bottom:10px;
+    right:10px;
+}
+
+
+#fav-wrapper{
+    position:absolute;
+    z-index:99;
+    width:50px;
+    height:43px;
+    top:10px;
+    right:10px;
+    background-image:url('../imgs/heart-2.png');
+    background-color:transparent;
+    background-repeat:no-repeat;
+    cursor:pointer;
+}
+.fav-off{
+    background-position:left -43px;
+}
+.fav-on{
+    background-position:left 0px;
+}
+
+
 /* end photo view */
 
 

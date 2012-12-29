@@ -599,6 +599,17 @@ ICHESHANG.prototype.photoView = function(DATAS){
 	})
 	//-590px
 	
+
+    //收藏当前图片
+    $("#fav-wrapper").live('click',function(){
+        //alert(photo_info.id)
+        var self = $(this)
+        if(self.hasClass('fav-on')){
+            self.removeClass('fav-on').addClass('fav-off')
+        }else{
+            self.removeClass('fav-off').addClass('fav-on')
+        }
+    })
 	
 	
 	//tips
