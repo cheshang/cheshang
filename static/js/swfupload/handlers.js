@@ -229,10 +229,14 @@ function uploadComplete(file) {
 function queueComplete(numFilesUploaded) {
 	//var status = document.getElementById("divStatus");
 	//status.innerHTML = numFilesUploaded + " file" + (numFilesUploaded === 1 ? "" : "s") + " uploaded.";
-
+    
+    $('.total-progress').css('width',0)
+    $('.total-progress-tit').html('上传总进度：0%')
+    $('.post-button').attr('disabled',false)
     setTimeout(function(){
         $('.total-uploader-progress-box').hide()
         $('.uploader').show()
+        //console.log('all done')
     },2000)
 
 }
