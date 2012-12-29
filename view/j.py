@@ -31,6 +31,19 @@ class cata_new(JsonLoginView):
             album_new(name, user_id)
         return self.render(1)
 
+@route('/j/album/(\d+)/upload')
+class Upload(JsonLoginView):
+    def POST(self, album_id=0):
+        album = album_get(album_id)
+        if not album or not album.can_edit(self.uid):
+            return self.render(0)
+        uid = self.current_user_id
+        data = web.input(url=[], name=[], size=[])
+        urls, sizes, names = [data[i] for i in ('url', 'size', 'name')]
+        for url, size, name  in zip(urls, sizes, names):
+            if url and size:
+                photo_new(url, name, size, uid, album_id)
+        return self.render(1)
 
 @route('/comment/(\d+)')
 class Comment(JsonLoginView):
