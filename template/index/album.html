@@ -2,10 +2,13 @@
 {% include 'cheshang.html' %}
 <html class="loading-html">
 <head>
-<title>专辑列表</title>
+<title>车尚 - 高清汽车图片分享交流社区</title>
 {% include 'base.html' %}
 <script>
-$(document).ready(function(){
+In.ready('masonry',function(){
+	$('html').css('background-image','none')
+	$('.page-wrapper').fadeIn()
+    
 	var $container = $('.album-container');
 	$container.imagesLoaded( function(){
 	  $container.masonry({
@@ -21,11 +24,11 @@ $(document).ready(function(){
 			$(this).find('.album-new-window').fadeOut();
 		}
 	);
-});
+})
 </script>
 </head>
 <body>
-	<div class="page-wrapper">
+	<div class="page-wrapper none">
 
         {% include 'header.html' %}
 		

@@ -2134,7 +2134,7 @@ span.notice-succ{
     overflow:hidden;
     clear:both;
 }
-input[name=name]{
+.album-info-item input[name=name]{
     display:block;
     float:left;
     width:688px;
