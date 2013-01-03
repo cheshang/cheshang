@@ -297,6 +297,9 @@ a.logo{
 	height:350px;
 	overflow:hidden;
 }
+.album-no-photo{
+    background:url('../imgs/note_48.png') no-repeat center center;
+}
 .album-list-box .album-cover-img a{
 	display:block;
 	float:left;
@@ -1832,6 +1835,23 @@ p.album-info-datas span{
 	overflow:hidden;
 	margin:0 auto;
 }
+.settings-l{
+    width:500px;
+    float:left;
+}
+.settings-r{
+    width:500px;
+    float:right;
+}
+.settings-current-avatar{
+    width:150px;
+    height:150px;
+    background:#ddd url('../imgs/avatar_200_200.png') no-repeat center center;
+    background-size:100%;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
 form p.form-content-p{
 	padding:10px;
 }
@@ -2002,6 +2022,19 @@ span.notice-succ{
 	border:1px #c33 solid;
 	background:#FFC896;
 }
+
+
+.text-content .che-text{}
+.text-content .che-textarea{
+	background-color: white;
+	border: 1px solid #3A81C0;
+}
+.new-album-label{
+    display:block;
+    clear:both;
+    padding:0 0 5px 0;
+}
+
 /* end form */
 
 
@@ -2012,6 +2045,7 @@ span.notice-succ{
 	height:auto;
 	margin:0 auto;
 	overflow:hidden;
+    margin-bottom:100px;
 }
 
 .uploader-header{
@@ -2186,34 +2220,37 @@ span.uploader-notice{
 
 .total-uploader-progress-box{
     position:absolute;
+    position:fixed;
     z-index:200;
-	width:700px;
-	height:120px;
+	width:100%;
+	height:50px;
 	float:left;
 	background:#ccc;
+    background-color:orange;
 	overflow: hidden;
-    border-radius:8px 0;
-    margin:0;
+    left:0;
+    bottom:0;
 	
 	display:none;
 }
 span.total-progress-tit{
 	position: absolute;
-	width:auto;
-	margin-top:45px;
-	margin-left:10px;
+	width:100%;
+    height:50px;
+    line-height:50px;
 	font-size:1.4em;
+    text-align:center;
 }
 .progress-wrapper{
     width:100%;
-    height:60px;
-    margin-top:30px;
+    height:50px;
     background:#bbb;
 }
 .total-progress{
 	width:0%;
 	height:60px;
-	background:#5BB75B
+	background:#5BB75B;
+    background:#34ABD7;
 }
 
 .post-btn-box{

@@ -115,6 +115,26 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setProgress(percent);
 		progress.setStatus("Uploading...");
+        //console.log(percent,'==== percent')
+
+        var _queued = this.getStats().files_queued; //队列中的文件数
+        var _in_progress = this.getStats().in_progress; //
+        var _uploaded = this.getStats().successful_uploads; //上传成功的文件数
+        var _errors = this.getStats().upload_errors; //出错文件数
+        var _canceled = this.getStats().upload_cancelled; //被取消文件数
+        var _total_percent = Math.ceil( (_uploaded * 100) / TOTAL_UPLOAD_NUM); //总的上传进度
+
+        var pre_progress = Math.ceil( (100*1) / TOTAL_UPLOAD_NUM )
+        TOTAL_PROGRESS = Math.ceil((pre_progress*percent)/100)
+        var total_percent = TOTAL_PROGRESS + _total_percent;
+
+        //console.log(TOTAL_UPLOAD_NUM,_queued,_uploaded,total_percent,'=== upload status data')
+
+        if(total_percent > 100){
+            total_percent = 100
+        }
+        $('.total-progress').css('width',total_percent+'%')
+        $('.total-progress-tit').html('上传总进度：'+total_percent+'%')
         
 	} catch (ex) {
 		this.debug(ex);
@@ -134,7 +154,7 @@ function uploadSuccess(file, serverData) {
 
         var src = 'http://'+UPYUN[3]+s.url+'!1'
         //把上传成功的图片渲染到页面
-        var tpl = '<div class="uploader-photo-list" id=uploaded_"'+file.id+'">'+
+        var tpl = '<div class="uploader-photo-list" id="uploaded_'+file.id+'">'+
                 '<div class="uploader-photo-imgbox">'+
                     '<img src="'+src+'" />'+
                 '</div>'+
@@ -150,12 +170,18 @@ function uploadSuccess(file, serverData) {
             '</div>';
         $('#'+file.id).replaceWith(tpl)
 
+        //页面滚动到改图位置
+        var _top = $('body').find("#uploaded_"+file.id).offset().top
+        //console.log(_top,'_top')
+        $('body').animate({scrollTop:_top},1000,"easeInOutQuart")
+
 	} catch (ex) {
 		this.debug(ex);
 	}
 }
 
 function uploadError(file, errorCode, message) {
+    console.log(file,errorCode,message,'== error ==')
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setError();
@@ -221,8 +247,8 @@ function uploadComplete(file) {
 
     //console.log(TOTAL_UPLOAD_NUM,_queued,_uploaded,total_percent,'=== upload complete')
 
-    $('.total-progress').css('width',total_percent+'%')
-    $('.total-progress-tit').html('上传总进度：'+total_percent+'%')
+    //$('.total-progress').css('width',total_percent+'%')
+    //$('.total-progress-tit').html('上传总进度：'+total_percent+'%')
 }
 
 // This event comes from the Queue Plugin
@@ -230,13 +256,12 @@ function queueComplete(numFilesUploaded) {
 	//var status = document.getElementById("divStatus");
 	//status.innerHTML = numFilesUploaded + " file" + (numFilesUploaded === 1 ? "" : "s") + " uploaded.";
     
-    $('.total-progress').css('width',0)
-    $('.total-progress-tit').html('上传总进度：0%')
     $('.post-button').attr('disabled',false)
     setTimeout(function(){
         $('.total-uploader-progress-box').hide()
         $('.uploader').show()
-        //console.log('all done')
-    },2000)
+        $('.total-progress').css('width',0)
+        $('.total-progress-tit').html('上传总进度：0%')
+    },1500)
 
 }
