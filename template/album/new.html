@@ -1,15 +1,42 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
+<!doctype html>
+{% include 'cheshang.html' %}
+<html lang="zh-cn" class="loading-html">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+<title>新建专辑 - 车尚 - 高品质汽车图片社区</title>
+{% include 'base.html' %} 
+
+<script>
+In.ready('bootstrap_css-','cheshang','new_album',function(){
+	$('html').css('background-image','none')
+	$('.page-wrapper').fadeIn()
+});
+</script>
 </head>
 <body>
-    <form action="" method="post">
-        <p><input type="text" name="name" id=""></p>
-        <textarea name="txt" id="" cols="30" rows="10"></textarea>
-        <button type="submit">提交</button>
+	<div class="page-wrapper none">
+        
+        {% include 'header.html' %}
+		
+		<div class="container-wrapper">
+            
+            <div class="margin_top_30">
+                <p style="padding-bottom:20px;">新建专辑：</p>
+            </div>
 
-    </form>
+            <form action="" method="post">
+                <p class="text-content">
+                    <label class="new-album-label">专辑名称</label>
+                    <input type="text" name="name" id="" class="auth-text" style="width:688px;">
+                </p>
+                <p class="text-content">
+                    <label class="new-album-label">专辑描述</label>
+                    <textarea name="txt" id="" cols="30" rows="10" class="che-textarea"></textarea>
+                </p>
+                <input type="submit" id="auth-submit" class="btn auth-btn" value="创建专辑">
+
+            </form>
+			
+		</div><!--end container-wrapper-->
+	</div><!--end page-wrapper-->
 </body>
 </html>

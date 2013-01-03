@@ -30,16 +30,22 @@ In.ready('cheshang',function(){
 
             {% for album in album_li %}
 			<div class="album-list-box">
-				<div class="album-cover-img">
+                {% if album.cover_link == '' %}
+				<div class="album-cover-img album-no-photo" title="这个专辑还没有任何图片,点击上传">
+                    <a href="/album/{{ album.id }}/upload" target="_blank"></a>
+                </div>
+                {% else %}
+				<div class="album-cover-img" title="{{ album.title }}">
                     <a href="/album/{{ album.id }}" target="_blank"><img src="{{ album.cover_link }}!3"></a>
                 </div>
+                {% endif %}
 				<div class="album-info">
 					<div class="album-tit">
                         <span><a href="/album/{{ album.id }}" target="_blank">{{ album.title }}</a></span>
                     </div>
 					<div class="album-count">
-						<span class="count-fav">185</span>
-						<span class="count-comment">96</span>
+						<span class="count-fav">0</span>
+						<span class="count-comment">0</span>
 					</div>
                 </div>
 			</div>

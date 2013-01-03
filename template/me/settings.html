@@ -7,7 +7,10 @@
 {% include 'base.html' %}
 
 <script type="text/javascript">
-In.ready('cheshang','settings',function(){
+var UPYUN={{ dumps(upyun('avatar')) }}
+UPYUN.push(CONST.UPYUN.AVATAR.BUCKET, CONST.UPYUN.AVATAR.URL)
+
+In.ready('cheshang','swf_lib','one_uploader','settings',function(){
 	$('html').css('background-image','none')
 	$('.page-wrapper').fadeIn()
 });
@@ -20,6 +23,7 @@ In.ready('cheshang','settings',function(){
 
 		<div class="container-wrapper">
 			<div class="settings-container margin_top_20">
+                <div class="settings-l">
                 <p style="padding:0 0 10px 20px;">设置个人信息：</p>
 				<form action="" method="post">
 					<p class="form-content-p">
@@ -34,15 +38,6 @@ In.ready('cheshang','settings',function(){
 						<label>密码</label>
 						<input type="password" name="nickname" value="" class="settings-text" placeholder="新密码"  />
 					</p>
-                    {#
-					<p class="form-content-p">
-						<label>城市</label>
-						<select name="" class="settings-select">
-							<option value="">选择城市</option>
-							<option value="">北京</option>
-						</select>
-					</p>
-                    #}
 					<p class="form-content-p">
 						<label>简介</label>
 						<textarea name="desc" class="settings-textarea"></textarea>
@@ -51,6 +46,14 @@ In.ready('cheshang','settings',function(){
 						<button type="suubmit" class="btn-a settings-form-btn">提 交</button>
 					</p>
 				</form>
+                </div>
+
+                <div class="settings-r">
+                    <p style="padding-top:30px;">设置你的头像</p>
+                    <div class="settings-current-avatar"></div>
+                    <span id="upload-avatar"></span>
+                </div>
+
 			</div>
 		</div><!--end container-wrapper-->
 	</div><!--end page-wrapper-->

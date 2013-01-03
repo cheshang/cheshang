@@ -9,7 +9,9 @@
 var UPYUN={{ dumps(upyun('cheshang')) }}
 UPYUN.push(CONST.UPYUN.CHESHANG.BUCKET, CONST.UPYUN.CHESHANG.URL)
 
-In.ready('cheshang','swf_lib','swf_queue','swf_progress','swf_handlers','swf_uploader','new_album',function(){
+var TOTAL_PROGRESS = 0;
+
+In.ready('progress_css','cheshang','suffix','swf_lib','swf_queue','swf_progress','swf_handlers','swf_uploader','new_album','easing',function(){
 	$('html').css('background-image','none')
 	$('.page-wrapper').fadeIn()
 });
@@ -21,6 +23,14 @@ In.ready('cheshang','swf_lib','swf_queue','swf_progress','swf_handlers','swf_upl
         {% include 'header.html' %}
 		
 		<div class="container-wrapper">
+            
+			<div class="total-uploader-progress-box" id="total-progress">
+				<span class="total-progress-tit">上传总进度：0%</span>
+                <div class="progress-wrapper progress progress-striped active">
+				    <div class="total-progress bar"></div>
+                </div>
+			</div>
+
 			<form id="album-form" action="" method="post" enctype="multipart/form-data">
 			<div class="uploader-wrapper margin_top_20">
                 
@@ -52,19 +62,21 @@ In.ready('cheshang','swf_lib','swf_queue','swf_progress','swf_handlers','swf_upl
 						</div>
 						<span class="uploader-notice">可以上传JPG, GIF, PNG格式图片，单张最大20M，单次最多50张。</span>
 					</div>
+                    {#
 					<div class="total-uploader-progress-box" id="total-progress">
 						<span class="total-progress-tit">上传总进度：0%</span>
                         <div class="progress-wrapper">
 						    <div class="total-progress"></div>
                         </div>
 					</div>
+                    #}
 					
 					<div class="post-btn-box">
 						<button type="submit" class="button post-button white">保存图片</button>
 					</div>
 				</div>
                 
-                <div class="new-album-info">
+                <div class="new-album-info none">
                     <div class="album-info-item">
                         <input type="text" name="name" value="" placeholder="专辑名称">
                         {#

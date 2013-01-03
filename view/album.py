@@ -15,7 +15,7 @@ class New(LoginView):
         name, txt = self.arguments('name', 'txt')
         if name:
             album = album_new(name, txt, self.uid)
-            self.redirect('/album/%s' % album.id)
+            self.redirect('/album/%s/upload' % album.id)
         self.render()
 
 @route('/album/(\d+)/upload')

@@ -256,6 +256,8 @@ function queueComplete(numFilesUploaded) {
 	//var status = document.getElementById("divStatus");
 	//status.innerHTML = numFilesUploaded + " file" + (numFilesUploaded === 1 ? "" : "s") + " uploaded.";
     
+    TOTAL_UPLOAD_NUM = 0;
+    TOTAL_PROGRESS = 0;
     $('.post-button').attr('disabled',false)
     setTimeout(function(){
         $('.total-uploader-progress-box').hide()

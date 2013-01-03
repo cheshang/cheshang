@@ -38,7 +38,7 @@ In.ready('cheshang','lazyload','tmpl','easing','scroll',function(){
 
         {% for album in album_li %}
 			<div class="album-list-box">
-				<div class="album-cover-img" w="" h="">
+				<div class="album-cover-img" w="" h="" style="background:url('/static/imgs/loader.gif') no-repeat center center">
 					<a href="/album/{{ album.id }}" target="_blank">
                         <img src="/static/imgs/transparent.gif" data-original="{{ album.cover_link }}!3">
                     </a>

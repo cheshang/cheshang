@@ -11,9 +11,9 @@ var DATAS = {
     id : {{album.id}},
     uid: 1,
     title : '{{album.title}}',
-    txt : '{{album.txt}}',
-    fav: 716,
-    comments : 298,
+    txt : '{{ "".join(album.txt.split()) }}',
+    fav: 0,
+    comments : 0,
     photo :[
         {% for photo in album.photos %}  
         {
@@ -26,9 +26,7 @@ var DATAS = {
             url2 : 'http://'+CONST.UPYUN.CHESHANG.URL+'/{{photo.url}}!2',
             url3 : 'http://'+CONST.UPYUN.CHESHANG.URL+'/{{photo.url}}!3',
             url4 : 'http://'+CONST.UPYUN.CHESHANG.URL+'/{{photo.url}}!4',
-            {#
-            dec : '{{ photo.title|e }}',
-            #}
+            dec : '{{ "".join(photo.title.split()) }}',
             comment_nums : 0,
             fav_nums : 0
         },
