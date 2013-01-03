@@ -7,17 +7,6 @@ from model.album import album_new, album_get
 from model.photo import photo_new
 
 
-class New(LoginView):
-    def GET(self):
-        return self.render(template_name='album/upload.html')
-
-    def POST(self):
-        name, txt = self.arguments('name', 'txt')
-        if name:
-            
-            self.redirect('/album/%s' % album.id)
-        self.render()
-
 @route('/album/new')
 class Upload(LoginView):
     def GET(self):
@@ -34,6 +23,7 @@ class Upload(LoginView):
         if not album or not album.can_edit(self.uid):
             return self.redirect('/album/%s' % album_id)
         uid = self.uid
+        album_id = album.id
         data = web.input(url=[], name=[], size=[])
         urls, sizes, names = [data[i] for i in ('url', 'size', 'name')]
         for url, size, name  in zip(urls, sizes, names):
