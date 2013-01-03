@@ -6,12 +6,14 @@ from view._base import route, View, LoginView
 from model.album import album_new, album_get
 from model.photo import photo_new
 
+
 @route('/album/new')
-class New(LoginView):
+class Upload(LoginView):
     def GET(self):
         return self.render()
 
     def POST(self):
+<<<<<<< HEAD
         name, txt = self.arguments('name', 'txt')
         if name:
             album = album_new(name, txt, self.uid)
@@ -28,9 +30,19 @@ class Upload(LoginView):
 
     def POST(self, album_id=0):
         album = album_get(album_id)
+=======
+        #return web.input(url=[], name=[], size=[])
+        album_id, title, txt = self.arguments('album_id', 'title', 'txt')
+        album_id = int(album_id or 0)
+        if not album_id and title:
+            album = album_new(title, txt, self.uid)
+        else:
+            album = album_get(album_id)
+>>>>>>> badae8904d939a8b674f9075d5788aa4bd78e343
         if not album or not album.can_edit(self.uid):
-            self.redirect('/album/%s' % album_id)
-        uid = self.current_user_id
+            return self.redirect('/album/%s' % album_id)
+        uid = self.uid
+        album_id = album.id
         data = web.input(url=[], name=[], size=[])
         urls, sizes, names = [data[i] for i in ('url', 'size', 'name')]
         for url, size, name  in zip(urls, sizes, names):
