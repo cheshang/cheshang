@@ -8,7 +8,7 @@ from model.photo import photo_new
 
 
 @route('/album/new')
-class Upload(LoginView):
+class New(LoginView):
     def GET(self):
         return self.render()
 
