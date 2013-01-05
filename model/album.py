@@ -18,7 +18,6 @@ class Album(Model):
         return album_photo_list(self.id, limit=100)
 
     def can_edit(self, uid):
-        print self.uid, 'uid'
         return self.uid == int(uid)
 
     @property
