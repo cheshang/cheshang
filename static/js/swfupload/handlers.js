@@ -1,17 +1,3 @@
-/* Demo Note:  This demo uses a FileProgress class that handles the UI for displaying the file name and percent complete.
-The FileProgress class is not part of SWFUpload.
-*/
-
-
-/* **********************
-   Event Handlers
-   These are my custom event handlers to make my
-   web application behave the way I went when SWFUpload
-   completes different tasks.  These aren't part of the SWFUpload
-   package.  They are part of my application.  Without these none
-   of the actions SWFUpload makes will show up in my application.
-   ********************** */
-
 
 var TOTAL_UPLOAD_NUM = 0;
 
@@ -20,7 +6,6 @@ function fileQueued(file) {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setStatus("Pending...");
 		progress.toggleCancel(true, this);
-
 	} catch (ex) {
 		this.debug(ex);
 	}
@@ -71,16 +56,9 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 		    //document.getElementById(this.customSettings.uploaderTarget).style.display = 'none';
 		    //document.getElementById(this.customSettings.totalProgressTarget).style.display = 'block';
 
-            //$('#uploader').hide();
-            //$('#total-progress').show();
-
             TOTAL_UPLOAD_NUM = numFilesSelected;
-
 		    this.startUpload();
 		}
-		/* I want auto start the upload and I can do that here */
-
-
 	} catch (ex)  {
         this.debug(ex);
 	}
@@ -88,13 +66,6 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 
 function uploadStart(file) {
 	try {
-		/* I don't want to do any file validation or anything,  I'll just update the UI and
-		return true to indicate that the upload should start.
-		It's important to update the UI here because in Linux no uploadProgress events are called. The best
-		we can do is say we are uploading.
-		 */
-
-
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setStatus("Uploading...");
 		progress.toggleCancel(true, this);
@@ -110,12 +81,9 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
 	try {
 		var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
 
-        //$('.total-progress').css('width',percent+'%')
-
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setProgress(percent);
 		progress.setStatus("Uploading...");
-        //console.log(percent,'==== percent')
 
         var _queued = this.getStats().files_queued; //队列中的文件数
         var _in_progress = this.getStats().in_progress; //
@@ -135,19 +103,15 @@ function uploadProgress(file, bytesLoaded, bytesTotal) {
         }
         $('.total-progress').css('width',total_percent+'%')
         $('.total-progress-tit').html('上传总进度：'+total_percent+'%')
-        
 	} catch (ex) {
 		this.debug(ex);
 	}
 }
 
 function uploadSuccess(file, serverData) {
-    //console.log(file,'file')
-    //console.log(serverData,'serverData')
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
         var s = JSON.parse(serverData)
-        //console.log(s,'ssssss')
 		progress.setComplete();
 		progress.setStatus("Complete.");
 		progress.toggleCancel(false);
@@ -181,7 +145,7 @@ function uploadSuccess(file, serverData) {
 }
 
 function uploadError(file, errorCode, message) {
-    console.log(file,errorCode,message,'== error ==')
+    //console.log(file,errorCode,message,'== error ==')
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		progress.setError();
@@ -234,10 +198,19 @@ function uploadError(file, errorCode, message) {
 }
 
 function uploadComplete(file) {
-	//if (this.getStats().files_queued === 0) {
-	//	document.getElementById(this.customSettings.cancelButtonId).disabled = true;
-	//}
+
+    //页面滚动到改图位置
+    //var _top = $('body').find("#uploaded_"+file.id).offset().top
+    //$('body').animate({scrollTop:_top},1000,"easeInOutQuart")
+
+    //console.log(this.getStats().files_queued ,file,'uploadComplete')
+    /*
+	if (this.getStats().files_queued === 0) {
+		document.getElementById(this.customSettings.cancelButtonId).disabled = true;
+	}
+    */
     //console.log(this.getStats(),'getStats()')
+    /*
     var _queued = this.getStats().files_queued; //队列中的文件数
     var _in_progress = this.getStats().in_progress; //
     var _uploaded = this.getStats().successful_uploads; //上传成功的文件数
@@ -246,7 +219,7 @@ function uploadComplete(file) {
     var total_percent = Math.ceil( (_uploaded * 100) / TOTAL_UPLOAD_NUM); //总的上传进度
 
     //console.log(TOTAL_UPLOAD_NUM,_queued,_uploaded,total_percent,'=== upload complete')
-
+    */
     //$('.total-progress').css('width',total_percent+'%')
     //$('.total-progress-tit').html('上传总进度：'+total_percent+'%')
 }

@@ -117,7 +117,8 @@ FileProgress.prototype.setCancelled = function () {
 	}, 2000));
 };
 FileProgress.prototype.setStatus = function (status) {
-	this.fileProgressElement.childNodes[2].innerHTML = status;
+    //console.log(status)
+	//this.fileProgressElement.childNodes[2].innerHTML = status;
 };
 
 // Show/Hide the cancel button

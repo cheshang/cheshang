@@ -16,17 +16,16 @@ function swfUploader(o){
 
     return new SWFUpload({
         flash_url : "/static/js/swfupload/swfupload.swf",
-        //upload_url: "http://v0.api.upyun.com/"+UPYUN[2],
         upload_url: "http://v0.api.upyun.com/"+UPYUN[2]+'/',
         post_params: {
             'policy' 	: UPYUN[0],
-            'signature' 	: UPYUN[1]
+            'signature' : UPYUN[1]
         },
         file_size_limit : "10 MB",
         //file_types : "*.*",
         file_types : suffix_any_case('jpg png gif bmp jpeg'),
-        file_types_description : "All Files",
-        file_upload_limit : 100,
+        file_types_description : "All Image Files",
+        file_upload_limit : 200,
         file_queue_limit : 0,
         file_post_name : 'file',
         custom_settings : {
