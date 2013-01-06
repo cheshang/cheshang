@@ -87,7 +87,15 @@ CREATE TABLE  `Photo` (
   KEY `album_id` (`album_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10000000;
 
-
+DROP TABLE IF EXISTS `Fav`;
+CREATE TABLE `Fav` (
+  `id` int(14)  unsigned NOT NULL AUTO_INCREMENT,
+  `obj_type` tinyint(1) NOT NULL COMMENT '1:album,2:photo',
+  `obj_id` int(14)  NOT NULL COMMENT '被收藏的图片或者专辑的id',
+  `uid` int(12)  NOT NULL,
+  `create_time` int(14) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 # Dump of table at
 # ------------------------------------------------------------
 
@@ -125,16 +133,7 @@ CREATE TABLE `comment` (
 # Dump of table fav
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `fav`;
 
-CREATE TABLE `fav` (
-  `id` int(12)  unsigned NOT NULL AUTO_INCREMENT,
-  `fav_type` int(1) NOT NULL COMMENT '1:album,2:photo',
-  `obj_id` int(12)  NOT NULL COMMENT '被收藏的图片或者专辑的id',
-  `uid` int(12)  NOT NULL,
-  `create_time` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 

@@ -110,6 +110,12 @@ class Model(object):
         self._updated.clear()
         return self
 
+    def delete(self):
+        mc.delete(self.MC_KEY % self.id)
+        cur = connection.cursor()
+        cur.execute('DELETE FROM %s WHERE id=%s', (self.__table__, self.id))
+        print cur._last_executed
+
     def _query(self, query, values):
         cur = connection.cursor()
         cur.execute(query, values)
