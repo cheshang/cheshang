@@ -29,7 +29,7 @@ def fav_new(uid, id, obj_type):
     return fav
 
 def fav_rm(uid, obj_id, obj_type):
-    fav = Fav.get(uid=uid, obj_id=obj_id, obj_type)
+    fav = Fav.get(uid=uid, obj_id=obj_id, obj_type=obj_type)
     if fav:
         fav.delete()
 
