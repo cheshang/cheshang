@@ -121,7 +121,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
     //根据图片的ID获取图片的信息 return object
     //如果图片不在专辑中，则返回false
     window.getPhotoById = function(id){
-        console.log(id,'getting photo id')
         _photo = album_datas.photo
         _p_length = _photo.length
         for(i=0;i<_p_length;i++){
@@ -154,7 +153,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
 
     //预加载一张图片
     window.preLoadNextPhotoByCurrentId = function(id){
-        console.log(id,'curr id')
         var p = getNextPhotoByCurrentId(id)
         getImage(p.url)
     }
@@ -349,7 +347,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
             //imgLoad( getNextPhotoByCurrentId(img.id).url )
         });
 
-        console.log(photo_info.id,'getting photo id[next]')
 	}
 	
 	var toPrevPhoto = function(){
