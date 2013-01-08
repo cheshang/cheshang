@@ -3,10 +3,11 @@
 import _envi
 import web
 from config import render
+from lib.utils import RE_EMAIL
 from view._base import route, JsonView, JsonLoginView
 from model.album import album_new
 from model.email import uid_by_email
-from lib.utils import RE_EMAIL
+from model.fav import fav_album_new, fav_photo_new, fav_album_rm, fav_photo_rm
 
 @route('/j/email/verify')
 class email_exists(JsonView):
@@ -45,7 +46,30 @@ class Upload(JsonLoginView):
                 photo_new(url, name, size, uid, album_id)
         return self.render(1)
 
-@route('/comment/(\d+)')
-class Comment(JsonLoginView):
-    def GET(self, id=0):
-        return id
+@route('/j/fav/album/new')
+class FavNew(JsonLoginView):
+    def GET(self):
+        id = self.argument('obj_id')
+        fav_album_new(self.uid, int(obj_id))
+        return self.render(1)
+
+@route('/j/fav/photo/new')
+class FavNew(JsonLoginView):
+    def GET(self):
+        id = self.argument('obj_id')
+        fav_photo_new(self.uid, int(obj_id))
+        return self.render(0)
+
+@route('/j/fav/album/rm')
+class FavNew(JsonLoginView):
+    def GET(self):
+        id = self.argument('obj_id')
+        fav_album_rm(self.uid, int(obj_id))
+        return self.render(0)
+
+@route('/j/fav/photo/rm')
+class FavNew(JsonLoginView):
+    def GET(self):
+        id = self.argument('obj_id')
+        fav_photo_new(self.uid, int(obj_id))
+        return self.render(0)

@@ -17,29 +17,35 @@ class Fav(Model):
 
 def fav_new(uid, id, obj_type):
     now = int(time())
-    fav = Fav(
-        obj_type = obj_type,
-        obj_id = id,
-        uid = uid,
-        create_time = now
-    )
+    fav = Fav.get(obj_type=obj_type, obj_id=obj_id, uid=uid)
+    if not fav:
+        fav = Fav(
+            obj_type = obj_type,
+            obj_id = id,
+            uid = uid
+        )
+    fav.create_time = now
     fav.save()
     return fav
 
-def fav_rm(uid, id):
-    fav = Fav.get(id=id)
-    if fav.uid == uid:
+def fav_rm(uid, obj_id, obj_type):
+    fav = Fav.get(uid=uid, obj_id=obj_id, obj_type)
+    if fav:
         fav.delete()
-
 
 def fav_album_new(uid, id):
     fav = fav_new(uid, id, FAV_TYPE.ALBUM)
     return fav
 
+def fav_album_rm(uid, obj_id):
+    fav_rm(uid, obj_id, FAV_TYPE.ALBUM)
 
 def fav_photo_new(uid, id):
     fav = fav_new(uid, id, FAV_TYPE.PHOTO)
     return fav
+
+def fav_photo_rm(uid, obj_id):
+    fav_rm(uid, obj_id, FAV_TYPE.PHOTO)
 
 
 if __name__ == '__main__':
