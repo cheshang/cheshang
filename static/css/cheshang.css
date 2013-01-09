@@ -383,6 +383,15 @@ a.logo{
 
 
 /*顶部推荐*/
+.content-top-list{
+    float:left;
+    width:1020px;
+    height:250px;
+    margin-left:10px;
+    background:#999;
+    overflow:hidden;
+}
+
 .recommend-box{
     width:1020px;
     height:350px; 
@@ -1354,25 +1363,22 @@ button#post-comment-btn:active{
 
 
 .tools-bar{
-	width:150px;
     width:100px;
 	height:auto;
 	position:absolute;
 	z-index:5;
 	right:0;
 	overflow:hidden;
-	border-left:1px #555 solid;
 	
-	border-left:1px solid #222;
-	background:#333;
-	background:#333 url('../imgs/bg3.png');
+	border-left:0px solid #222;
+    border:none;
 	background:#333 url('../imgs/bgs/1.jpg');
 }
 a.view-logo{
 	display:block;
 	width:100px;
-	height:70px;
-	background:#222 url('../imgs/s-logo.png') no-repeat center top;
+	height:50px;
+	background:#222 url('../imgs/stand-logo-s.png') no-repeat center top;
 	border-bottom:0px #00b3f5 solid;
 }
 
@@ -1384,6 +1390,17 @@ a.view-logo{
     margin-left:5px;
     margin-top:20px;
 }
+.view-publisher-tit{
+    width:90px;
+    padding:6px 5px;
+    padding:6px 5px;
+    background:#34ABD7;
+    background:#505050;
+    text-align:center;
+    color:#ccc;
+    border-radius:3px 3px 0 0;
+    font-size:12px;
+}
 a.view-me-avatar{
     display:block;
     width:90px;
@@ -1391,7 +1408,6 @@ a.view-me-avatar{
     background:#555 url('../imgs/loader.gif') no-repeat center center;
     clear:both;
     overflow:hidden;
-    border-radius:3px;
 }
 a.view-me-avatar img{
     width:100%;
@@ -1401,6 +1417,10 @@ a.view-me-avatar img{
     padding:6px 5px;
     color:#ccc;
     font-size:12px;
+    background:#505050;
+    text-align:center;
+    color:#ccc;
+    border-radius:0 0 3px 3px;
 }
 
 .p-view-sns-bar{
@@ -2485,6 +2505,14 @@ span.cancel-img:active{
 
 /* end upload */
 
+
+.sina-wb-follow-btn{
+    float:right;
+    width:auto;
+    height:30px;
+    margin-top:39px;
+    margin-right:45px;
+}
 
 
 .margin_top_10{margin-top:10px}

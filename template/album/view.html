@@ -36,7 +36,7 @@ var DATAS = {
 </script>
 
 <script type="text/javascript">
-In.ready('tips_css','view','share','easing','tips',function(){
+In.ready('tips_css','view','share','easing','tips','postjson',function(){
 	$('html').css('background-image','none')
 	$('.page-wrapper').fadeIn()
 
@@ -209,7 +209,7 @@ html{height:100%;width:100%;background:#ddd url('/static/imgs/loader.gif') no-re
 			</div>
 		</div><!--end photo-list-mod-wrapper-->
 
-        
+        {#
         <div id="fav-wrapper" class="fav-off tips-left" title="收藏该图片"></div>
 
         <div class="view-share-box share-list" id="share-wrapper" data-img="" data-title="">
@@ -218,17 +218,10 @@ html{height:100%;width:100%;background:#ddd url('/static/imgs/loader.gif') no-re
             <a href="" class="share-qq tips-left" data-site="qq" target="_blank" title="分享到QQ空间" onclick="return SocialShareButton.share(this)"></a>
             <a href="" class="share-douban tips-left" data-site="douban" target="_blank" title="分享到豆瓣" onclick="return SocialShareButton.share(this)"></a>
         </div>
+        #}
 		
-	    {#	
 		<div class="tools-bar">
-			<a href="/" class="view-logo"></a>
-            
-            <div class="view-publisher-info">
-                <a href="/me" class="view-me-avatar tips-left" title="发布者：一地鸡毛" target="_blank">
-                    <img src="http://cheshang.b0.upaiyun.com/a339cd6a312069bcf6f9eabca9b9ebb1!1" />
-                </a>
-                <div class="view-publisher-count">有35个专辑</div>
-            </div>
+			<a href="/" class="view-logo tips-left" title="回到首页"></a>
 			
 			<div class="p-view-sns-bar">
 				<div class="photo-view-btn view-fav tips-left" title="收藏这张图">
@@ -248,8 +241,15 @@ html{height:100%;width:100%;background:#ddd url('/static/imgs/loader.gif') no-re
                 <a href="" class="share-douban tips-left" data-site="douban" target="_blank" title="分享到豆瓣" onclick="return SocialShareButton.share(this)"></a>
             </div>
 			
+            <div class="view-publisher-info" style="position:absolute;bottom:20px;right:5px;">
+                <div class="view-publisher-tit"><span>发布者</span></div>
+                <a href="/me" class="view-me-avatar tips-left" title="发布者：一地鸡毛" target="_blank">
+                    <img src="http://cheshang.b0.upaiyun.com/a339cd6a312069bcf6f9eabca9b9ebb1!1" />
+                </a>
+                <div class="view-publisher-count none">有35个专辑</div>
+            </div>
+
 		</div>
-        #}
 	</div><!--end page-wrapper-->
 </body>
 </html>

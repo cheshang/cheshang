@@ -48,28 +48,28 @@ class Upload(JsonLoginView):
 
 @route('/j/fav/album/new')
 class FavNew(JsonLoginView):
-    def GET(self):
+    def POST(self):
         id = self.argument('obj_id')
         fav_album_new(self.uid, int(obj_id))
         return self.render(1)
 
 @route('/j/fav/photo/new')
 class FavNew(JsonLoginView):
-    def GET(self):
+    def POST(self):
         id = self.argument('obj_id')
         fav_photo_new(self.uid, int(obj_id))
         return self.render(0)
 
 @route('/j/fav/album/rm')
 class FavNew(JsonLoginView):
-    def GET(self):
+    def POST(self):
         id = self.argument('obj_id')
         fav_album_rm(self.uid, int(obj_id))
         return self.render(0)
 
 @route('/j/fav/photo/rm')
 class FavNew(JsonLoginView):
-    def GET(self):
+    def POST(self):
         id = self.argument('obj_id')
         fav_photo_new(self.uid, int(obj_id))
         return self.render(0)

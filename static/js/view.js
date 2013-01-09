@@ -59,7 +59,7 @@ ICHESHANG.prototype.photoView = function(DATAS){
 		var document_h = $(window).height();
 		
 		//set content-wrapper
-		content_wrapper.css({width: document_w - tools_bar.width()-1});
+		content_wrapper.css({width: document_w - tools_bar.width()});
 		content_wrapper.css({height: document_h});
 		
 		//set tools-bar

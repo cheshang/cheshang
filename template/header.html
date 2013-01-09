@@ -8,6 +8,7 @@
 					<button type="suubmit" class="search-btn" title="搜索"></button>
 				</form>
 			</div>
+
 			{%  if not current_user %}
 			<div class="auth-box">
 				<a href="/signin" class="a-go-login">登 陆</a>
@@ -31,6 +32,10 @@
 				<a href="/album/new" class="a-go-reg" style="padding:8px 30px">上传车图</a>
 			</div>
 			{% endif %}
+            
+            <div class="sina-wb-follow-btn">
+                <wb:follow-button uid="3102927765" type="red_1" width="63" height="24" ></wb:follow-button>
+            </div>
 		</div>
 
 	</div>

@@ -1,6 +1,6 @@
 <!doctype html>
 {% include 'cheshang.html' %}
-<html lang="zh-cn" class="loading-html">
+<html lang="zh-cn" class="loading-html" xmlns:wb="http://open.weibo.com/wb">
 <head>
 <title>车尚-高品质汽车图片分享交流社区</title>
 
@@ -15,6 +15,7 @@ In.ready('cheshang','lazyload','tmpl','easing','scroll',function(){
     })
 });
 </script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 <style>
 </style>
 </head>
@@ -35,6 +36,10 @@ In.ready('cheshang','lazyload','tmpl','easing','scroll',function(){
                     </a>
 				</div>
 			</div>
+
+        <div class="content-top-list margin_top_10" style="margin-bottom:10px;">
+            <img src="/static/imgs/banner.jpg">
+        </div>
 
         {% for album in album_li %}
 			<div class="album-list-box">

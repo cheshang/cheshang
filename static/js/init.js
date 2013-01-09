@@ -1,16 +1,4 @@
-<meta charset="UTF-8">
-<link rel="shortcut icon" type="image/x-icon" href="/static/imgs/favicon.ico">
-<link rel="apple-touch-icon" href="/static/imgs/che.png"/>
 
-<link rel="stylesheet" href="/static/css/reset.css" type="text/css">
-<link rel="stylesheet" href="/static/css/cheshang.css" type="text/css">
-
-<script type="text/javascript" src="/static/js/conf.js"></script>
-<script type="text/javascript" src="/static/js/in.js" autoload="true" core="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/init.js"></script>
-
-{#
-<script type="text/javascript">
 var timenow = new Date().getTime();
 
 //In.add('reset_css',{path:'/static/css/reset.css'});
@@ -47,6 +35,3 @@ In.add('new_album',{ path:'/static/js/new_album.js',type:'js',charset:'utf-8'});
 
 In.add('masonry',{ path:'/static/js/jquery.masonry.min.js',type:'js',charset:'utf-8'});
 
-
-</script>
-#}
