@@ -151,29 +151,10 @@ ICHESHANG.prototype.photoView = function(DATAS){
         }
     }
 
-    //预加载N张图片
-    window.preLoadNextPhotoByCurrentId = function(id, is_first_load, n){
-
-        n = n || 2
-
-        var _preLoadImg = function(url,id){
-            //console.log(id,' --> ready preload img')
-            //
-            $("body").find("img.pre-load-temp-img").remove()
-            $("body").append('<img class="pre-load-temp-img" src="'+url+'" style="display:none">')
-        }
-
-        if(is_first_load){
-            var p1 = getNextPhotoByCurrentId(id)
-            _preLoadImg(p1.url,id)
-            var p2 = getNextPhotoByCurrentId(p1.id)
-            _preLoadImg(p2.url,p2.id)
-        }else{
-            var p1 = getNextPhotoByCurrentId(id)
-            var p2 = getNextPhotoByCurrentId(p1.id)
-            _preLoadImg(p2.url,p2.id)
-        
-        }
+    //预加载一张图片
+    window.preLoadNextPhotoByCurrentId = function(id){
+        var p = getNextPhotoByCurrentId(id)
+        getImage(p.url)
     }
 
     //根据当前Pid获取上一张图片的信息
@@ -329,9 +310,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
     }
     getImage( curr_img.url );
     resetPhotoInfoData(curr_img)
-
-    //预加载2张图片
-    preLoadNextPhotoByCurrentId(curr_img.id,true)
 	
 	$('.photo-list-item').live('click',function(){
 		var pid = parseInt( $(this).attr('pid') );
@@ -367,7 +345,6 @@ ICHESHANG.prototype.photoView = function(DATAS){
 
             //预加载下一张图片
             //imgLoad( getNextPhotoByCurrentId(img.id).url )
-            preLoadNextPhotoByCurrentId(img.id,false)
         });
 
 	}
